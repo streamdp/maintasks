@@ -1,7 +1,0 @@
-<application>
-  <component name="GithubAccounts">
-    <account id="c4d18a26-86a7-401d-8937-aec1e5aac559" name="streamdp">
-      <server host="github.com" />
-    </account>
-  </component>
-</application>
