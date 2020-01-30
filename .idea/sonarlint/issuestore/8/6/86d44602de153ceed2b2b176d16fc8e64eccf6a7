@@ -1,14 +1,0 @@
-
-[
-squid:S106K"9Replace this use of System.out or System.err by a logger.(ôØ’–üÿÿÿÿ8ªÚÍÿ-
-[
-squid:S106?"9Replace this use of System.out or System.err by a logger.(ôØ’–üÿÿÿÿ8Ä—¥ÿ-
-psquid:S37760"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Çµí‘8àØ›‘ÿ-
-V
-squid:S106E"9Replace this use of System.out or System.err by a logger.(‹„Îá8´õÿ-
-[
-squid:S1067"9Replace this use of System.out or System.err by a logger.(ÿ¡ä´ÿÿÿÿÿ8‹Êùÿ-
-V
-squid:S106["9Replace this use of System.out or System.err by a logger.(Äı²³8°÷ş’ÿ-
-[
-squid:S106S"9Replace this use of System.out or System.err by a logger.(ÃÍëÿÿÿÿÿ8¸ªØ‘ÿ-
