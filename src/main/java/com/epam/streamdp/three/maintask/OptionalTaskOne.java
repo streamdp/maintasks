@@ -1,0 +1,56 @@
+package com.epam.streamdp.three.maintask;
+
+
+import com.epam.streamdp.three.actions.LoggingConfig;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+
+//Задания из раздела "Additional Unit" являются вспомогательными для курса "Коллекции". В процессе изучения разделов курса рекомендуется решить 3-5 задач из списка.
+// 1.   Ввести строки из файла, записать в список. Вывести строки в файл в обратном порядке.
+// 2.   Ввести число, занести его цифры в стек. Вывести число, у которого цифры идут в обратном порядке.
+// 3.   Создать список из элементов каталога и его подкаталогов.
+public class OptionalTaskOne {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskOne.class.getName());
+
+    public static void main(String[] args) {
+        new LoggingConfig().LoggingConfig();
+
+        List<String> stringList = new ArrayList<>();
+        String filename = "data//optionaltask.txt";
+        fileRead(stringList,filename);
+        Collections.reverse(stringList);
+        fileWrite(stringList,filename);
+        logger.log(Level.INFO, "Revers done! Please, check file.");
+    }
+
+    public static void fileRead(List<String> stringList, String filename){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            while (reader.ready()) {
+                stringList.add(reader.readLine());
+            }
+            reader.close();
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Exception: ", ex);
+        }
+    }
+    public static void fileWrite(List<String> stringList, String filename){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+            for (String string:stringList){
+                writer.write(string+'\n');
+            }
+            writer.flush();
+            writer.close();
+        } catch (IOException ex){
+            logger.log(Level.SEVERE, "Exception: ", ex);
+        }
+
+    }
+
+}
+
