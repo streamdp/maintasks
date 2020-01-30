@@ -59,19 +59,22 @@ public class MainTask {
                 case ONE:
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
                     necklace = new Necklace(minerals);
-                    necklace = new Necklace(necklace.getGemsNecklaceRandomized(isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    necklace = new Necklace(necklace.getGemsNecklaceRandomized(
+                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
                     System.out.println(necklace);
                     break;
                 case TWO:
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
                     necklace = new Necklace(minerals);
-                    necklace = new Necklace(necklace.getSemiPreciousNecklaceRandomized(isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    necklace = new Necklace(necklace.getSemiPreciousNecklaceRandomized(
+                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
                     System.out.println(necklace.toString());
                     break;
                 case THREE:
                     necklace = new Necklace(minerals);
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
-                    necklace = new Necklace(necklace.getMixedNecklace(isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    necklace = new Necklace(necklace.getMixedNecklace(
+                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
                     System.out.println(necklace);
                     break;
                 case FOUR:
@@ -88,7 +91,8 @@ public class MainTask {
                     int min = isTheTaskNumberEnteredCorrectly(scanner) ? scanner.nextInt():2;
                     logger.log(Level.INFO, INPUT_MAX);
                     int max = isTheTaskNumberEnteredCorrectly(scanner) ? scanner.nextInt():0;
-                    System.out.println(necklace.findMineralsByTransparency(TypeOfTransparency.values()[min],TypeOfTransparency.values()[max]));
+                    System.out.println(necklace.findMineralsByTransparency(
+                            TypeOfTransparency.values()[min],TypeOfTransparency.values()[max]));
                     break;
                 default:logger.log(Level.WARNING, INPUT_CORRECT_NUMBER);
             }
