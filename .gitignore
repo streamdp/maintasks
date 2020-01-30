@@ -1,8 +1,4 @@
-/_linux/
-/codestyles/
-/*.xml
 /.idea/
-!/pom.xml
 /target/
 /maintask.iml
 /data/log/*
