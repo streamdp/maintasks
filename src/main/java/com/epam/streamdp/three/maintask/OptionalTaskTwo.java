@@ -1,18 +1,22 @@
 package com.epam.streamdp.three.maintask;
 
+import com.epam.streamdp.three.actions.LoggingConfig;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class OptionalTaskTwo {
-//    2.   Ввести число, занести его цифры в стек. Вывести число, у которого цифры идут в обратном порядке.
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskTwo.class.getName());
     public static void main(String[] args) {
+        new LoggingConfig();
 
-        System.out.println("Please, enter an Integer:");
+        logger.log(Level.INFO,"Please, enter an Integer:");
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()){
-            System.out.println("Please, enter an correct Integer:");
+            logger.log(Level.INFO,"Please, enter an correct Integer:");
             scanner.next();
         }
 
@@ -23,7 +27,7 @@ public class OptionalTaskTwo {
         boolean wasItPositiveInteger = true;
 
         for (int i = 0; i < charsArray.length ; i++) {
-            if (charsArray[i] != '-') {
+            if (charsArray[i] != '-' ) {
                 integerStack.add(charsArray[i]);
             } else {
                 wasItPositiveInteger = false;
@@ -37,6 +41,8 @@ public class OptionalTaskTwo {
             integerString.append(character.charValue());
         }
 
-        System.out.println(wasItPositiveInteger? Integer.parseUnsignedInt(integerString.toString()) : Integer.parseInt(integerString.toString()) * -1);
+        integer = wasItPositiveInteger? Integer.parseUnsignedInt(integerString.toString()) : Integer.parseInt(integerString.toString()) * -1;
+
+        logger.log(Level.INFO, "Answer the question: {0}", integer);
     }
 }
