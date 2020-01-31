@@ -53,28 +53,29 @@ public class MainTask {
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println(LIST_MENU_ENTRY);
-            int taskNumber = isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()) : 0;
+            areWaitingForCorrectInteger(scanner);
+            int taskNumber = Math.abs(scanner.nextInt());
             if (taskNumber == 0) {break;}
             switch (taskNumber){
                 case ONE:
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
                     necklace = new Necklace(minerals);
-                    necklace = new Necklace(necklace.getGemsNecklaceRandomized(
-                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    areWaitingForCorrectInteger(scanner);
+                    necklace = new Necklace(necklace.getGemsNecklaceRandomized(Math.abs(scanner.nextInt())));
                     System.out.println(necklace);
                     break;
                 case TWO:
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
                     necklace = new Necklace(minerals);
-                    necklace = new Necklace(necklace.getSemiPreciousNecklaceRandomized(
-                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    areWaitingForCorrectInteger(scanner);
+                    necklace = new Necklace(necklace.getSemiPreciousNecklaceRandomized(Math.abs(scanner.nextInt())));
                     System.out.println(necklace.toString());
                     break;
                 case THREE:
                     necklace = new Necklace(minerals);
                     logger.log(Level.INFO,INPUT_COUNT_ITEMS);
-                    necklace = new Necklace(necklace.getMixedNecklace(
-                            isTheTaskNumberEnteredCorrectly(scanner) ? Math.abs(scanner.nextInt()):10));
+                    areWaitingForCorrectInteger(scanner);
+                    necklace = new Necklace(necklace.getMixedNecklace(Math.abs(scanner.nextInt())));
                     System.out.println(necklace);
                     break;
                 case FOUR:
@@ -88,9 +89,11 @@ public class MainTask {
                 case SIX:
                     logger.log(Level.INFO, SPECIFY_TRANSPARENCY_PARAMETERS);
                     logger.log(Level.INFO, INPUT_MIN);
-                    int min = isTheTaskNumberEnteredCorrectly(scanner) ? scanner.nextInt():2;
+                    areWaitingForCorrectInteger(scanner);
+                    int min = scanner.nextInt();
                     logger.log(Level.INFO, INPUT_MAX);
-                    int max = isTheTaskNumberEnteredCorrectly(scanner) ? scanner.nextInt():0;
+                    areWaitingForCorrectInteger(scanner);
+                    int max = scanner.nextInt();
                     System.out.println(necklace.findMineralsByTransparency(
                             TypeOfTransparency.values()[min],TypeOfTransparency.values()[max]));
                     break;
@@ -98,12 +101,11 @@ public class MainTask {
             }
         }
     }
-    public static boolean isTheTaskNumberEnteredCorrectly(Scanner scanner) {
+    public static void   areWaitingForCorrectInteger(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             logger.log(Level.INFO,INPUT_CORRECT_NUMBER);
             scanner.next();
         }
-        return true;
     }
 }
 
