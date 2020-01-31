@@ -46,7 +46,7 @@ public class MainTask {
 
 
     public static void main(String[] args) {
-        new LoggingConfig().LoggingConfig();
+        new LoggingConfig().loadAndApplyLoggingConfig();
         List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
         Necklace necklace = new Necklace(minerals);
 

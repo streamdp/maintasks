@@ -8,13 +8,11 @@ public class LoggingConfig {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoggingConfig.class.getName());
 
     public LoggingConfig() {
-        LoggingConfig();
+        this.loadAndApplyLoggingConfig();
     }
-    public  void LoggingConfig(){
+    public  void loadAndApplyLoggingConfig(){
         try {
-            // Load a properties file from class path java.util.logging.config.file
             final LogManager logManager = LogManager.getLogManager();
-
             URL configURL = getClass().getResource("/logging.properties");
             if (configURL != null) {
                 try (InputStream is = configURL.openStream()) {

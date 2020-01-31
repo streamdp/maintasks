@@ -11,7 +11,7 @@ import java.util.logging.Level;
 public class OptionalTaskTwo {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskTwo.class.getName());
     public static void main(String[] args) {
-        new LoggingConfig();
+        new LoggingConfig().loadAndApplyLoggingConfig();
 
         logger.log(Level.INFO,"Please, enter an Integer:");
         Scanner scanner = new Scanner(System.in);

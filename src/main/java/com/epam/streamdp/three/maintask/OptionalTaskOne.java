@@ -17,7 +17,7 @@ public class OptionalTaskOne {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskOne.class.getName());
 
     public static void main(String[] args) {
-        new LoggingConfig().LoggingConfig();
+        new LoggingConfig().loadAndApplyLoggingConfig();
 
         List<String> stringList = new ArrayList<>();
         String filename = "data//optionaltask.txt";
@@ -28,24 +28,22 @@ public class OptionalTaskOne {
     }
 
     public static void fileRead(List<String> stringList, String filename){
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename));)
+        {
             while (reader.ready()) {
                 stringList.add(reader.readLine());
             }
-            reader.close();
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
     }
     public static void fileWrite(List<String> stringList, String filename){
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            for (String string:stringList){
-                writer.write(string+'\n');
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename));)
+        {
+            for (String string:stringList) {
+                writer.write(string + '\n');
             }
             writer.flush();
-            writer.close();
         } catch (IOException ex){
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
