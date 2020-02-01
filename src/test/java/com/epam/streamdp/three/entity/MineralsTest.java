@@ -15,6 +15,7 @@ public class MineralsTest {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NecklaceTest.class.getName());
     private Random random = new Random();
     private List<Minerals> minerals = loadItemsFromFile("itemsForTest.json");
+
     @Test
     public void testIsGem() {
         assertTrue(Minerals.isGem(minerals.get(0)));
@@ -23,6 +24,7 @@ public class MineralsTest {
         assertFalse(Minerals.isGem(minerals.get(75)));
 
     }
+
     @Test
     public void testIsSemiPreciousGem() {
         assertTrue(Minerals.isSemiPreciousGem(minerals.get(100)));
