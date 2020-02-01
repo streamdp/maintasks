@@ -1,6 +1,8 @@
 /.idea/
 /target/
 /maintask.iml
+/data/*.*~
+*.*~
 /data/log/*
 /data/messages.properties
 /src/main/java/com/epam/streamdp/lerning/
