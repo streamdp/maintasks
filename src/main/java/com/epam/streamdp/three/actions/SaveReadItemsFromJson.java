@@ -4,7 +4,10 @@ import com.epam.streamdp.three.entity.Minerals;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,9 +36,7 @@ public class SaveReadItemsFromJson {
         List<Minerals> mineralsList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("data//"+filename));)
         {
-            logger.log(Level.INFO,"Reading items from data/{0}",filename);
             mineralsList = gson.fromJson(reader, new TypeToken<List<Minerals>>(){}.getType());
-            logger.log(Level.INFO,"Successfully read {0} items!",mineralsList.size());
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }

@@ -134,25 +134,23 @@ public class Minerals {
     }
 
     public static boolean isGem(Minerals mineral){
-        boolean exists = true;
         try {
             GemsNames.valueOf(mineral.getName());
             if (mineral.getName().equals("AMBER") && mineral.getWeight() < 5000) {
-                exists = false;
+                return false;
             }
-        } catch (IllegalArgumentException e) {
-            exists = false;
+        } catch (IllegalArgumentException ex) {
+            return false;
         }
-        return exists;
+        return true;
     }
 
     public static boolean isSemiPreciousGem(Minerals mineral){
-        boolean exists = true;
         try {
             SemiPreciousGemsNames.valueOf(mineral.getName());
-        } catch (IllegalArgumentException e) {
-            exists = false;
+        } catch (IllegalArgumentException ex) {
+            return false;
         }
-        return exists;
+        return true;
     }
 }

@@ -1,13 +1,15 @@
 package com.epam.streamdp.three.maintask;
 
-import com.epam.streamdp.three.actions.LoggingConfig;
 import com.epam.streamdp.three.actions.SaveReadItemsFromJson;
 import com.epam.streamdp.three.entity.Minerals;
 import com.epam.streamdp.three.entity.Necklace;
 import com.epam.streamdp.three.enums.TypeOfTransparency;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
+
+import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
 //6. Камни. Определить иерархию драгоценных и полудрагоценных камней. Отобрать камни для ожерелья.
 //        Подсчитать общий вес (вкаратах) и стоимость.
 //        Провести сортировку камней ожерелья на основе ценности.
@@ -46,8 +48,9 @@ public class MainTask {
 
 
     public static void main(String[] args) {
-        new LoggingConfig().loadAndApplyLoggingConfig();
+        loadAndApplyLoggingConfig();
         List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
+        logger.log(Level.INFO,"Successfully read {0} items!",minerals.size());
         Necklace necklace = new Necklace(minerals);
 
         Scanner scanner = new Scanner(System.in);

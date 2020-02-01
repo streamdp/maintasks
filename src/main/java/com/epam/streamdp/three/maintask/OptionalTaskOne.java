@@ -1,13 +1,12 @@
 package com.epam.streamdp.three.maintask;
 
-
-import com.epam.streamdp.three.actions.LoggingConfig;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
+
+import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
 
 //Задания из раздела "Additional Unit" являются вспомогательными для курса "Коллекции". В процессе изучения разделов курса рекомендуется решить 3-5 задач из списка.
 // 1.   Ввести строки из файла, записать в список. Вывести строки в файл в обратном порядке.
@@ -17,7 +16,7 @@ public class OptionalTaskOne {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskOne.class.getName());
 
     public static void main(String[] args) {
-        new LoggingConfig().loadAndApplyLoggingConfig();
+        loadAndApplyLoggingConfig();
 
         List<String> stringList = new ArrayList<>();
         String filename = "data//optionaltask.txt";

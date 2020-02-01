@@ -7,13 +7,12 @@ import java.util.logging.*;
 public class LoggingConfig {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoggingConfig.class.getName());
 
-    public LoggingConfig() {
-        this.loadAndApplyLoggingConfig();
-    }
-    public  void loadAndApplyLoggingConfig(){
+    private LoggingConfig() { throw new IllegalStateException("Utility class"); }
+
+    public static void loadAndApplyLoggingConfig(){
         try {
             final LogManager logManager = LogManager.getLogManager();
-            URL configURL = getClass().getResource("/logging.properties");
+            URL configURL = LoggingConfig.class.getResource("/logging.properties");
             if (configURL != null) {
                 try (InputStream is = configURL.openStream()) {
                     logManager.readConfiguration(is);

@@ -1,17 +1,17 @@
 package com.epam.streamdp.three.maintask;
 
-import com.epam.streamdp.three.actions.LoggingConfig;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 
+import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
+
 public class OptionalTaskTwo {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskTwo.class.getName());
     public static void main(String[] args) {
-        new LoggingConfig().loadAndApplyLoggingConfig();
+        loadAndApplyLoggingConfig();
 
         logger.log(Level.INFO,"Please, enter an Integer:");
         Scanner scanner = new Scanner(System.in);
