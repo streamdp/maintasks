@@ -1,6 +1,8 @@
 package com.epam.streamdp.two;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class MainTask {
     static List<Product> productList = Arrays.asList(
@@ -22,24 +24,21 @@ public class MainTask {
     public static void main(String[] args) {
         Scanner scannerIn = new Scanner(System.in);
         System.out.println("a. список товаров для заданного наименования.");
-        String productName = "Лампа";
 
         System.out.println("Введите наименование продукта [Coffee,Лампа,Клей,Валик,Кисть]:");
-        productName = args.length>0 ? args[0]:scannerIn.next().toLowerCase();
-        List<Product> productListForAB = new Product().findProductsByName(productList,productName);
+        String productName = args.length > 0 ? args[0] : scannerIn.next().toLowerCase();
+        List<Product> productListForAB = new Product().findProductsByName(productList, productName);
         printResults(productListForAB);
 
         System.out.println("\nb. список товаров для заданного наименования, цена которых не превосходит заданную.");
-        double productPrice = 0;
         System.out.println("Укажите цену:");
-        productPrice = scannerIn.hasNextDouble() ? scannerIn.nextDouble() : 0;
-        printResults(new Product().findProductsByPrice(productListForAB,productPrice));
+        double productPrice = scannerIn.hasNextDouble() ? scannerIn.nextDouble() : 0;
+        printResults(new Product().findProductsByPriceLessThanThis(productListForAB, productPrice));
 
         System.out.println("\nc. список товаров, срок хранения которых больше заданного:");
-        long productStorageTime = 0;
         System.out.println("Ваедите срок хранения:");
-        productStorageTime = scannerIn.hasNextLong() ? scannerIn.nextLong() : 0;
-        printResults(new Product().findProductsByStorageTime(productList,productStorageTime));
+        long productStorageTime = scannerIn.hasNextLong() ? scannerIn.nextLong() : 0;
+        printResults(new Product().findProductsByStorageTimeMoreThanThis(productList, productStorageTime));
 
         scannerIn.close();
     }

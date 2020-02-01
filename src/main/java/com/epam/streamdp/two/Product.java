@@ -129,16 +129,17 @@ public class Product implements Entity {
 
     public List<Product> findProductsByName(List<Product> list, String name) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product:list) {
+        for (Product product : list) {
             if (product.getProductName().equalsIgnoreCase(name)) {
                 productListResult.add(product);
             }
         }
         return productListResult;
     }
-    public List<Product> findProductsByPrice(List<Product> list, double price) {
+
+    public List<Product> findProductsByPriceLessThanThis(List<Product> list, double price) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product:list) {
+        for (Product product : list) {
             if (product.getPrice() <= price) {
                 productListResult.add(product);
             }
@@ -146,9 +147,9 @@ public class Product implements Entity {
         return productListResult;
     }
 
-    public List<Product> findProductsByStorageTime(List<Product> list, long storageTime) {
+    public List<Product> findProductsByStorageTimeMoreThanThis(List<Product> list, long storageTime) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product:list) {
+        for (Product product : list) {
             if (product.getMonthOfTheExpirationDate() > storageTime) {
                 productListResult.add(product);
             }
