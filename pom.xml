@@ -19,12 +19,9 @@
 
   <dependencies>
     <dependency>
-      <exclusions>
-        <exclusion>
-          <artifactId>tools</artifactId>
-          <groupId>com.sun</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.1.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
