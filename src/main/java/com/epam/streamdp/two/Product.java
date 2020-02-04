@@ -129,11 +129,9 @@ public class Product implements Entity {
 
     public List<Product> findProductsByName(List<Product> list, String name) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product : list) {
-            if (product.getProductName().equalsIgnoreCase(name)) {
-                productListResult.add(product);
-            }
-        }
+        list.forEach(o -> {
+            if (o.getProductName().equalsIgnoreCase(name)) productListResult.add(o);
+        });
         return productListResult;
     }
 
