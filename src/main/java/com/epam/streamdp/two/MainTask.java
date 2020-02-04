@@ -23,20 +23,20 @@ public class MainTask {
 
     public static void main(String[] args) {
         Scanner scannerIn = new Scanner(System.in);
-        System.out.println("a. список товаров для заданного наименования.");
+        System.out.println("a. list of products with the selected name.");
 
-        System.out.println("Введите наименование продукта [Coffee,Лампа,Клей,Валик,Кисть]:");
+        System.out.println("Enter product name [Coffee,Лампа,Клей,Валик,Кисть]:");
         String productName = args.length > 0 ? args[0] : scannerIn.next().toLowerCase();
         List<Product> productListForAB = new Product().findProductsByName(productList, productName);
         printResults(productListForAB);
 
-        System.out.println("\nb. список товаров для заданного наименования, цена которых не превосходит заданную.");
-        System.out.println("Укажите цену:");
+        System.out.println("\nb. list of products with the selected name, the price of which does not exceed the specified.");
+        System.out.println("Choose price:");
         double productPrice = scannerIn.hasNextDouble() ? scannerIn.nextDouble() : 0;
         printResults(new Product().findProductsByPriceLessThanThis(productListForAB, productPrice));
 
-        System.out.println("\nc. список товаров, срок хранения которых больше заданного:");
-        System.out.println("Ваедите срок хранения:");
+        System.out.println("\nc. list of products whose shelf life is longer than indicated:");
+        System.out.println("Enter expiration date:");
         long productStorageTime = scannerIn.hasNextLong() ? scannerIn.nextLong() : 0;
         printResults(new Product().findProductsByStorageTimeMoreThanThis(productList, productStorageTime));
 
