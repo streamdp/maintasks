@@ -1,8 +1,8 @@
 package com.epam.streamdp.two;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Product implements Entity {
     private long productId;
@@ -128,26 +128,23 @@ public class Product implements Entity {
     }
 
     public List<Product> findProductsByName(List<Product> list, String name) {
-        List<Product> productListResult = new ArrayList<>();
-        list.forEach(o -> {
-            if (o.getProductName().equalsIgnoreCase(name)) productListResult.add(o);
-        });
-        return productListResult;
+        return list
+                .stream()
+                .filter(product -> product.getProductName().equalsIgnoreCase(name))
+                .collect(Collectors.toList());
     }
 
     public List<Product> findProductsByPriceLessThanThis(List<Product> list, double price) {
-        List<Product> productListResult = new ArrayList<>();
-        list.forEach(o -> {
-            if (o.getPrice() <= price) productListResult.add(o);
-        });
-        return productListResult;
+        return list
+                .stream()
+                .filter(product -> product.getPrice() <= price)
+                .collect(Collectors.toList());
     }
 
     public List<Product> findProductsByStorageTimeMoreThanThis(List<Product> list, long storageTime) {
-        List<Product> productListResult = new ArrayList<>();
-        list.forEach(o -> {
-            if (o.getMonthOfTheExpirationDate() > storageTime) productListResult.add(o);
-        });
-        return productListResult;
+        return list
+                .stream()
+                .filter(product -> product.getMonthOfTheExpirationDate() > storageTime)
+                .collect(Collectors.toList());
     }
 }

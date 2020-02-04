@@ -52,7 +52,6 @@ public class MainTask {
        List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
        logger.log(Level.INFO, "Successfully read {0} items!", minerals.size());
        Necklace necklace = new Necklace(minerals);
-
        Scanner scanner = new Scanner(System.in);
        while (true) {
            System.out.println(LIST_MENU_ENTRY);

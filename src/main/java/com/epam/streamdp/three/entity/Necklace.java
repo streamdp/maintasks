@@ -4,6 +4,7 @@ import com.epam.streamdp.three.enums.TypeOfTransparency;
 
 import java.util.*;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class Necklace {
     private static final  double MAX_WEIGHT_ONE_ITEM = 25;
@@ -130,11 +131,10 @@ public class Necklace {
 
     public List<Minerals> findGemsAndSemiPreciousGemsForNecklace() {
         List<Minerals> mixedListOfMinerals = new ArrayList<>();
-        for (Minerals mineral : minerals) {
-            if ((Minerals.isGem(mineral) || Minerals.isSemiPreciousGem(mineral)) && thisOneIsSuitableForMakingANecklace(mineral)) {
+        minerals.forEach(mineral -> {
+            if ((Minerals.isGem(mineral) || Minerals.isSemiPreciousGem(mineral)) && thisOneIsSuitableForMakingANecklace(mineral))
                 mixedListOfMinerals.add(mineral);
-            }
-        }
+        });
         return mixedListOfMinerals;
     }
 
@@ -167,16 +167,25 @@ public class Necklace {
         return mineral.getWeight() < MAX_WEIGHT_ONE_ITEM;
     }
 
-    public double getTotalWeight(List<? extends Minerals> minerals){
-        return minerals.stream().mapToDouble(Minerals::getWeight).sum();
+    public double getTotalWeight(List<? extends Minerals> minerals) {
+        return minerals
+                .stream()
+                .mapToDouble(Minerals::getWeight)
+                .sum();
     }
 
-    public double getTotalWeight(){
-        return minerals.stream().mapToDouble(Minerals::getWeight).sum();
+    public double getTotalWeight() {
+        return minerals
+                .stream()
+                .mapToDouble(Minerals::getWeight)
+                .sum();
     }
 
     public double getTotalCost(List<? extends Minerals> minerals) {
-        return minerals.stream().mapToDouble(Minerals::getCost).sum();
+        return minerals
+                .stream()
+                .mapToDouble(Minerals::getCost)
+                .sum();
     }
 
     public double getTotalCost() { return minerals.stream().mapToDouble(Minerals::getCost).sum(); }
@@ -193,14 +202,11 @@ public class Necklace {
         return this;
     }
 
-    public  List<Minerals> findMineralsByTransparency(TypeOfTransparency fromTransparency, TypeOfTransparency toTransparency){
-        List<Minerals> findMineralsByTransparency = new ArrayList<>();
-        for (Minerals mineral : minerals){
-            if (mineral.getTransparency().equals(fromTransparency) || mineral.getTransparency().equals(toTransparency)) {
-                findMineralsByTransparency.add(mineral);
-            }
-        }
-        return findMineralsByTransparency;
+    public  List<Minerals> findMineralsByTransparency(TypeOfTransparency fromTransparency, TypeOfTransparency toTransparency) {
+        return minerals
+                .stream()
+                .filter(mineral -> (mineral.getTransparency().equals(fromTransparency) || mineral.getTransparency().equals(toTransparency)))
+                .collect(Collectors.toList());
     }
 
     @Override
