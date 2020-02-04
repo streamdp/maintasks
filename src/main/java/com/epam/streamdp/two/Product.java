@@ -137,21 +137,17 @@ public class Product implements Entity {
 
     public List<Product> findProductsByPriceLessThanThis(List<Product> list, double price) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product : list) {
-            if (product.getPrice() <= price) {
-                productListResult.add(product);
-            }
-        }
+        list.forEach(o -> {
+            if (o.getPrice() <= price) productListResult.add(o);
+        });
         return productListResult;
     }
 
     public List<Product> findProductsByStorageTimeMoreThanThis(List<Product> list, long storageTime) {
         List<Product> productListResult = new ArrayList<>();
-        for (Product product : list) {
-            if (product.getMonthOfTheExpirationDate() > storageTime) {
-                productListResult.add(product);
-            }
-        }
+        list.forEach(o -> {
+            if (o.getMonthOfTheExpirationDate() > storageTime) productListResult.add(o);
+        });
         return productListResult;
     }
 }
