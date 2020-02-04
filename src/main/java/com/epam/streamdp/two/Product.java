@@ -28,15 +28,15 @@ public class Product implements Entity {
 
     @Override
     public String toString() {
-        String monthOfTheExpirationDateString = monthOfTheExpirationDate == Long.MAX_VALUE ? "Неограничен" : monthOfTheExpirationDate +"мес.";
-        return "Продукт [" +
-                "Артикул = " + productId +","+'\t'+
-                "Наименование=" + productName +","+'\t'+
-                "Штрихкод=" + stringUniversalProductCode +","+'\t'+
-                "Производитель=" + manufacturer +","+'\t'+
-                "Цена=" + price +","+'\t'+
-                "Срок годности=" + monthOfTheExpirationDateString +","+'\t'+
-                "Количество=" + amount +
+        String monthOfTheExpirationDateString = monthOfTheExpirationDate == Long.MAX_VALUE ? "Неограничен" : monthOfTheExpirationDate + "мес.";
+        return "Products [" +
+                "Id = " + productId + "," + '\t' +
+                "Name=" + productName + "," + '\t' +
+                "UPC=" + stringUniversalProductCode + "," + '\t' +
+                "Manufacturer=" + manufacturer + "," + '\t' +
+                "Price=" + price + "," + '\t' +
+                "Expiration date=" + monthOfTheExpirationDateString + "," + '\t' +
+                "Amount=" + amount +
                 ']';
     }
 
