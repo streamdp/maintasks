@@ -8,10 +8,6 @@ import java.util.logging.Level;
 
 import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
 
-//Задания из раздела "Additional Unit" являются вспомогательными для курса "Коллекции". В процессе изучения разделов курса рекомендуется решить 3-5 задач из списка.
-// 1.   Ввести строки из файла, записать в список. Вывести строки в файл в обратном порядке.
-// 2.   Ввести число, занести его цифры в стек. Вывести число, у которого цифры идут в обратном порядке.
-// 3.   Создать список из элементов каталога и его подкаталогов.
 public class OptionalTaskOne {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OptionalTaskOne.class.getName());
 
@@ -45,8 +41,6 @@ public class OptionalTaskOne {
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
-
     }
-
 }
 

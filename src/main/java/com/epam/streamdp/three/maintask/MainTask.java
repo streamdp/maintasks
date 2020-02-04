@@ -47,17 +47,17 @@ public class MainTask {
    static final String TOTAL_COST_NECKLACE = "Total cost   necklace = {0} BYN";
 
 
-    public static void main(String[] args) {
-        loadAndApplyLoggingConfig();
-        List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
-        logger.log(Level.INFO,"Successfully read {0} items!",minerals.size());
-        Necklace necklace = new Necklace(minerals);
+   public static void main(String[] args) {
+       loadAndApplyLoggingConfig();
+       List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
+       logger.log(Level.INFO, "Successfully read {0} items!", minerals.size());
+       Necklace necklace = new Necklace(minerals);
 
-        Scanner scanner = new Scanner(System.in);
-        while (true){
-            System.out.println(LIST_MENU_ENTRY);
-            areWaitingForCorrectInteger(scanner);
-            int taskNumber = Math.abs(scanner.nextInt());
+       Scanner scanner = new Scanner(System.in);
+       while (true) {
+           System.out.println(LIST_MENU_ENTRY);
+           areWaitingForCorrectInteger(scanner);
+           int taskNumber = Math.abs(scanner.nextInt());
             if (taskNumber == 0) {break;}
             switch (taskNumber){
                 case ONE:
@@ -75,8 +75,8 @@ public class MainTask {
                     System.out.println(necklace.toString());
                     break;
                 case THREE:
+                    logger.log(Level.INFO, INPUT_COUNT_ITEMS);
                     necklace = new Necklace(minerals);
-                    logger.log(Level.INFO,INPUT_COUNT_ITEMS);
                     areWaitingForCorrectInteger(scanner);
                     necklace = new Necklace(necklace.getMixedNecklace(Math.abs(scanner.nextInt())));
                     System.out.println(necklace);
@@ -104,6 +104,7 @@ public class MainTask {
             }
         }
     }
+
     public static void   areWaitingForCorrectInteger(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             logger.log(Level.INFO,INPUT_CORRECT_NUMBER);
