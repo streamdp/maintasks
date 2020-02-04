@@ -20,15 +20,14 @@ public class OptionalTaskOne {
 
         List<String> stringList = new ArrayList<>();
         String filename = "data//optionaltask.txt";
-        fileRead(stringList,filename);
+        readFile(stringList, filename);
         Collections.reverse(stringList);
-        fileWrite(stringList,filename);
+        writeFile(stringList, filename);
         logger.log(Level.INFO, "Revers done! Please, check file.");
     }
 
-    public static void fileRead(List<String> stringList, String filename){
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename));)
-        {
+    public static void readFile(List<String> stringList, String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             while (reader.ready()) {
                 stringList.add(reader.readLine());
             }
@@ -36,14 +35,14 @@ public class OptionalTaskOne {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
     }
-    public static void fileWrite(List<String> stringList, String filename){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename));)
-        {
-            for (String string:stringList) {
+
+    public static void writeFile(List<String> stringList, String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (String string : stringList) {
                 writer.write(string + '\n');
             }
             writer.flush();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
 
