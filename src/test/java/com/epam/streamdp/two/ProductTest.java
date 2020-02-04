@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class ProductTest {
     private static List<Product> productList = Arrays.asList(
@@ -27,18 +27,18 @@ public class ProductTest {
     @Test
     public void testFindProductsByName() {
         List<Product> productListByName = new Product().findProductsByName(productList, "Coffee");
-        assertTrue(productListByName.get(0).getProductName().equals("Coffee") && productListByName.size() == 4);
+        assertEquals(productListByName.get(0).getProductName().equals("Coffee"), productListByName.size() == 4);
     }
 
     @Test
     public void testFindProductsByPrice() {
         List<Product> productListByName = new Product().findProductsByPriceLessThanThis(productList, 4);
-        assertTrue(productListByName.get(0).getPrice() == 1.5 && productListByName.size() == 3);
+        assertEquals(productListByName.get(0).getPrice() == 1.5, productListByName.size() == 3);
     }
 
     @Test
     public void testFindProductsByStorageTime() {
         List<Product> productListByName = new Product().findProductsByStorageTimeMoreThanThis(productList, 36);
-        assertTrue(productListByName.get(0).getMonthOfTheExpirationDate() == Long.MAX_VALUE && productListByName.size() == 7);
+        assertEquals(productListByName.get(0).getMonthOfTheExpirationDate() == Long.MAX_VALUE, productListByName.size() == 7);
     }
 }

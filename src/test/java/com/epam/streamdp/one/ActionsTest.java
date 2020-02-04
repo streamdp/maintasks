@@ -28,8 +28,7 @@ public class ActionsTest {
 
     @Test
     public void testMakeArrayIntFromString() {
-        int[] testArrayForMakingArrayFromString = Actions.makeArrayIntFromString(stringForMakingArrayOfInt);
-        assertTrue(Arrays.equals(arrayOfInts, testArrayForMakingArrayFromString));
+        assertTrue(Arrays.equals(arrayOfInts, Actions.makeArrayIntFromString(stringForMakingArrayOfInt)));
     }
 
     @Test

@@ -23,16 +23,14 @@ public class NecklaceTest {
     }
 
     @BeforeMethod
-    public void loadDataForTests(){
+    public void loadDataForTests() {
         minerals = loadItemsFromFile("itemsForTest.json");
         necklace = new Necklace(minerals);
     }
 
     @Test
     public void testGetSemiPreciousNecklaceCountParameter() {
-        int count = minerals.size() + random.nextInt(100);
-        List<Minerals> semiPreciousNecklace = new Necklace(minerals).getSemiPreciousNecklace(count);
-        assertFalse(semiPreciousNecklace.isEmpty());
+        assertFalse(new Necklace(minerals).getSemiPreciousNecklace(minerals.size() + random.nextInt(100)).isEmpty());
     }
 
     @Test
@@ -42,25 +40,19 @@ public class NecklaceTest {
 
     @Test
     public void testGetSemiPreciousNecklaceNegativeCountParameter() {
-        int count = -1 * (random.nextInt(100) + 1);
-        List<Minerals> semiPreciousNecklace = new Necklace(minerals).getSemiPreciousNecklace(count);
-        assertTrue(semiPreciousNecklace.isEmpty());
+        assertTrue(new Necklace(minerals).getSemiPreciousNecklace(-1 * (random.nextInt(100) + 1)).isEmpty());
     }
 
     @Test
     public void testGetSemiPreciousNecklace() {
-        int count = random.nextInt(10) + 1;
-        List<Minerals> semiPreciousNecklace = new Necklace(minerals).getSemiPreciousNecklace(count);
-        for (Minerals mineral:semiPreciousNecklace) {
+        new Necklace(minerals).getSemiPreciousNecklace(random.nextInt(10) + 1).forEach(mineral -> {
             assertTrue(Minerals.isSemiPreciousGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testGetSemiPreciousNecklaceRandomizedCountParameter() {
-        int count = minerals.size() + random.nextInt(100);
-        List<Minerals> semiPreciousNecklaceRandomized = new Necklace(minerals).getSemiPreciousNecklaceRandomized(count);
-        assertFalse(semiPreciousNecklaceRandomized.isEmpty());
+        assertFalse(new Necklace(minerals).getSemiPreciousNecklaceRandomized(minerals.size() + random.nextInt(100)).isEmpty());
     }
 
     @Test
@@ -70,25 +62,19 @@ public class NecklaceTest {
 
     @Test
     public void testGetSemiPreciousNecklaceRandomizedNegativeCountParameter() {
-        int count = -1 * random.nextInt(100);
-        List<Minerals> semiPreciousNecklaceRandomized = new Necklace(minerals).getSemiPreciousNecklaceRandomized(count);
-        assertTrue(semiPreciousNecklaceRandomized.isEmpty());
+        assertTrue(new Necklace(minerals).getSemiPreciousNecklaceRandomized(-1 * random.nextInt(100)).isEmpty());
     }
 
     @Test
     public void testGetSemiPreciousNecklaceRandomized() {
-        int count = random.nextInt(10) + 1;
-        List<Minerals> semiPreciousNecklaceRandomized = new Necklace(minerals).getSemiPreciousNecklaceRandomized(count);
-        for (Minerals mineral:semiPreciousNecklaceRandomized) {
+        new Necklace(minerals).getSemiPreciousNecklaceRandomized(random.nextInt(10) + 1).forEach(mineral -> {
             assertTrue(Minerals.isSemiPreciousGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testGetGemsNecklaceCountParameter() {
-        int count = minerals.size() + random.nextInt(100);
-        List<Minerals> gemsNecklace = new Necklace(minerals).getGemsNecklace(count);
-        assertFalse(gemsNecklace.isEmpty());
+        assertFalse(new Necklace(minerals).getGemsNecklace(minerals.size() + random.nextInt(100)).isEmpty());
     }
 
     @Test
@@ -98,25 +84,19 @@ public class NecklaceTest {
 
     @Test
     public void testGetGemsNecklaceNegativeCountParameter() {
-        int count = -1 * (random.nextInt(100) + 1);
-        List<Minerals> gemsNecklace = new Necklace(minerals).getGemsNecklace(count);
-        assertTrue(gemsNecklace.isEmpty());
+        assertTrue(new Necklace(minerals).getGemsNecklace(-1 * (random.nextInt(100) + 1)).isEmpty());
     }
 
     @Test
     public void testGetGemsNecklace() {
-        int count = random.nextInt(10) + 1;
-        List<Minerals> gemsNecklace = new Necklace(minerals).getGemsNecklace(count);
-        for (Minerals mineral:gemsNecklace) {
+        new Necklace(minerals).getGemsNecklace(random.nextInt(10) + 1).forEach(mineral -> {
             assertTrue(Minerals.isGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testGetGemsNecklaceRandomizedCountParameter() {
-        int count = minerals.size() + random.nextInt(100);
-        List<Minerals> gemsNecklaceRandomized = new Necklace(minerals).getGemsNecklaceRandomized(count);
-        assertFalse(gemsNecklaceRandomized.isEmpty());
+        assertFalse(new Necklace(minerals).getGemsNecklaceRandomized(minerals.size() + random.nextInt(100)).isEmpty());
     }
 
     @Test
@@ -126,25 +106,19 @@ public class NecklaceTest {
 
     @Test
     public void testGetGemsNecklaceRandomizedNegativeCountParameter() {
-        int count = -1 * (random.nextInt(100) + 1);
-        List<Minerals> gemsNecklaceRandomized = new Necklace(minerals).getGemsNecklaceRandomized(count);
-        assertTrue(gemsNecklaceRandomized.isEmpty());
+        assertTrue(new Necklace(minerals).getGemsNecklaceRandomized(-1 * (random.nextInt(100) + 1)).isEmpty());
     }
 
     @Test
     public void testGetGemsNecklaceRandomized() {
-        int count = random.nextInt(10) + 1;
-        List<Minerals> gemsNecklaceRandomized = new Necklace(minerals).getGemsNecklaceRandomized(count);
-        for (Minerals mineral:gemsNecklaceRandomized) {
+        new Necklace(minerals).getGemsNecklaceRandomized(random.nextInt(10) + 1).forEach(mineral -> {
             assertTrue(Minerals.isGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testGetMixedNecklaceCountParameter() {
-        int count = minerals.size() + random.nextInt(100);
-        List<Minerals> mixedNecklace = new Necklace(minerals).getMixedNecklace(count);
-        assertFalse(mixedNecklace.isEmpty());
+        assertFalse(new Necklace(minerals).getMixedNecklace(minerals.size() + random.nextInt(100)).isEmpty());
     }
 
     @Test
@@ -154,34 +128,28 @@ public class NecklaceTest {
 
     @Test
     public void testGetMixedNecklaceNegativeCountParameter() {
-        int count = -1 * (random.nextInt(100) + 1);
-        List<Minerals> mixedNecklace = new Necklace(minerals).getMixedNecklace(count);
-        assertTrue(mixedNecklace.isEmpty());
+        assertTrue(new Necklace(minerals).getMixedNecklace(-1 * (random.nextInt(100) + 1)).isEmpty());
     }
 
     @Test
     public void testGetMixedNecklace() {
-        int count = random.nextInt(10) + 1;
-        List<Minerals> mixedNecklace = new Necklace(minerals).getMixedNecklace(count);
-        for (Minerals mineral:mixedNecklace) {
+        new Necklace(minerals).getMixedNecklace(random.nextInt(10) + 1).forEach(mineral -> {
             assertTrue(Minerals.isGem(mineral) || Minerals.isSemiPreciousGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testFindGemsAndSemiPreciousGemsForNecklace() {
-        List<Minerals> gemsForNacklace = necklace.findGemsAndSemiPreciousGemsForNecklace();
-        for (Minerals mineral:gemsForNacklace) {
+        necklace.findGemsAndSemiPreciousGemsForNecklace().forEach(mineral -> {
             assertTrue(Minerals.isGem(mineral) || Minerals.isSemiPreciousGem(mineral));
-        }
+        });
     }
 
     @Test
     public void testGetRandomItemFromListOfMinerals() {
-        List<Minerals> itemsFromListOfMinerals = necklace.getRandomItemFromListOfMinerals(500, minerals);
-        for (Minerals mineral:itemsFromListOfMinerals){
+        necklace.getRandomItemFromListOfMinerals(500, minerals).forEach(mineral -> {
             assertNotNull(mineral);
-        }
+        });
     }
 
     @Test
@@ -191,29 +159,26 @@ public class NecklaceTest {
 
     @Test
     public void testThisOneIsSuitableForMakingANecklace() {
-        for (Minerals mineral:minerals) {
-            if (mineral.getWeight()<necklace.getMaxWeightOneItem()){
+        minerals.forEach(mineral -> {
+            if (mineral.getWeight() < necklace.getMaxWeightOneItem())
                 assertTrue(necklace.thisOneIsSuitableForMakingANecklace(mineral));
-            }
-        }
+        });
     }
 
     @Test
     public void testGetTotalWeight() {
-        double weight = 0;
-        for (Minerals mineral:minerals) {
-            weight +=mineral.getWeight();
-        }
-        assertTrue(Math.abs(weight - necklace.getTotalWeight()) < 0.000001);
+        assertTrue(Math.abs(minerals
+                .stream()
+                .mapToDouble(Minerals::getWeight)
+                .sum() - necklace.getTotalWeight()) < 0.000001);
     }
 
     @Test
     public void testGetTotalCost() {
-        double cost = 0;
-        for (Minerals mineral:minerals) {
-            cost +=mineral.getPrice()*mineral.getWeight();
-        }
-        assertTrue(Math.abs(cost - necklace.getTotalCost()) < 0.000001);
+        assertTrue(Math.abs(minerals
+                .stream()
+                .mapToDouble(mineral -> mineral.getPrice() * mineral.getWeight())
+                .sum() - necklace.getTotalCost()) < 0.000001);
     }
 
     @Test
@@ -228,9 +193,9 @@ public class NecklaceTest {
 
     @Test
     public void testFindMineralsByTransparency() {
-        List<Minerals> mineralsSelectedByTransparency = necklace.findMineralsByTransparency(TypeOfTransparency.OPAQUE,TypeOfTransparency.OPAQUE);
-        for (Minerals mineral:mineralsSelectedByTransparency){
-            assertFalse(mineral.getTransparency()!=TypeOfTransparency.OPAQUE);
+        List<Minerals> mineralsSelectedByTransparency = necklace.findMineralsByTransparency(TypeOfTransparency.OPAQUE, TypeOfTransparency.OPAQUE);
+        for (Minerals mineral : mineralsSelectedByTransparency) {
+            assertFalse(mineral.getTransparency() != TypeOfTransparency.OPAQUE);
         }
     }
 }
