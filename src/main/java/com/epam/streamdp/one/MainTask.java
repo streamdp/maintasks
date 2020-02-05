@@ -71,8 +71,8 @@ public class MainTask
                             multiplicationOfNumbers *= commandLineArguments.hasNextInt() ? Integer.parseInt(args[i]) : 1;
                             commandLineArguments.close();
                         }
-                        System.out.println("sum (сумма)= " + sumOfNumbers);
-                        System.out.println("mult (произведение) = " + multiplicationOfNumbers);
+                        System.out.println("sum= " + sumOfNumbers);
+                        System.out.println("multiplication = " + multiplicationOfNumbers);
                     } else {
                         System.out.println("Sorry! We have no command line arguments ..");
                         System.out.println("Re-run program with few integers as command-line arguments!");
