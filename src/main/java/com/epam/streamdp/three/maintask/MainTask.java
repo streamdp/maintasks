@@ -10,14 +10,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 
 import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
-//6. Камни. Определить иерархию драгоценных и полудрагоценных камней. Отобрать камни для ожерелья.
-//        Подсчитать общий вес (вкаратах) и стоимость.
-//        Провести сортировку камней ожерелья на основе ценности.
-//        Найти камни в ожерелье, соответствующие заданному
-//        диапазону параметров прозрачности.
 
 public class MainTask {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainTask.class.getName());
+   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainTask.class.getName());
 
    static final int ONE   = 1;
    static final int TWO   = 2;
