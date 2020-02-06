@@ -17,7 +17,7 @@ public class Necklace {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Necklace.class.getName());
     private Random random = new Random();
 
-    private List<? extends Minerals> minerals;
+    private List<? extends Minerals> minerals = null;
 
     public Necklace(List<? extends Minerals> minerals) {
         this.minerals = minerals;

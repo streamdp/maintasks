@@ -22,7 +22,7 @@ public class OptionalTaskOne {
         logger.log(Level.INFO, "Revers done! Please, check file.");
     }
 
-    public static void readFile(List<String> stringList, String filename) {
+    private static void readFile(List<String> stringList, String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             while (reader.ready()) {
                 stringList.add(reader.readLine());
@@ -32,7 +32,7 @@ public class OptionalTaskOne {
         }
     }
 
-    public static void writeFile(List<String> stringList, String filename) {
+    private static void writeFile(List<String> stringList, String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (String string : stringList) {
                 writer.write(string + '\n');

@@ -99,9 +99,9 @@ public class MainTask {
         }
     }
 
-    public static void   areWaitingForCorrectInteger(Scanner scanner) {
+    private static void areWaitingForCorrectInteger(Scanner scanner) {
         while (!scanner.hasNextInt()) {
-            logger.log(Level.INFO,INPUT_CORRECT_NUMBER);
+            logger.log(Level.INFO, INPUT_CORRECT_NUMBER);
             scanner.next();
         }
     }
