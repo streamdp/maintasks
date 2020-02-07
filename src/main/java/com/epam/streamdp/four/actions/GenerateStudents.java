@@ -4,28 +4,35 @@ import com.epam.streamdp.four.entity.StatementOfGrades;
 import com.epam.streamdp.four.entity.Student;
 import com.epam.streamdp.four.enums.AcademicSubjects;
 import com.epam.streamdp.four.enums.Faculties;
+import com.epam.streamdp.four.exception.InvalidSubjectGradeException;
+import com.epam.streamdp.four.exception.TheGroupFieldMustBeSpecifiedException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
 
 public class GenerateStudents {
     private Random random = new Random();
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.actions.GenerateStudents.class.getName());
 
-    public List<Student> generateSomeStudents(int countStudents) {
+    public List<Student> generateSomeStudents(int countStudents) throws TheGroupFieldMustBeSpecifiedException {
         List<Student> students = new ArrayList<>(countStudents);
         List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data/city.json");
         List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/fistNames.json");
         List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/lastNames.json");
 
         for (int i = 0; i < countStudents; i++) {
-            students.add(new Student("GSTU",
-                    Faculties.values()[random.nextInt(Faculties.values().length)],
-                    random.nextInt(2) + 1,
-                    i, firstNames.get(random.nextInt(firstNames.size())).getName(),
-                    lastNames.get(random.nextInt(lastNames.size())).getName(),
-                    cities.get(random.nextInt(cities.size())).getName(),
-                    2015 + random.nextInt(5)));
+            String universityName = "GSTU";
+            Faculties someFaculty = Faculties.values()[random.nextInt(Faculties.values().length)];
+            int someGroup = random.nextInt(2) + 1;
+            String someFirstName = firstNames.get(random.nextInt(firstNames.size())).getName();
+            String someLastName = lastNames.get(random.nextInt(lastNames.size())).getName();
+            String someCity = cities.get(random.nextInt(cities.size())).getName();
+            int someYearOfStudy = 2015 + random.nextInt(5);
+
+            students.add(new Student(universityName, someFaculty, someGroup, i, someFirstName, someLastName,
+                    someCity, someYearOfStudy));
         }
         return students;
     }
@@ -35,9 +42,14 @@ public class GenerateStudents {
 
         students.forEach(student -> {
             for (int i = 0; i < countSubjectsPerStudent; i++) {
-                statementOfGrades.add(new StatementOfGrades(student,
-                        AcademicSubjects.values()[random.nextInt(AcademicSubjects.values().length)],
-                        random.nextInt(10)));
+                try {
+                    AcademicSubjects someAcademicSubject = AcademicSubjects.values()[random.nextInt(AcademicSubjects.values().length)];
+                    int someGrade = random.nextInt(10);
+                    statementOfGrades.add(new StatementOfGrades(student,
+                            someAcademicSubject, someGrade));
+                } catch (InvalidSubjectGradeException ex) {
+                    logger.log(Level.SEVERE, "Exception: ", ex);
+                }
             }
         });
 

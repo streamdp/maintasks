@@ -4,13 +4,27 @@ import com.epam.streamdp.four.enums.Faculties;
 
 import java.util.Objects;
 
-public class Person extends University {
+public class Person extends UniversityFaculty {
     private int personId;
     private String firstName;
     private String lastName;
     private String city;
 
-    public Person() {
+    public Person(Faculties faculty, int personId, String firstName, String lastName, String city) {
+        super(faculty);
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+    }
+
+    public Person(Faculties faculty, Person person) {
+        super(faculty);
+        this.personId = person.getPersonId();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.city = person.getCity();
+
     }
 
     public Person(String universityName, Faculties faculty, int personId, String firstName, String lastName, String city) {
@@ -21,36 +35,47 @@ public class Person extends University {
         this.city = city;
     }
 
-    public int getPersonId() {
-        return personId;
+    public Person() {
+        super();
     }
 
-    public void setPersonId(int personId) {
+    public Person(UniversityFaculty universityFaculty, int personId, String firstName, String lastName, String city) {
+        super(universityFaculty.getUniversityName(), universityFaculty.getFaculty());
         this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+    }
+
+    public Person(Person person) {
+        this.personId = person.getPersonId();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.city = person.getCity();
+    }
+
+    public Person(UniversityFaculty universityFaculty, Person person) {
+        super(universityFaculty);
+        this.personId = person.getPersonId();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.city = person.getCity();
+    }
+
+    public int getPersonId() {
+        return personId;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     @Override

@@ -1,24 +1,31 @@
 package com.epam.streamdp.four.entity;
 
 import com.epam.streamdp.four.enums.AcademicSubjects;
-import com.epam.streamdp.four.enums.Faculties;
+import com.epam.streamdp.four.exception.InvalidSubjectGradeException;
 
 import java.util.Objects;
+import java.util.logging.Level;
 
 public class StatementOfGrades extends Student {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.entity.StatementOfGrades.class.getName());
+
     private Student student;
     private AcademicSubjects academicSubject;
-    private int score;
+    private int grade;
 
-    public StatementOfGrades(String universityName, Faculties faculty, int group, int personId, String firstName, String lastName, String city, int yearOfStudy) {
-        super(universityName, faculty, group, personId, firstName, lastName, city, yearOfStudy);
-    }
-
-    public StatementOfGrades(Student student, AcademicSubjects academicSubject, int score) {
-        super();
+    public StatementOfGrades(Student student, AcademicSubjects academicSubject, int grade) throws InvalidSubjectGradeException {
+        super(student);
         this.student = student;
         this.academicSubject = academicSubject;
-        this.score = score;
+        try {
+            if (grade >= 0 && grade <= 10) {
+                this.grade = grade;
+            } else {
+                throw new InvalidSubjectGradeException("Please verify input value of grade. The value must be in the range [0..10]!");
+            }
+        } catch (InvalidSubjectGradeException ex) {
+            logger.log(Level.SEVERE, "Exception: ", ex);
+        }
     }
 
     public AcademicSubjects getAcademicSubject() {
@@ -29,8 +36,8 @@ public class StatementOfGrades extends Student {
         return student;
     }
 
-    public int getScore() {
-        return score;
+    public int getGrade() {
+        return grade;
     }
 
     @Override
@@ -39,14 +46,14 @@ public class StatementOfGrades extends Student {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         StatementOfGrades that = (StatementOfGrades) o;
-        return score == that.score &&
+        return grade == that.grade &&
                 Objects.equals(student, that.student) &&
                 academicSubject == that.academicSubject;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), student, academicSubject, score);
+        return Objects.hash(super.hashCode(), student, academicSubject, grade);
     }
 
     @Override
@@ -54,7 +61,7 @@ public class StatementOfGrades extends Student {
         final StringBuilder sb = new StringBuilder("\nStatementOfGrades{");
         sb.append(student);
         sb.append(", academicSubject=").append(academicSubject);
-        sb.append(", score=").append(score);
+        sb.append(", score=").append(grade);
         sb.append('}');
         return sb.toString();
     }
