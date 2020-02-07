@@ -13,12 +13,12 @@ public class MainTask {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainTask.class.getName());
 
     public static void main(String[] args) {
-        List<Student> students = GenerateStudents.generateSomeStudents(10);
-        List<StatementOfGrades> statementOfGrades = GenerateStudents.generateSomeSubjectPerStudent(students, 5);
+        List<Student> students = new GenerateStudents().generateSomeStudents(10);
+        List<StatementOfGrades> statementOfGrades = new GenerateStudents().generateSomeSubjectPerStudent(students, 5);
         System.out.println(students);
         System.out.println(statementOfGrades);
         System.out.println(new Actions(statementOfGrades).calculateGPAForAllStudentSubjects(8).getAsDouble());
-        System.out.println(new Actions(statementOfGrades).сalculateGPAForAUniversitySubject(AcademicSubjects.COMBUSTION_THEORY).getAsDouble());
+        System.out.println(new Actions(statementOfGrades).calculateGPAForAUniversitySubject(AcademicSubjects.COMBUSTION_THEORY).getAsDouble());
         System.out.println(new Actions(statementOfGrades).calculateGPAForSpecificSubjectGroupAndFaculty(AcademicSubjects.ECONOMY, 2, Faculties.AAISF).getAsDouble());
     }
 }

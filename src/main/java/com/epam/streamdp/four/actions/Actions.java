@@ -25,7 +25,7 @@ public class Actions {
     }
 
 
-    public OptionalDouble сalculateGPAForAUniversitySubject(AcademicSubjects academicSubjects) {
+    public OptionalDouble calculateGPAForAUniversitySubject(AcademicSubjects academicSubjects) {
         return statementOfGrades
                 .stream()
                 .filter(academicSubject -> academicSubject.getAcademicSubject() == academicSubjects)
@@ -37,7 +37,7 @@ public class Actions {
     public OptionalDouble calculateGPAForAllStudentSubjects(int personId) {
         return statementOfGrades
                 .stream()
-                .filter(statementOfGrades -> statementOfGrades.getStudent().getPersonId() == personId)
+                .filter(student -> student.getStudent().getPersonId() == personId)
                 .mapToDouble(StatementOfGrades::getScore)
                 .average();
     }

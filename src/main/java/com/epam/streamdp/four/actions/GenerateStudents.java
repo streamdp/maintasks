@@ -10,14 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 public class GenerateStudents {
-    private GenerateStudents() {
-        throw new IllegalStateException("Utility class");
-    }
+    private Random random = new Random();
 
-    public static List<Student> generateSomeStudents(int countStudents) {
-        Random random = new Random();
+    public List<Student> generateSomeStudents(int countStudents) {
         List<Student> students = new ArrayList<>(countStudents);
-
         List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data/city.json");
         List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/fistNames.json");
         List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/lastNames.json");
@@ -34,8 +30,7 @@ public class GenerateStudents {
         return students;
     }
 
-    public static List<StatementOfGrades> generateSomeSubjectPerStudent(List<Student> students, int countSubjectsPerStudent) {
-        Random random = new Random();
+    public List<StatementOfGrades> generateSomeSubjectPerStudent(List<Student> students, int countSubjectsPerStudent) {
         List<StatementOfGrades> statementOfGrades = new ArrayList<>();
 
         students.forEach(student -> {
