@@ -7,6 +7,7 @@ import com.epam.streamdp.four.enums.Faculties;
 import com.epam.streamdp.four.exception.InvalidSubjectGradeException;
 import com.epam.streamdp.four.exception.TheGroupFieldMustBeSpecifiedException;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,13 +15,14 @@ import java.util.logging.Level;
 
 public class GenerateStudents {
     private Random random = new Random();
+    private static final String INITIAL_DIR = "students_data";
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.actions.GenerateStudents.class.getName());
 
     public List<Student> generateSomeStudents(int countStudents) throws TheGroupFieldMustBeSpecifiedException {
         List<Student> students = new ArrayList<>(countStudents);
-        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data/city.json");
-        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/fistNames.json");
-        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/lastNames.json");
+        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "city.json");
+        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "fistNames.json");
+        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "lastNames.json");
 
         for (int i = 0; i < countStudents; i++) {
             String universityName = "GSTU";

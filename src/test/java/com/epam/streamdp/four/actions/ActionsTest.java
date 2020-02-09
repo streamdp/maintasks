@@ -8,13 +8,14 @@ import com.epam.streamdp.four.exception.TheFacultyFieldMustBeSpecifiedException;
 import com.epam.streamdp.four.exception.TheGroupFieldMustBeSpecifiedException;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ActionsTest {
-    List<StatementOfGrades> statementOfGrades = SaveReadItemsFromJson.loadTestItemsFromFile("students_data/itemForTests.json");
+    List<StatementOfGrades> statementOfGrades = SaveReadItemsFromJson.loadTestItemsFromFile("students_data" + File.separator + "itemForTests.json");
     Actions testableAction = new Actions(statementOfGrades);
 
     @Test
