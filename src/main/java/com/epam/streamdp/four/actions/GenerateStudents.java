@@ -20,9 +20,9 @@ public class GenerateStudents {
 
     public List<Student> generateSomeStudents(int countStudents) throws TheGroupFieldMustBeSpecifiedException {
         List<Student> students = new ArrayList<>(countStudents);
-        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "city.json");
-        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "fistNames.json");
-        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile(INITIAL_DIR + File.separator + "lastNames.json");
+        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "city.json");
+        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "fistNames.json");
+        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "lastNames.json");
 
         for (int i = 0; i < countStudents; i++) {
             String universityName = "GSTU";

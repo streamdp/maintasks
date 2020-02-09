@@ -6,6 +6,7 @@
 /data/out.txt
 /data/out.dat
 /data/res.txt
+/data/out.dat
 *.*~
 /data/log/*
 /data/messages.properties
