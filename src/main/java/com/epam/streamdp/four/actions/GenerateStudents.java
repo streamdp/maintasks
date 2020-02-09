@@ -7,6 +7,7 @@ import com.epam.streamdp.four.enums.Faculties;
 import com.epam.streamdp.four.exception.InvalidSubjectGradeException;
 import com.epam.streamdp.four.exception.TheGroupFieldMustBeSpecifiedException;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,9 +19,9 @@ public class GenerateStudents {
 
     public List<Student> generateSomeStudents(int countStudents) throws TheGroupFieldMustBeSpecifiedException {
         List<Student> students = new ArrayList<>(countStudents);
-        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data/city.json");
-        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/fistNames.json");
-        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data/lastNames.json");
+        List<NameFromJson> cities = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "city.json");
+        List<NameFromJson> firstNames = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "fistNames.json");
+        List<NameFromJson> lastNames = SaveReadItemsFromJson.loadItemsFromFile("students_data" + File.separator + "lastNames.json");
 
         for (int i = 0; i < countStudents; i++) {
             String universityName = "GSTU";

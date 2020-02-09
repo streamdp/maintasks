@@ -4,10 +4,7 @@ import com.epam.streamdp.four.entity.StatementOfGrades;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +12,7 @@ import java.util.logging.Level;
 public class SaveReadItemsFromJson {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.actions.SaveReadItemsFromJson.class.getName());
     private static final String EXCEPTION_SEVERE_LEVEL_MESSAGE = "Exception: ";
-    private static final String INITIAL_DIRECTORY = "data//";
+    private static final String INITIAL_DIRECTORY = "data" + File.separator;
 
     private SaveReadItemsFromJson() {
         throw new IllegalStateException("SaveReadItemsFromJson");
