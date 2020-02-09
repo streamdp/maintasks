@@ -27,7 +27,7 @@ public class SaveReadItemsFromJson {
         }
     }
 
-    public static List<Minerals> loadItemsFromFile(String filename){
+    public static List<Minerals> loadItemsFromFile(String filename) {
         Gson gson = new Gson();
         List<Minerals> mineralsList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("data" + File.separator + filename))) {
