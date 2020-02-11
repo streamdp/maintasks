@@ -3,28 +3,65 @@ package com.epam.streamdp.five;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Actions {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Actions.class.getName());
 
-    public void writeDirectoryListInFile(Path path) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data" + File.separator + "fileTree.txt"))) {
+    public static String makeTabs(int tabs) {
+        StringBuilder tabsString = new StringBuilder("|");
+        for (int i = 0; i < tabs; i++) {
+            tabsString.append('\t');
+        }
+        return tabsString.toString();
+    }
+
+    public static String makeDirseparators(int count) {
+        StringBuilder dirSeparators = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            dirSeparators.append("--\t");
+        }
+        return dirSeparators.toString();
+    }
+
+    public List<ListFiles> getSortedListFilesFromPath(Path path) {
+        try {
             CustomFileVisitor fileVisitor = new CustomFileVisitor();
             Files.walkFileTree(path, fileVisitor);
-            bufferedWriter.write(String.valueOf(path.getName(path.getNameCount() - 1)) + '\n');
+            List<ListFiles> listFiles = fileVisitor.getListFilesWithPath();
+            Collections.sort(listFiles, Comparator.comparing(ListFiles::getPath));
+            return listFiles;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    public void writeDirectoryListInFile(Path path) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data" + File.separator + "fileTree.txt"))) {
+            List<ListFiles> listFiles = getSortedListFilesFromPath(path);
+            if (listFiles.isEmpty()) {
+                throw new NoSuchElementException("There are no items in the set.");
+            }
+            Path initialDir = listFiles.get(0).getPath();
+            String directoryName = initialDir.getName(initialDir.getNameCount() - 1).toString();
+
+            bufferedWriter.write(directoryName + 'n');
             bufferedWriter.write("|\n");
-            for (String string : fileVisitor.getListOfOtherDirectoriesWithFiles()) {
-                bufferedWriter.write(string + '\n');
+            for (ListFiles file : listFiles.stream().filter(listFile -> !listFile.getPath().equals(initialDir)).collect(Collectors.toList())) {
+                if (!file.getDirectoryName().equals(directoryName)) {
+                    bufferedWriter.write("|" + makeDirseparators(file.getPath().getNameCount() - initialDir.getNameCount()) + file.getDirectoryName() + '\n');
+                    directoryName = file.getDirectoryName();
+                }
+                bufferedWriter.write(makeTabs(file.getPath().getNameCount() - initialDir.getNameCount()) + file.getName() + '\n');
             }
             bufferedWriter.write("|\n");
-            for (String string : fileVisitor.getListOfFileNamesFromInitialDirectory()) {
-                bufferedWriter.write(string + '\n');
+            for (ListFiles file : listFiles.stream().filter(listFile -> listFile.getPath().equals(initialDir)).collect(Collectors.toList())) {
+                bufferedWriter.write(file.getName() + '\n');
             }
-        } catch (IOException ex) {
+        } catch (IOException | NoSuchElementException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
         }
     }
@@ -71,21 +108,7 @@ public class Actions {
                 countFilesInInitialDitictory++;
             }
         }
+        return (countFilesInInitialDitictory + countFilesInOtherDirectory) / countDirictories;
     }
 
-    public List<DirectoryOrFile> parseFileAndReturnlListOfStringWithDirectories(Path path) {
-        List<DirectoryOrFile> listWithResult = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data" + File.separator + "fileTree.txt"))) {
-            bufferedReader.lines().forEach(string -> {
-                if (isStringContainedDirectory(string)) {
-                    listWithResult.add(new DirectoryOrFile(true, getDirectoryNameFromString(string)));
-                } else if (isStringContainedFiles(string)) {
-                    listWithResult.add(new DirectoryOrFile(false, getFileNameFromString(string)));
-                }
-            });
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Exception: ", ex);
-        }
-        return listWithResult;
-    }
 }

@@ -1,0 +1,32 @@
+datan|
+|--	log
+|	application_log.txt.0.lck
+|	application_log.txt.3
+|	application_log.txt.2
+|	application_log.txt.1
+|	application_log.txt.0
+|--	--	111
+|		1111.s
+|		44333.z
+|		222111.q
+|--	--	--	222
+|			222
+|			222333
+|			3333
+|--	students_data
+|	firstName.json~
+|	city
+|	fistNames
+|	itemForTests.dat
+|	itemForTests.json
+|	lastNames
+|	statementOfGrades.dat
+|
+messages.properties
+items.json
+optionaltask.txt
+itemsForTest.json~
+itemsForTest.json
+info.txt
+out.dat
+fileTree.txt

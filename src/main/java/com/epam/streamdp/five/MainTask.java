@@ -4,9 +4,7 @@ package com.epam.streamdp.five;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 
 import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
@@ -17,7 +15,9 @@ public class MainTask {
 
     public static void main(String[] args) {
         loadAndApplyLoggingConfig();
-        Path path = args.length > 0 ? Paths.get(Arrays.toString(args)) : Paths.get(new Scanner(System.in).next());
+        Path path = Paths.get("/home/streamdp/workspace/maintask/data");
+
+//        Path path = args.length > 0 ? Paths.get(Arrays.toString(args)) : Paths.get(new Scanner(System.in).next());
         if (path.toFile().exists()) {
             if (path.toFile().isDirectory()) {
                 logger.log(Level.INFO, "A list of directories and files will be saved to a file data/fileTree.txt");
@@ -37,7 +37,6 @@ public class MainTask {
 //                }
             }
         }
-        Path pathSource = Paths.get("/home/streamdp/workspace/maintask/data/");
-
     }
+
 }
