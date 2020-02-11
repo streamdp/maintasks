@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 public class Actions {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Actions.class.getName());
     private static final String EXCEPTION_MESSAGE = "Exception: ";
+    private static final int NUMBER_OF_DIRECTORIES = 0;
+    private static final int NUMBER_OF_FILES = 1;
+    private static final int AVERAGE_NUMBER_FILES = 2;
+    private static final int AVERAGE_LENGTH_FILE_NAMES = 3;
 
     public String makeTabs(int tabs) {
         StringBuilder tabsString = new StringBuilder("|");
@@ -67,6 +71,9 @@ public class Actions {
     }
 
     public String getFileNameFromString(String string) {
+        if (string.length() == 1 && !string.equals("|")) {
+            return string;
+        }
         int endPositionSeparator = 0;
         for (int i = 0; i < string.toCharArray().length; i++) {
             if (string.toCharArray()[i] == '\t') {
@@ -85,8 +92,8 @@ public class Actions {
                 string.toCharArray()[1] == '\t') || (string.length() > 0 && string.toCharArray()[0] != '|');
     }
 
-    public List<String> getAnswersForPartTwoMainTask(Path path) {
-        List<String> stringList = new ArrayList<>();
+    public int[] getAnswersForPartTwoMainTask(Path path) {
+        int[] arrayWithAnswers = new int[4];
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path.toString()))) {
             int countDirictories = 0;
             int countFiles = 0;
@@ -102,13 +109,13 @@ public class Actions {
                     countDirictories++;
                 }
             }
-            stringList.add("Number of directories: " + countDirictories);
-            stringList.add("Number of files: " + countFiles);
-            stringList.add("Average number files in directories: " + countFiles / countDirictories);
-            stringList.add("Average length of file names " + sumOfFileNameLength / countFiles);
+            arrayWithAnswers[NUMBER_OF_DIRECTORIES] = countDirictories;
+            arrayWithAnswers[NUMBER_OF_FILES] = countFiles;
+            arrayWithAnswers[AVERAGE_NUMBER_FILES] = countFiles / countDirictories;
+            arrayWithAnswers[AVERAGE_LENGTH_FILE_NAMES] = sumOfFileNameLength / countFiles;
         } catch (IOException ex) {
             logger.log(Level.SEVERE, EXCEPTION_MESSAGE, ex);
         }
-        return stringList;
+        return arrayWithAnswers;
     }
 }

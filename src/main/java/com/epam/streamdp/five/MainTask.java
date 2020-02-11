@@ -10,6 +10,10 @@ import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingC
 
 public class MainTask {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainTask.class.getName());
+    private static final int NUMBER_OF_DIRECTORIES = 0;
+    private static final int NUMBER_OF_FILES = 1;
+    private static final int AVERAGE_NUMBER_FILES = 2;
+    private static final int AVERAGE_LENGTH_FILE_NAMES = 3;
 
     public static void main(String[] args) {
         loadAndApplyLoggingConfig();
@@ -22,7 +26,11 @@ public class MainTask {
                 new Actions().writeDirectoryListInFile(path);
                 logger.log(Level.INFO, "File saves successfully!");
             } else if (path.toFile().isFile()) {
-                logger.log(Level.INFO, "Answer the task: {0}", new Actions().getAnswersForPartTwoMainTask(path));
+                int[] arrayWithAnswers = new Actions().getAnswersForPartTwoMainTask(path);
+                logger.log(Level.INFO, "Number of directories: {0}", arrayWithAnswers[NUMBER_OF_DIRECTORIES]);
+                logger.log(Level.INFO, "Number of files: {0}", arrayWithAnswers[NUMBER_OF_FILES]);
+                logger.log(Level.INFO, "Average number files in directories: {0}", arrayWithAnswers[AVERAGE_NUMBER_FILES]);
+                logger.log(Level.INFO, "Average length of file names {0}", arrayWithAnswers[AVERAGE_LENGTH_FILE_NAMES]);
             }
         }
     }

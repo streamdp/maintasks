@@ -28,10 +28,9 @@ data
 |
 messages.properties
 items.json
+optionaltask.txt
 itemsForTest.json~
 itemsForTest.json
 info.txt
 out.dat
-fileTreeTest
-optionaltask
 fileTree.txt

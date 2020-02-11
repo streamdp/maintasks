@@ -15,7 +15,7 @@ public class OptionalTaskOne {
         loadAndApplyLoggingConfig();
 
         List<String> stringList = new ArrayList<>();
-        String filename = "data" + File.separator + "optionaltask.txt";
+        String filename = "data" + File.separator + "optionaltask";
         readFile(stringList, filename);
         Collections.reverse(stringList);
         writeFile(stringList, filename);
