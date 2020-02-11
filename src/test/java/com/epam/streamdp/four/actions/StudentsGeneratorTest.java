@@ -24,11 +24,8 @@ public class StudentsGeneratorTest {
         }
     }
 
-    /*
-     * in this test, we filter the invalid fields. If at the end the number of rows does not change, then the
-     * selection is correct and the method works correctly
-     */
-    @Test
+    @Test(description = "The test verifies the correct operation of the generateSomeStudents() method. There should be " +
+            "no empty fields in the selection, field PersonId ()> = 0, field getGroup ()> 0")
     public void testGenerateSomeStudents() {
         assertEquals((int) students.stream()
                 .filter(student -> !student.getFirstName().isEmpty())
@@ -39,7 +36,8 @@ public class StudentsGeneratorTest {
                 " Incorrect fields in the selection.");
     }
 
-    @Test
+    @Test(description = "The test verifies the correct operation of the generateSomeSubjectPerStudent() method. There should be " +
+            "no empty fields in the selection and field Grade must be in range [0..10]")
     public void testGenerateSomeSubjectPerStudent() {
         assertEquals((int) new StudentsGenerator().generateSomeSubjectPerStudent(students, 5).stream()
                 .filter(subject -> subject.getAcademicSubject() != null)
