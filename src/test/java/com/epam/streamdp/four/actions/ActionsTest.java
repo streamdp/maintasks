@@ -17,19 +17,19 @@ public class ActionsTest {
     List<StatementOfGrades> statementOfGrades = SaveReadItems.loadTestItemsFromFile("students_data" + File.separator + "itemForTests.dat");
     Actions testableAction = new Actions(statementOfGrades);
 
-    @Test(description = "The test verifies that the calculateGPAForSpecificSubjectGroupAndFaculty() method works correctly.")
+    @Test(description = "Verify average mark calculated for a subject, group, and a faculty")
     public void testCalculateGPAForSpecificSubjectGroupAndFaculty() throws AcademicSubjectFieldCannotBeEmptyException, TheFacultyFieldMustBeSpecifiedException, TheGroupFieldMustBeSpecifiedException {
         assertEquals(testableAction.calculateGPAForSpecificSubjectGroupAndFaculty(
                 AcademicSubjects.TFOEE, 2, Faculties.TF), 7.5, "For test data, the value should be");
     }
 
-    @Test(description = "The test verifies that the calculateGPAForAUniversitySubject() method works correctly.")
+    @Test(description = "Verify average mark calculated for a specified subject by university")
     public void testCalculateGPAForAUniversitySubject() throws AcademicSubjectFieldCannotBeEmptyException {
         assertEquals(testableAction.calculateGPAForAUniversitySubject(AcademicSubjects.ENGLISH), 6.2,
                 "For test data, the value should be");
     }
 
-    @Test(description = "The test verifies that the calculateGPAForAllStudentSubjects()() method works correctly.")
+    @Test(description = "Verify average mark calculated for a specified student by all subjects")
     public void testCalculateGPAForAllStudentSubjects() {
         assertEquals(statementOfGrades.stream()
                 .filter(student -> student.getStudent().getPersonId() == 0)
