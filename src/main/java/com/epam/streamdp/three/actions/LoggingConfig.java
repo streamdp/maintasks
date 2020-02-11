@@ -1,5 +1,6 @@
 package com.epam.streamdp.three.actions;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.*;
@@ -12,7 +13,7 @@ public class LoggingConfig {
     public static void loadAndApplyLoggingConfig(){
         try {
             final LogManager logManager = LogManager.getLogManager();
-            URL configURL = LoggingConfig.class.getResource("/logging.properties");
+            URL configURL = LoggingConfig.class.getResource(File.separator + "logging.properties");
             if (configURL != null) {
                 try (InputStream is = configURL.openStream()) {
                     logManager.readConfiguration(is);

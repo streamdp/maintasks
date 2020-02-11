@@ -1,0 +1,902 @@
+[
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2019,
+      "personId": 0,
+      "firstName": "Venus",
+      "lastName": "Sanchez",
+      "city": "Kossovo",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PUMPING_UNITS",
+    "grade": 0,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2019,
+      "personId": 0,
+      "firstName": "Venus",
+      "lastName": "Sanchez",
+      "city": "Kossovo",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ELECTRICAL_ENGINEERING",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2019,
+      "personId": 0,
+      "firstName": "Venus",
+      "lastName": "Sanchez",
+      "city": "Kossovo",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PUMPING_UNITS",
+    "grade": 4,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2019,
+      "personId": 0,
+      "firstName": "Venus",
+      "lastName": "Sanchez",
+      "city": "Kossovo",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "COMBUSTION_THEORY",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2019,
+      "personId": 0,
+      "firstName": "Venus",
+      "lastName": "Sanchez",
+      "city": "Kossovo",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PSYCHOLOGY",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 1,
+      "firstName": "Jaxon",
+      "lastName": "Rodriguez",
+      "city": "Klichev",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ECONOMY",
+    "grade": 7,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 1,
+      "firstName": "Jaxon",
+      "lastName": "Rodriguez",
+      "city": "Klichev",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 5,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 1,
+      "firstName": "Jaxon",
+      "lastName": "Rodriguez",
+      "city": "Klichev",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "COMPUTER_SCIENCE",
+    "grade": 3,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 1,
+      "firstName": "Jaxon",
+      "lastName": "Rodriguez",
+      "city": "Klichev",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "STRENGHT_OF_MATERIALS",
+    "grade": 8,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 1,
+      "firstName": "Jaxon",
+      "lastName": "Rodriguez",
+      "city": "Klichev",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "STRENGHT_OF_MATERIALS",
+    "grade": 8,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 2,
+      "firstName": "Hannah",
+      "lastName": "Evans",
+      "city": "Logoisk",
+      "faculty": "AAISF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "THERMODYNAMICS",
+    "grade": 6,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 2,
+      "firstName": "Hannah",
+      "lastName": "Evans",
+      "city": "Logoisk",
+      "faculty": "AAISF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MATHS",
+    "grade": 5,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 2,
+      "firstName": "Hannah",
+      "lastName": "Evans",
+      "city": "Logoisk",
+      "faculty": "AAISF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PSYCHOLOGY",
+    "grade": 7,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 2,
+      "firstName": "Hannah",
+      "lastName": "Evans",
+      "city": "Logoisk",
+      "faculty": "AAISF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 2,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2017,
+      "personId": 2,
+      "firstName": "Hannah",
+      "lastName": "Evans",
+      "city": "Logoisk",
+      "faculty": "AAISF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "COMBUSTION_THEORY",
+    "grade": 1,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2019,
+      "personId": 3,
+      "firstName": "Rylee",
+      "lastName": "Cox",
+      "city": "Logoisk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "BOILER_PLANTS",
+    "grade": 2,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2019,
+      "personId": 3,
+      "firstName": "Rylee",
+      "lastName": "Cox",
+      "city": "Logoisk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MATHS",
+    "grade": 0,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2019,
+      "personId": 3,
+      "firstName": "Rylee",
+      "lastName": "Cox",
+      "city": "Logoisk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 0,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2019,
+      "personId": 3,
+      "firstName": "Rylee",
+      "lastName": "Cox",
+      "city": "Logoisk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "BOILER_PLANTS",
+    "grade": 0,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2019,
+      "personId": 3,
+      "firstName": "Rylee",
+      "lastName": "Cox",
+      "city": "Logoisk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PSYCHOLOGY",
+    "grade": 7,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 4,
+      "firstName": "Armani",
+      "lastName": "Rogers",
+      "city": "Kostyukovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "THERMODYNAMICS",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 4,
+      "firstName": "Armani",
+      "lastName": "Rogers",
+      "city": "Kostyukovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ELECTRONIC_DEVICES",
+    "grade": 4,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 4,
+      "firstName": "Armani",
+      "lastName": "Rogers",
+      "city": "Kostyukovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 7,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 4,
+      "firstName": "Armani",
+      "lastName": "Rogers",
+      "city": "Kostyukovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "BOILER_PLANTS",
+    "grade": 8,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 4,
+      "firstName": "Armani",
+      "lastName": "Rogers",
+      "city": "Kostyukovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "HYDRODYMAMICS",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 5,
+      "firstName": "Gary",
+      "lastName": "Diaz",
+      "city": "Turov",
+      "faculty": "MEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PSYCHOLOGY",
+    "grade": 4,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 5,
+      "firstName": "Gary",
+      "lastName": "Diaz",
+      "city": "Turov",
+      "faculty": "MEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MECHANICS",
+    "grade": 5,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 5,
+      "firstName": "Gary",
+      "lastName": "Diaz",
+      "city": "Turov",
+      "faculty": "MEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 5,
+      "firstName": "Gary",
+      "lastName": "Diaz",
+      "city": "Turov",
+      "faculty": "MEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "THERMODYNAMICS",
+    "grade": 0,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 5,
+      "firstName": "Gary",
+      "lastName": "Diaz",
+      "city": "Turov",
+      "faculty": "MEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "STRENGHT_OF_MATERIALS",
+    "grade": 8,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 6,
+      "firstName": "Flynn",
+      "lastName": "Rogers",
+      "city": "Lyakhovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 6,
+      "firstName": "Flynn",
+      "lastName": "Rogers",
+      "city": "Lyakhovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 0,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 6,
+      "firstName": "Flynn",
+      "lastName": "Rogers",
+      "city": "Lyakhovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 2,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 6,
+      "firstName": "Flynn",
+      "lastName": "Rogers",
+      "city": "Lyakhovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "PUMPING_UNITS",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 6,
+      "firstName": "Flynn",
+      "lastName": "Rogers",
+      "city": "Lyakhovichi",
+      "faculty": "TF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 9,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 7,
+      "firstName": "Uriah",
+      "lastName": "Walker",
+      "city": "Chechersk",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ECONOMY",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 7,
+      "firstName": "Uriah",
+      "lastName": "Walker",
+      "city": "Chechersk",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MECHANICS",
+    "grade": 8,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 7,
+      "firstName": "Uriah",
+      "lastName": "Walker",
+      "city": "Chechersk",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ENGLISH",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 7,
+      "firstName": "Uriah",
+      "lastName": "Walker",
+      "city": "Chechersk",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 6,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2016,
+      "personId": 7,
+      "firstName": "Uriah",
+      "lastName": "Walker",
+      "city": "Chechersk",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "TFOEE",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 8,
+      "firstName": "Seamus",
+      "lastName": "Sanchez",
+      "city": "Minsk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MATHS",
+    "grade": 8,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 8,
+      "firstName": "Seamus",
+      "lastName": "Sanchez",
+      "city": "Minsk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ELECTRICAL_ENGINEERING",
+    "grade": 7,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 8,
+      "firstName": "Seamus",
+      "lastName": "Sanchez",
+      "city": "Minsk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "COMBUSTION_THEORY",
+    "grade": 8,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 8,
+      "firstName": "Seamus",
+      "lastName": "Sanchez",
+      "city": "Minsk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ISB",
+    "grade": 3,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 2,
+      "yearOfStudy": 2018,
+      "personId": 8,
+      "firstName": "Seamus",
+      "lastName": "Sanchez",
+      "city": "Minsk",
+      "faculty": "EAHF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ECONOMY",
+    "grade": 9,
+    "group": 2,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2016,
+      "personId": 9,
+      "firstName": "Farah",
+      "lastName": "Morris",
+      "city": "Cherikov",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "COMPUTER_SCIENCE",
+    "grade": 9,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2016,
+      "personId": 9,
+      "firstName": "Farah",
+      "lastName": "Morris",
+      "city": "Cherikov",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ECONOMY",
+    "grade": 1,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2016,
+      "personId": 9,
+      "firstName": "Farah",
+      "lastName": "Morris",
+      "city": "Cherikov",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "ELECTRONIC_DEVICES",
+    "grade": 6,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2016,
+      "personId": 9,
+      "firstName": "Farah",
+      "lastName": "Morris",
+      "city": "Cherikov",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "TFOEE",
+    "grade": 9,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  },
+  {
+    "student": {
+      "group": 1,
+      "yearOfStudy": 2016,
+      "personId": 9,
+      "firstName": "Farah",
+      "lastName": "Morris",
+      "city": "Cherikov",
+      "faculty": "PEF",
+      "universityName": "GSTU"
+    },
+    "academicSubject": "MATHS",
+    "grade": 4,
+    "group": 1,
+    "yearOfStudy": 0,
+    "personId": 0,
+    "universityName": "GSTU"
+  }
+]

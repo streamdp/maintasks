@@ -43,7 +43,7 @@ public class MainTask {
 
 
    public static void main(String[] args) {
-       loadAndApplyLoggingConfig();
+   loadAndApplyLoggingConfig();
        List<Minerals> minerals = SaveReadItemsFromJson.loadItemsFromFile("items.json");
        logger.log(Level.INFO, "Successfully read {0} items!", minerals.size());
        Necklace necklace = new Necklace(minerals);
