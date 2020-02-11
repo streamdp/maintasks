@@ -4,7 +4,6 @@ import org.testng.annotations.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -15,9 +14,7 @@ public class ActionsTest {
     private static final int NUMBER_OF_FILES = 1;
     private static final int AVERAGE_NUMBER_FILES = 2;
     private static final int AVERAGE_LENGTH_FILE_NAMES = 3;
-
-    List<ListFiles> listFilesList = new Actions().getSortedListFilesFromPath(TEST_DATA_PATH);
-
+    
     @Test(description = "Verify how to create a separator for the file name.")
     public void testMakeTabs() {
         assertEquals(new Actions().makeTabs(5), "|\t\t\t\t\t", METHOD_ERROR_MESSAGE);
