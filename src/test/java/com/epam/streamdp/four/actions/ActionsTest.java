@@ -15,27 +15,30 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ActionsTest {
-    List<StatementOfGrades> statementOfGrades = SaveReadItemsFromJson.loadTestItemsFromFile("students_data" + File.separator + "itemForTests.json");
+    List<StatementOfGrades> statementOfGrades = SaveReadItems.loadTestItemsFromFile("students_data" + File.separator + "itemForTests.dat");
     Actions testableAction = new Actions(statementOfGrades);
 
     @Test
     public void testCalculateGPAForSpecificSubjectGroupAndFaculty() throws AcademicSubjectFieldCannotBeEmptyException, TheFacultyFieldMustBeSpecifiedException, TheGroupFieldMustBeSpecifiedException {
         assertTrue(statementOfGrades.stream()
-                .filter(subject -> subject.getAcademicSubject() == AcademicSubjects.ENGLISH)
+                .filter(subject -> subject.getAcademicSubject().equals(AcademicSubjects.TFOEE))
                 .filter(subject -> subject.getGroup() == 2)
-                .filter(subject -> subject.getStudent().getFaculty() == Faculties.TF)
+                .filter(subject -> subject.getStudent().getFaculty().equals(Faculties.TF))
                 .mapToDouble(StatementOfGrades::getGrade)
                 .average().getAsDouble() - testableAction.calculateGPAForSpecificSubjectGroupAndFaculty(
-                AcademicSubjects.ENGLISH, 2, Faculties.TF) < 0.00001);
+                AcademicSubjects.TFOEE, 2, Faculties.TF) < 0.00001, "The value of the average score " +
+                "for the subject and the selected group with faculty obtained in the test does not match the value " +
+                "obtained from the tested method");
     }
-
 
     @Test
     public void testCalculateGPAForAUniversitySubject() throws AcademicSubjectFieldCannotBeEmptyException {
         assertTrue(statementOfGrades.stream()
-                .filter(subject -> subject.getAcademicSubject() == AcademicSubjects.ENGLISH)
-                .mapToDouble(StatementOfGrades::getGrade)
-                .average().getAsDouble() - testableAction.calculateGPAForAUniversitySubject(AcademicSubjects.ENGLISH) < 0.00001);
+                        .filter(subject -> subject.getAcademicSubject().equals(AcademicSubjects.ENGLISH))
+                        .mapToDouble(StatementOfGrades::getGrade)
+                        .average().getAsDouble() - testableAction.calculateGPAForAUniversitySubject(AcademicSubjects.ENGLISH) < 0.00001,
+                "The value of the average grade for the university subject obtained in the test does not " +
+                        "coincide with the value obtained from the tested method");
     }
 
     @Test
@@ -43,6 +46,6 @@ public class ActionsTest {
         assertEquals(statementOfGrades.stream()
                 .filter(student -> student.getStudent().getPersonId() == 0)
                 .mapToDouble(StatementOfGrades::getGrade)
-                .average().getAsDouble(), 3.2);
+                .average().getAsDouble(), 6.8, "For test data, the value should be");
     }
 }

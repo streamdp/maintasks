@@ -3,47 +3,48 @@ package com.epam.streamdp.four.entity;
 import com.epam.streamdp.four.enums.Faculties;
 import com.epam.streamdp.four.exception.TheGroupFieldMustBeSpecifiedException;
 
-import java.util.Objects;
-
 public class Student extends Person {
+    private Faculties faculty;
     private int group;
     private int yearOfStudy;
 
-    public Student(UniversityFaculty universityFaculty, Person person) {
-        super(universityFaculty, person);
+    public Student(Faculties universityFaculty, Person person) {
+        super(person);
+        this.faculty = universityFaculty;
     }
 
     public Student(String universityName, Faculties faculty, int group, int personId, String firstName, String lastName,
                    String city, int yearOfStudy) throws TheGroupFieldMustBeSpecifiedException {
-        super(universityName, faculty, personId, firstName, lastName, city);
+        super(universityName, personId, firstName, lastName, city);
+        this.faculty = faculty;
         this.group = isGroupCorrect(group);
         this.yearOfStudy = yearOfStudy;
     }
 
     public Student(Faculties faculty, Person person, int group, int yearOfStudy) throws TheGroupFieldMustBeSpecifiedException {
-        super(faculty, person);
+        super(person);
+        this.faculty = faculty;
         this.group = isGroupCorrect(group);
         this.yearOfStudy = yearOfStudy;
 
     }
 
-    public Student(UniversityFaculty faculty, Person person, int group, int yearOfStudy) throws TheGroupFieldMustBeSpecifiedException {
-        super(faculty.getFaculty(), person);
-        this.group = isGroupCorrect(group);
+    public Student(Person person, Faculties faculty, int group, int yearOfStudy) {
+        super(person);
+        this.faculty = faculty;
+        this.group = group;
         this.yearOfStudy = yearOfStudy;
-
     }
 
     public Student(Student student) {
         super();
+        this.faculty = student.getFaculty();
         this.group = student.getGroup();
-        this.yearOfStudy = getYearOfStudy();
+        this.yearOfStudy = student.yearOfStudy;
     }
 
-    public Student(Person person, int group, int yearOfStudy) {
-        super(person);
-        this.group = group;
-        this.yearOfStudy = yearOfStudy;
+    public Faculties getFaculty() {
+        return faculty;
     }
 
     private int isGroupCorrect(int group) throws TheGroupFieldMustBeSpecifiedException {
@@ -54,33 +55,18 @@ public class Student extends Person {
         }
     }
 
+    public void setFaculty(Faculties faculty) {
+        this.faculty = faculty;
+    }
+
     public int getGroup() {
         return group;
-    }
-
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Student student = (Student) o;
-        return group == student.group &&
-                yearOfStudy == student.yearOfStudy;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), group, yearOfStudy);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Student{");
-        sb.append("faculty=").append(super.getFaculty());
+        sb.append("faculty=").append(faculty);
         sb.append(", group=").append(group);
         sb.append(", firstName=").append(getFirstName());
         sb.append(", lastName=").append(getLastName());

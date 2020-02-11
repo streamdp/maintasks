@@ -3,17 +3,19 @@ package com.epam.streamdp.four.entity;
 import com.epam.streamdp.four.enums.AcademicSubjects;
 import com.epam.streamdp.four.exception.InvalidSubjectGradeException;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class StatementOfGrades extends Student {
+public class StatementOfGrades extends Student implements Serializable {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.entity.StatementOfGrades.class.getName());
 
     private Student student;
     private AcademicSubjects academicSubject;
     private int grade;
+    private static final long serialVersionUID = 1L;
 
-    public StatementOfGrades(Student student, AcademicSubjects academicSubject, int grade) throws InvalidSubjectGradeException {
+    public StatementOfGrades(Student student, AcademicSubjects academicSubject, int grade) {
         super(student);
         this.student = student;
         this.academicSubject = academicSubject;

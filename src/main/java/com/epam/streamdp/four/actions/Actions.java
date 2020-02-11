@@ -24,7 +24,7 @@ public class Actions {
             throws AcademicSubjectFieldCannotBeEmptyException, TheGroupFieldMustBeSpecifiedException, TheFacultyFieldMustBeSpecifiedException {
         statementOfGrades = statementOfGrades
                 .stream()
-                .filter(subject -> subject.getAcademicSubject() == academicSubjects)
+                .filter(subject -> subject.getAcademicSubject().equals(academicSubjects))
                 .collect(Collectors.toList());
         if (!statementOfGrades.isEmpty()) {
             statementOfGrades = statementOfGrades
@@ -34,7 +34,7 @@ public class Actions {
             if (!statementOfGrades.isEmpty()) {
                 statementOfGrades = statementOfGrades
                         .stream()
-                        .filter(subject -> subject.getStudent().getFaculty() == faculties)
+                        .filter(subject -> subject.getStudent().getFaculty().equals(faculties))
                         .collect(Collectors.toList());
                 if (!statementOfGrades.isEmpty()) {
                     return statementOfGrades
@@ -55,7 +55,7 @@ public class Actions {
     public double calculateGPAForAUniversitySubject(AcademicSubjects academicSubjects) throws AcademicSubjectFieldCannotBeEmptyException {
         return statementOfGrades
                 .stream()
-                .filter(academicSubject -> academicSubject.getAcademicSubject() == academicSubjects)
+                .filter(academicSubject -> academicSubject.getAcademicSubject().equals(academicSubjects))
                 .mapToDouble(StatementOfGrades::getGrade)
                 .average().orElseThrow(() -> new AcademicSubjectFieldCannotBeEmptyException(SET_DOES_NOT_EXIST));
     }

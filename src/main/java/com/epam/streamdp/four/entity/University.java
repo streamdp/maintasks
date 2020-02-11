@@ -1,13 +1,16 @@
 package com.epam.streamdp.four.entity;
 
+import com.epam.streamdp.four.enums.Faculties;
 import com.epam.streamdp.four.exception.FieldUniversityNameMustBeSpecifyException;
 
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
-public class University {
+public class University implements Serializable {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(com.epam.streamdp.four.entity.University.class.getName());
-
+    private List<Faculties> faculties = new ArrayList<>();
     private String universityName = "GSTU";
 
     public University(University university) {
@@ -25,6 +28,10 @@ public class University {
         }
     }
 
+    public List<Faculties> getFaculties() {
+        return faculties;
+    }
+
     public University() {
     }
 
@@ -32,24 +39,4 @@ public class University {
         return universityName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        University that = (University) o;
-        return Objects.equals(universityName, that.universityName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(universityName);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("University{");
-        sb.append("universityName='").append(universityName).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }
