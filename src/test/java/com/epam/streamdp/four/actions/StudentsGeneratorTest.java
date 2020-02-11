@@ -24,26 +24,24 @@ public class StudentsGeneratorTest {
         }
     }
 
-    /*
-     * in this test, we filter the invalid fields. If at the end the number of rows does not change, then the
-     * selection is correct and the method works correctly
-     */
-    @Test
+    @Test(description = "Verify that the method generates the correct set. There should be " +
+            "no empty fields in the set, field person id must be a positive, field group cannot be negative or zero")
     public void testGenerateSomeStudents() {
         assertEquals((int) students.stream()
                 .filter(student -> !student.getFirstName().isEmpty())
                 .filter(student -> !student.getLastName().isEmpty())
                 .filter(student -> student.getPersonId() >= 0)
                 .filter(student -> student.getFaculty() != null)
-                .filter(student -> student.getGroup() > 0).count(), 20, "There are errors as a result of the method." +
-                " Incorrect fields in the selection.");
+                .filter(student -> student.getGroup() > 0).count(), 20, "There are errors as a " +
+                "result of the method. Incorrect fields in the set.");
     }
 
-    @Test
+    @Test(description = "Verify that the method generates the correct set. There should be " +
+            "no empty fields in the set and field grade must be in range [0..10]")
     public void testGenerateSomeSubjectPerStudent() {
         assertEquals((int) new StudentsGenerator().generateSomeSubjectPerStudent(students, 5).stream()
-                .filter(subject -> subject.getAcademicSubject() != null)
-                .filter(subject -> subject.getGrade() >= 0 && subject.getGrade() <= 10).count(), 100, "Fields AcademicSubject must not be empty" +
-                "The value of grade must be in the range [0..10]!");
+                        .filter(subject -> subject.getAcademicSubject() != null)
+                        .filter(subject -> subject.getGrade() >= 0 && subject.getGrade() <= 10).count(), 100,
+                "Fields AcademicSubject must not be empty. The value of grade must be in the range [0..10]!");
     }
 }
