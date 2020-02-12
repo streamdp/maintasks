@@ -6,14 +6,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 
+import static com.epam.streamdp.five.Actions.*;
 import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
 
 public class MainTask {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainTask.class.getName());
-    private static final int NUMBER_OF_DIRECTORIES = 0;
-    private static final int NUMBER_OF_FILES = 1;
-    private static final int AVERAGE_NUMBER_FILES = 2;
-    private static final int AVERAGE_LENGTH_FILE_NAMES = 3;
 
     public static void main(String[] args) {
         loadAndApplyLoggingConfig();

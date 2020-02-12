@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 public class Actions {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Actions.class.getName());
     private static final String EXCEPTION_MESSAGE = "Exception: ";
-    private static final int NUMBER_OF_DIRECTORIES = 0;
-    private static final int NUMBER_OF_FILES = 1;
-    private static final int AVERAGE_NUMBER_FILES = 2;
-    private static final int AVERAGE_LENGTH_FILE_NAMES = 3;
+    public static final int NUMBER_OF_DIRECTORIES = 0;
+    public static final int NUMBER_OF_FILES = 1;
+    public static final int AVERAGE_NUMBER_FILES = 2;
+    public static final int AVERAGE_LENGTH_FILE_NAMES = 3;
 
     public String makeTabs(int tabs) {
         StringBuilder tabsString = new StringBuilder("|");
@@ -83,13 +83,16 @@ public class Actions {
         return string.substring(endPositionSeparator + 1);
     }
 
+    public boolean isStringCorrect(String string) {
+        return !string.equals("|") && string.length() > 0 && string.toCharArray()[0] == '|';
+    }
+
     public boolean isStringContainedDirectory(String string) {
-        return !string.equals("|") && string.length() > 0 && string.toCharArray()[0] == '|' && string.toCharArray()[1] == '-';
+        return isStringCorrect(string) && string.toCharArray()[1] == '-';
     }
 
     public boolean isStringContainedFiles(String string) {
-        return (!string.equals("|") && string.length() > 0 && string.toCharArray()[0] == '|' &&
-                string.toCharArray()[1] == '\t') || (string.length() > 0 && string.toCharArray()[0] != '|');
+        return isStringCorrect(string) && (string.toCharArray()[1] == '\t' || (string.length() > 0 && string.toCharArray()[0] != '|'));
     }
 
     public int[] getAnswersForPartTwoMainTask(Path path) {
