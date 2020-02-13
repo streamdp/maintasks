@@ -2,10 +2,7 @@
 /target/
 /maintask.iml
 /data/*.*~
-/data/info.txt
-/data/out.txt
-/data/out.dat
-/data/res.txt
+/data/*.txt
 /data/out.dat
 *.*~
 /data/log/*
