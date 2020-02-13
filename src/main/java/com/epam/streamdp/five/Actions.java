@@ -92,7 +92,7 @@ public class Actions {
     }
 
     public boolean isStringContainedFiles(String string) {
-        return isStringCorrect(string) && (string.toCharArray()[1] == '\t' || (string.length() > 0 && string.toCharArray()[0] != '|'));
+        return isStringCorrect(string) && string.toCharArray()[1] == '\t' || (string.length() > 0 && string.toCharArray()[0] != '|');
     }
 
     public int[] getAnswersForPartTwoMainTask(Path path) {
