@@ -27,6 +27,7 @@ public class ActionsTest {
 
     @Test(description = "Verify how file name string clipping works.")
     public void getFileNameFromString() {
+        SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(new Actions().getFileNameFromString("|\t\t\t\t_String filename.txt"),
                 "_String filename.txt",
                 "Name string clipping works was done incorrectly, we got a bad string:");
@@ -37,6 +38,7 @@ public class ActionsTest {
 
     @Test(description = "Verify if the resulting string contain a directory name.")
     public void isStringContainedDirectory() {
+        SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertTrue(new Actions().isStringContainedDirectory("|--\t--\t--\tdirectoryName"),
                 "Method does not work correctly, a string containing the directory name is sent in the parameter, but result false.");
         softAssertion.assertFalse(new Actions().isStringContainedDirectory("|\tsomeFileName"),
@@ -46,6 +48,7 @@ public class ActionsTest {
 
     @Test(description = "Verify if the resulting string is contain file name.")
     public void isStringContainedFiles() {
+        SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertTrue(new Actions().isStringContainedFiles("|\tsomeFileName"),
                 "Method does not work correctly, a string containing the file name is sent in the parameter, but result false.");
         softAssertion.assertFalse(new Actions().isStringContainedFiles("|--\t--\t--\tdirectoryName"),
@@ -56,6 +59,7 @@ public class ActionsTest {
     @Test(description = "Verify that the string does not consist of just one char \"|\", length of string > 0 and first" +
             " char os string is \"|\".")
     public void isStringCorrect() {
+        SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertTrue(new Actions().isStringCorrect("|_12345"), "Method work incorrect, for this " +
                 "test string result must be true.");
         softAssertion.assertFalse(new Actions().isStringCorrect("|"), "Method work incorrect, for this test " +
@@ -67,6 +71,7 @@ public class ActionsTest {
 
     @Test(description = "Verify method receiving answers to the second part of the task.")
     public void getAnswersForPartTwoMainTask() {
+        SoftAssert softAssertion = new SoftAssert();
         int[] arrayWithAnswers = new Actions().getAnswersForPartTwoMainTask(TEST_DATA_PATH);
         softAssertion.assertEquals(arrayWithAnswers.length, 4, "Received incorrect array with data:, length ");
         softAssertion.assertEquals(arrayWithAnswers[NUMBER_OF_DIRECTORIES], 5,
