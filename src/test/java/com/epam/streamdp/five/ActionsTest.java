@@ -11,7 +11,6 @@ import static org.testng.Assert.assertEquals;
 
 public class ActionsTest {
     public static final Path TEST_DATA_PATH = Paths.get("data/fileTreeTest");
-    private SoftAssert softAssertion = new SoftAssert();
 
     @Test(description = "Verify how to create a separator for the file name.")
     public void makeTabs() {
