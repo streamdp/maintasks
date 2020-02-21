@@ -1,5 +1,5 @@
 package com.epam.streamdp.six;
 
-public enum Locations {
+public enum Location {
     LEFT, RIGHT
 }

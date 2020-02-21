@@ -5,11 +5,11 @@ import java.util.logging.Level;
 
 import static com.epam.streamdp.six.Tunnel.EXCEPTION_MESSAGE;
 
-public class TrainDestroyer implements Runnable {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TrainDestroyer.class.getName());
+public class Destroyer implements Runnable {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Destroyer.class.getName());
     private Tunnel tunnel;
 
-    public TrainDestroyer(Tunnel tunnel) {
+    public Destroyer(Tunnel tunnel) {
         this.tunnel = tunnel;
     }
 
@@ -29,7 +29,6 @@ public class TrainDestroyer implements Runnable {
     }
 
     private String makeLogSting(Train train) {
-        return String.format("The train №%d got out of the tunnel №%d",
-                train.trainNumber, train.tunnelNumber);
+        return String.format("The train №%d got out of the tunnel №%d", train.trainNumber, train.tunnelNumber);
     }
 }

@@ -4,13 +4,13 @@ public class Train {
     private static final int BASE_TRAIN_MOVING_TIME = 37;
     int countOfRailWagons;
     int trainNumber;
-    Locations location;
+    Location location;
     int tunnelNumber;
 
     public Train() {
     }
 
-    public Train(int countOfRailWagons, int trainNumber, Locations location, int tunnelNumber) {
+    public Train(int countOfRailWagons, int trainNumber, Location location, int tunnelNumber) {
         this.countOfRailWagons = countOfRailWagons;
         this.trainNumber = trainNumber;
         this.location = location;

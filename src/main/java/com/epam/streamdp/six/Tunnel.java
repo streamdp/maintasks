@@ -34,8 +34,8 @@ public class Tunnel implements Runnable {
 
     @Override
     public void run() {
-        Thread goIntoTheTunnel = new Thread(new TrainGenerator(this));
-        Thread exitTheTunnel = new Thread(new TrainDestroyer(this));
+        Thread goIntoTheTunnel = new Thread(new Generator(this));
+        Thread exitTheTunnel = new Thread(new Destroyer(this));
         goIntoTheTunnel.start();
         exitTheTunnel.start();
 
