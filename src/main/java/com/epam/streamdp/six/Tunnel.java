@@ -4,16 +4,16 @@ import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.logging.Level;
 
-public class Tunnels implements Runnable {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Tunnels.class.getName());
-    private static final String EXCEPTION_MESSAGE = "Exception: ";
+public class Tunnel implements Runnable {
+    public static final String EXCEPTION_MESSAGE = "Exception: ";
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Tunnel.class.getName());
     private volatile boolean cycle = true;
-    private Deque<Trains> tunnel;
+    private Deque<Train> tunnelQueue;
     private int tunnelNumber;
 
-    Tunnels(int tunnelNumber) {
+    Tunnel(int tunnelNumber) {
         this.tunnelNumber = tunnelNumber;
-        this.tunnel = new ConcurrentLinkedDeque<>();
+        this.tunnelQueue = new ConcurrentLinkedDeque<>();
     }
 
     public boolean isCycle() {
@@ -28,14 +28,14 @@ public class Tunnels implements Runnable {
         return tunnelNumber;
     }
 
-    public Deque<Trains> getTunnel() {
-        return tunnel;
+    public Deque<Train> getTunnelQueue() {
+        return tunnelQueue;
     }
 
     @Override
     public void run() {
-        Thread goIntoTheTunnel = new Thread(new AddTrain(this));
-        Thread exitTheTunnel = new Thread(new RemoveTrain(this));
+        Thread goIntoTheTunnel = new Thread(new TrainGenerator(this));
+        Thread exitTheTunnel = new Thread(new TrainDestroyer(this));
         goIntoTheTunnel.start();
         exitTheTunnel.start();
 

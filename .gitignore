@@ -8,6 +8,7 @@
 /data/log/*
 /data/messages.properties
 /src/main/java/com/epam/streamdp/lerning/
+/src/test/java/com/epam/streamdp/lerning/
 /_linux/
 /_linux/*
 _linux/*

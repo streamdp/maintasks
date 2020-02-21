@@ -1,18 +1,16 @@
 package com.epam.streamdp.six;
 
-public class Trains {
-    public static final String LEFT = "LEFT";
-    public static final String RIGHT = "RIGHT";
+public class Train {
     private static final int BASE_TRAIN_MOVING_TIME = 37;
     int countOfRailWagons;
     int trainNumber;
-    String location;
+    Locations location;
     int tunnelNumber;
 
-    public Trains() {
+    public Train() {
     }
 
-    public Trains(int countOfRailWagons, int trainNumber, String location, int tunnelNumber) {
+    public Train(int countOfRailWagons, int trainNumber, Locations location, int tunnelNumber) {
         this.countOfRailWagons = countOfRailWagons;
         this.trainNumber = trainNumber;
         this.location = location;
@@ -23,7 +21,7 @@ public class Trains {
         this.tunnelNumber = tunnelNumber;
     }
 
-    public int getHowFastWillTheTrainTunnelGo() {
+    public int getHowFastWillTheTrainGoInsideATunnel() {
         return BASE_TRAIN_MOVING_TIME * countOfRailWagons;
     }
 }

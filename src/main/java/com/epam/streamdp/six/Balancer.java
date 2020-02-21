@@ -3,30 +3,29 @@ package com.epam.streamdp.six;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
+import static com.epam.streamdp.six.Locations.LEFT;
+import static com.epam.streamdp.six.Locations.RIGHT;
 import static com.epam.streamdp.six.MainTask.ONE;
 import static com.epam.streamdp.six.MainTask.TWO;
-import static com.epam.streamdp.six.Trains.LEFT;
-import static com.epam.streamdp.six.Trains.RIGHT;
+import static com.epam.streamdp.six.Tunnel.EXCEPTION_MESSAGE;
 
 public class Balancer implements Runnable {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Balancer.class.getName());
-    private static final String EXCEPTION_MESSAGE = "Exception: ";
-    private static final String MESSAGE_FROM_ONE_TO_TWO = "Event: \"The train №{0} was moved from the queue to the tunnel ONE to the queue to the tunnel TWO\"";
-    private static final String MESSAGE_FROM_TWO_TO_ONE = "Event: \"The train №{0} was moved from the queue to the tunnel TWO to the queue to the tunnel ONE\"";
     private static final int MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME = 2;
     private static final int BALANCING_DELAY = 5;
-    private Tunnels tunnelOne;
-    private Tunnels tunnelTwo;
+    private Tunnel tunnelOne;
+    private Tunnel tunnelTwo;
 
-    public Balancer(Tunnels tunnelOne, Tunnels tunnelTwo) {
+    public Balancer(Tunnel tunnelOne, Tunnel tunnelTwo) {
         this.tunnelOne = tunnelOne;
         this.tunnelTwo = tunnelTwo;
     }
 
     @Override
     public void run() {
-        Trains train = new Trains();
-        while ((tunnelOne.isCycle() && tunnelTwo.isCycle()) || (!tunnelOne.getTunnel().isEmpty() && !tunnelTwo.getTunnel().isEmpty())) {
+        Train train = new Train();
+        while ((tunnelOne.isCycle() && tunnelTwo.isCycle()) ||
+                (!tunnelOne.getTunnelQueue().isEmpty() && !tunnelTwo.getTunnelQueue().isEmpty())) {
             try {
                 TimeUnit.MILLISECONDS.sleep(BALANCING_DELAY);
                 if (verifyBalancingByTimeAbility(tunnelOne, tunnelOne, LEFT)
@@ -41,35 +40,42 @@ public class Balancer implements Runnable {
         }
     }
 
-    public Trains getTrainsBalancingByTime(Trains train, String side) {
+    public Train getTrainsBalancingByTime(Train train, Locations side) {
         train = getTotalQueueMovementTime(tunnelOne, side) > getTotalQueueMovementTime(tunnelTwo, side)
-                ? moveTrainFromTunnelNumToTunnelNum(train, tunnelOne, tunnelTwo, TWO, MESSAGE_FROM_ONE_TO_TWO)
-                : moveTrainFromTunnelNumToTunnelNum(train, tunnelTwo, tunnelOne, ONE, MESSAGE_FROM_TWO_TO_ONE);
+                ? moveTrainFromTunnelNumToTunnelNum(train, tunnelOne, tunnelTwo, TWO, makeMessage("ONE", "TWO"))
+                : moveTrainFromTunnelNumToTunnelNum(train, tunnelTwo, tunnelOne, ONE, makeMessage("TWO", "ONE"));
         return train;
     }
 
-    public boolean verifyBalancingByTimeAbility(Tunnels tunnelOne, Tunnels tunnelTwo, String side) {
-        return tunnelOne.getTunnel().stream().filter(train -> train.location.equals(side)).count() > MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME
-                && tunnelTwo.getTunnel().stream().filter(train -> train.location.equals(side)).count() > MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME;
+    public String makeMessage(String from, String to) {
+        return String.format("The train №{0} was moved from the queue to the tunnel %s to the queue to the tunnel %s",
+                from, to);
     }
 
-    public Trains moveTrainFromTunnelNumToTunnelNum(Trains previousTrain, Tunnels tunnelFrom, Tunnels tunnelTo, int tunnelNumber, String message) {
-        Trains train = tunnelFrom.getTunnel().peekLast();
+    public boolean verifyBalancingByTimeAbility(Tunnel tunnelOne, Tunnel tunnelTwo, Locations side) {
+        return tunnelOne.getTunnelQueue().stream().filter(train -> train.location.equals(side)).count() >
+                MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME
+                && tunnelTwo.getTunnelQueue().stream().filter(train -> train.location.equals(side)).count() >
+                MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME;
+    }
+
+    public Train moveTrainFromTunnelNumToTunnelNum(Train previousTrain, Tunnel tunnelFrom, Tunnel tunnelTo,
+                                                   int tunnelNumber, String message) {
+        Train train = tunnelFrom.getTunnelQueue().peekLast();
         if (!train.equals(previousTrain)) {
-            train = tunnelFrom.getTunnel().pollLast();
+            train = tunnelFrom.getTunnelQueue().pollLast();
             train.setTunnelNumber(tunnelNumber);
-            tunnelTo.getTunnel().addLast(train);
+            tunnelTo.getTunnelQueue().addLast(train);
             tunnelTo.setCycle(true);
             logger.log(Level.INFO, message, train.trainNumber);
             return train;
         } else {
             return previousTrain;
         }
-
     }
 
-    public long getTotalQueueMovementTime(Tunnels tunnel, String side) {
-        return tunnel.getTunnel().stream().filter(train -> train.location.equals(side))
-                .mapToLong(Trains::getHowFastWillTheTrainTunnelGo).sum();
+    public long getTotalQueueMovementTime(Tunnel tunnel, Locations side) {
+        return tunnel.getTunnelQueue().stream().filter(train -> train.location.equals(side))
+                .mapToLong(Train::getHowFastWillTheTrainGoInsideATunnel).sum();
     }
 }

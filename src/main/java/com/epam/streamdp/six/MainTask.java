@@ -8,8 +8,8 @@ public class MainTask {
 
     public static void main(String[] args) {
         loadAndApplyLoggingConfig();
-        Tunnels tunnelOne = new Tunnels(ONE);
-        Tunnels tunnelTwo = new Tunnels(TWO);
+        Tunnel tunnelOne = new Tunnel(ONE);
+        Tunnel tunnelTwo = new Tunnel(TWO);
 
         new Thread(tunnelOne).start();
         new Thread(tunnelTwo).start();
