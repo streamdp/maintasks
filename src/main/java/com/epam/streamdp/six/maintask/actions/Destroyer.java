@@ -1,9 +1,12 @@
-package com.epam.streamdp.six;
+package com.epam.streamdp.six.maintask.actions;
+
+import com.epam.streamdp.six.maintask.entitys.Train;
+import com.epam.streamdp.six.maintask.entitys.Tunnel;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-import static com.epam.streamdp.six.Tunnel.EXCEPTION_MESSAGE;
+import static com.epam.streamdp.six.maintask.entitys.Tunnel.EXCEPTION_MESSAGE;
 
 public class Destroyer implements Runnable {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Destroyer.class.getName());
@@ -29,6 +32,6 @@ public class Destroyer implements Runnable {
     }
 
     private String makeLogSting(Train train) {
-        return String.format("The train №%d got out of the tunnel №%d", train.trainNumber, train.tunnelNumber);
+        return String.format("The train №%d got out of the tunnel №%d", train.getTrainNumber(), train.getTunnelNumber());
     }
 }

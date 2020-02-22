@@ -1,4 +1,6 @@
-package com.epam.streamdp.six;
+package com.epam.streamdp.six.maintask.entitys;
+
+import com.epam.streamdp.six.maintask.enums.Location;
 
 public class Train {
     private static final int BASE_TRAIN_MOVING_TIME = 37;
@@ -15,6 +17,22 @@ public class Train {
         this.trainNumber = trainNumber;
         this.location = location;
         this.tunnelNumber = tunnelNumber;
+    }
+
+    public int getTrainNumber() {
+        return trainNumber;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public int getCountOfRailWagons() {
+        return countOfRailWagons;
+    }
+
+    public int getTunnelNumber() {
+        return tunnelNumber;
     }
 
     public void setTunnelNumber(int tunnelNumber) {

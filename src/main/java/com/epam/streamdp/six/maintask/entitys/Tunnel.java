@@ -1,4 +1,7 @@
-package com.epam.streamdp.six;
+package com.epam.streamdp.six.maintask.entitys;
+
+import com.epam.streamdp.six.maintask.actions.Destroyer;
+import com.epam.streamdp.six.maintask.actions.Generator;
 
 import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -11,7 +14,7 @@ public class Tunnel implements Runnable {
     private Deque<Train> tunnelQueue;
     private int tunnelNumber;
 
-    Tunnel(int tunnelNumber) {
+    public Tunnel(int tunnelNumber) {
         this.tunnelNumber = tunnelNumber;
         this.tunnelQueue = new ConcurrentLinkedDeque<>();
     }
