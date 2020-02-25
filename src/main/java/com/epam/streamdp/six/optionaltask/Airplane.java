@@ -19,35 +19,54 @@ public class Airplane implements Runnable {
 
     @Override
     public void run() {
-        logger.log(Level.INFO, "The airplane №{0} began to enter the runway", airplaneNumber);
         try {
-            getSemaphore().acquire();
-            int spentTime = random.nextInt(totalOperationTime / 3);
-            totalOperationTime -= spentTime;
-            TimeUnit.MILLISECONDS.sleep(random.nextInt(spentTime));
-            int runway = -1;
-            synchronized (getRunway()) {
-                for (int i = 0; i < getRunway().length; i++)
-                    if (!getRunway()[i]) {
-                        getRunway()[i] = true;
-                        runway = i;
-                        logger.log(Level.INFO, String.format("Runway №%d took the plane №{0}", i), airplaneNumber);
-                        break;
-                    }
-            }
-            spentTime = random.nextInt(totalOperationTime / 2);
-            totalOperationTime -= spentTime;
-            TimeUnit.MILLISECONDS.sleep(spentTime);
-            synchronized (getRunway()) {
-                getRunway()[runway] = false;
-                logger.log(Level.INFO, String.format("The plane №%d took off from the runway №{0}", runway), airplaneNumber);
-            }
-            getSemaphore().release();
-            TimeUnit.MILLISECONDS.sleep(totalOperationTime);
-            logger.log(Level.INFO, "Runway №{0} freed.", runway);
+            requestPermissionToDepart();
+            freeRunway(findAndBorrowFreeRunway());
         } catch (InterruptedException ex) {
             logger.log(Level.SEVERE, "Exception: ", ex);
             Thread.currentThread().interrupt();
+        }
+    }
+
+    public void requestPermissionToDepart() throws InterruptedException {
+        getSemaphore().acquire();
+        logger.log(Level.INFO, "The airplane №{0} began to enter the runway", airplaneNumber);
+        makeDelay(3);
+    }
+
+    public void freeRunway(int runway) throws InterruptedException {
+        synchronized (getRunway()) {
+            getRunway()[runway] = false;
+            logger.log(Level.INFO, String.format("The plane №%d took off from the runway №{0}", runway), airplaneNumber);
+        }
+        makeDelay(1);
+        logger.log(Level.INFO, "Runway №{0} freed.", runway);
+        getSemaphore().release();
+    }
+
+    public int findAndBorrowFreeRunway() throws InterruptedException {
+        int runway = -1;
+        synchronized (getRunway()) {
+            for (int i = 0; i < getRunway().length; i++)
+                if (!getRunway()[i]) {
+                    getRunway()[i] = true;
+                    runway = i;
+                    logger.log(Level.INFO, String.format("Runway №%d took the plane №{0}", i), airplaneNumber);
+                    break;
+                }
+        }
+        makeDelay(2);
+        return runway;
+    }
+
+    public void makeDelay(int ratio) throws InterruptedException {
+        if (ratio > 1) {
+            int spentTime;
+            spentTime = random.nextInt(totalOperationTime / ratio);
+            totalOperationTime -= spentTime;
+            TimeUnit.MILLISECONDS.sleep(spentTime);
+        } else {
+            TimeUnit.MILLISECONDS.sleep(totalOperationTime);
         }
     }
 }
