@@ -1,4 +1,7 @@
-package com.epam.streamdp.six;
+package com.epam.streamdp.six.maintask;
+
+import com.epam.streamdp.six.maintask.actions.Balancer;
+import com.epam.streamdp.six.maintask.entitys.Tunnel;
 
 import static com.epam.streamdp.three.actions.LoggingConfig.loadAndApplyLoggingConfig;
 

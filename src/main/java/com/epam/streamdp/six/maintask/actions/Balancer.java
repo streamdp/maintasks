@@ -1,13 +1,17 @@
-package com.epam.streamdp.six;
+package com.epam.streamdp.six.maintask.actions;
+
+import com.epam.streamdp.six.maintask.entitys.Train;
+import com.epam.streamdp.six.maintask.entitys.Tunnel;
+import com.epam.streamdp.six.maintask.enums.Location;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-import static com.epam.streamdp.six.Location.LEFT;
-import static com.epam.streamdp.six.Location.RIGHT;
-import static com.epam.streamdp.six.MainTask.ONE;
-import static com.epam.streamdp.six.MainTask.TWO;
-import static com.epam.streamdp.six.Tunnel.EXCEPTION_MESSAGE;
+import static com.epam.streamdp.six.maintask.MainTask.ONE;
+import static com.epam.streamdp.six.maintask.MainTask.TWO;
+import static com.epam.streamdp.six.maintask.entitys.Tunnel.EXCEPTION_MESSAGE;
+import static com.epam.streamdp.six.maintask.enums.Location.LEFT;
+import static com.epam.streamdp.six.maintask.enums.Location.RIGHT;
 
 public class Balancer implements Runnable {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Balancer.class.getName());
@@ -52,9 +56,9 @@ public class Balancer implements Runnable {
     }
 
     public boolean isTimeBalancingAvailable(Tunnel tunnelOne, Tunnel tunnelTwo, Location side) {
-        return tunnelOne.getTunnelQueue().stream().filter(train -> train.location.equals(side)).count() >
+        return tunnelOne.getTunnelQueue().stream().filter(train -> train.getLocation().equals(side)).count() >
                 MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME
-                && tunnelTwo.getTunnelQueue().stream().filter(train -> train.location.equals(side)).count() >
+                && tunnelTwo.getTunnelQueue().stream().filter(train -> train.getLocation().equals(side)).count() >
                 MINIMUM_QUEUE_SIZE_TO_ALLOW_BALANCING_BY_TIME;
     }
 
@@ -66,7 +70,7 @@ public class Balancer implements Runnable {
             train.setTunnelNumber(tunnelNumber);
             tunnelTo.getTunnelQueue().addLast(train);
             tunnelTo.setCycle(true);
-            logger.log(Level.INFO, message, train.trainNumber);
+            logger.log(Level.INFO, message, train.getTrainNumber());
             return train;
         } else {
             return previousTrain;
@@ -74,7 +78,7 @@ public class Balancer implements Runnable {
     }
 
     public long getTotalQueueMovementTime(Tunnel tunnel, Location side) {
-        return tunnel.getTunnelQueue().stream().filter(train -> train.location.equals(side))
+        return tunnel.getTunnelQueue().stream().filter(train -> train.getLocation().equals(side))
                 .mapToLong(Train::getHowFastWillTheTrainGoInsideATunnel).sum();
     }
 }
