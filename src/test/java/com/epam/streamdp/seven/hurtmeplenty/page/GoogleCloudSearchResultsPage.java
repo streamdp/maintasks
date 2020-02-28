@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class GoogleCloudSearchResultsPage extends GoogleCloudMainPage {
     public GoogleCloudSearchResultsPage(WebDriver driver) {
         super(driver);
-
     }
 
     public GoogleCloudSearchResultsPage waitingForContent() {
@@ -16,6 +15,7 @@ public class GoogleCloudSearchResultsPage extends GoogleCloudMainPage {
     }
 
     public GoogleCloudPlatformPricingCalculatorPage followTheFirstLink(String searchTerm) {
+        waitingForContent();
         driver.findElement(By.xpath(String.format("//div/a[@class='gs-title']/b[text()='%s']", searchTerm))).click();
         return new GoogleCloudPlatformPricingCalculatorPage(driver);
     }

@@ -13,12 +13,9 @@ public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
         String emailedEstimatedMonthlyCost = new GoogleCloudMainPage(driver)
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
-                .waitingForContent()
                 .followTheFirstLink(searchTerm)
-                .waitingForContent()
                 .fillingFieldsAccordingToTheTestScenario()
                 .clickEmailEstimateButton()
-                .waitingForContent()
                 .fillUserInformation()
                 .receiveEmail();
         Assert.assertEquals(emailedEstimatedMonthlyCost, testEmailString, "We get wrong email content.");

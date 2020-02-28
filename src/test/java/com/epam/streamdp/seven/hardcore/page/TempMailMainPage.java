@@ -32,6 +32,7 @@ public class TempMailMainPage {
         driver.get(HOMEPAGE_URL);
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        webDriverWait.until((ExpectedConditions.visibilityOfAllElements(fieldWithEmail)));
         return this;
     }
 

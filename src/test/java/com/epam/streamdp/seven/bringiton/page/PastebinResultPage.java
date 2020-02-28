@@ -18,10 +18,15 @@ public class PastebinResultPage extends PastebinMainPage {
 
     public PastebinResultPage(WebDriver driver) {
         super(driver);
+    }
+
+    public PastebinResultPage waitingForContent() {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        return this;
     }
 
     public String getTitleStringOfPaste(String syntaxHighlighting, String titleName) {
+        waitingForContent();
         return String.format("[%s] %s - Pastebin.com", syntaxHighlighting, titleName);
     }
 

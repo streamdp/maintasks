@@ -12,7 +12,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
 
     @FindBy(xpath = "//div[@title='Compute Engine']/div/div/div/div")
     private WebElement computeEngineButton;
-    @FindBy(xpath = "//*[id='input_55']")
+    @FindBy(xpath = "//*[@id='input_55']")
     private WebElement numberOfInstances;
     @FindBy(xpath = "//*[@id='select_80']")
     private WebElement machineTypeSelector;
@@ -50,6 +50,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
     }
 
     public GoogleCloudPlatformPricingCalculatorPage fillingFieldsAccordingToTheTestScenario() {
+        waitingForContent();
         computeEngineButton.click();
         numberOfInstances.sendKeys("4");
         jsClick(machineTypeSelector);

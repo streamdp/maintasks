@@ -26,9 +26,7 @@ public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
         computeEngineListOptions = new GoogleCloudMainPage(driver)
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
-                .waitingForContent()
                 .followTheFirstLink(searchTerm)
-                .waitingForContent()
                 .fillingFieldsAccordingToTheTestScenario()
                 .getComputeEngineListOptions();
         softAssertion.assertEquals(computeEngineListOptions.get(1), listOptionForTest.get(0), String.format(FIELD_ERROR, "VM class"));

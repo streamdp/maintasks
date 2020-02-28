@@ -33,6 +33,7 @@ public class GoogleCloudPlatformEmailEstimatePage extends GoogleCloudMainPage {
     }
 
     public GoogleCloudPlatformEmailEstimatePage fillUserInformation() {
+        waitingForContent();
         firstNameField.sendKeys("Ivan");
         lastNameField.sendKeys("Ivanov");
         emailField.sendKeys(getEmail());
