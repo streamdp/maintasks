@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculatorPage.CLOUD_FRAME_ONE;
 import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculatorPage.CLOUD_FRAME_TWO;
@@ -29,8 +28,7 @@ public class GoogleCloudPlatformEmailEstimatePage extends GoogleCloudMainPage {
     }
 
     public GoogleCloudPlatformEmailEstimatePage waitingForContent() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
         return this;
     }
 
@@ -45,25 +43,25 @@ public class GoogleCloudPlatformEmailEstimatePage extends GoogleCloudMainPage {
 
     public String getEmail() {
         jsDriver.executeScript("window.open()");
-        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        switchToTab(1);
         tempMail = new TempMailMainPage(driver);
         String tempEmailString = new TempMailMainPage(driver)
                 .openPage()
                 .getTempEmail();
-        driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
+        switchToTab(0);
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
         return tempEmailString;
     }
 
     public String receiveEmail() {
-        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/footer/div")));
+        switchToTab(1);
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/footer/div")));
         return tempMail.getEmailContent();
+    }
+
+    public void switchToTab(int tab) {
+        driver.switchTo().window(driver.getWindowHandles().toArray()[tab].toString());
     }
 }

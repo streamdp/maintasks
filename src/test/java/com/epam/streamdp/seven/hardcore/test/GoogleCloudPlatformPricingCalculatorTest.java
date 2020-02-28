@@ -6,10 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
-    private String testEmailString = "Estimated Monthly Cost: USD 3,829.29";
-
     @Test(description = "Create a new compute engine and email this. Testing receive correct email content.")
     public void createNewComputeEngine() {
+        String testEmailString = "Estimated Monthly Cost: USD 3,829.29";
         String searchTerm = "Google Cloud Platform Pricing Calculator";
         String emailedEstimatedMonthlyCost = new GoogleCloudMainPage(driver)
                 .openPage()
@@ -18,7 +17,7 @@ public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
                 .followTheFirstLink(searchTerm)
                 .waitingForContent()
                 .fillingFieldsAccordingToTheTestScenario()
-                .emailEstimate()
+                .clickEmailEstimateButton()
                 .waitingForContent()
                 .fillUserInformation()
                 .receiveEmail();

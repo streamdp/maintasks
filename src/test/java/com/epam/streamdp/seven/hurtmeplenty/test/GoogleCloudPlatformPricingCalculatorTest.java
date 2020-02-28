@@ -10,18 +10,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
-    private static final String FIELD_ERROR = "%s field is incorrectly filled.";
-    private List<String> computeEngineListOptions = new ArrayList<>();
-    private List<String> listOptionForTest = Arrays.asList(
-            "VM class: regular",
-            "Instance type: n1-standard-8",
-            "Region: Taiwan",
-            "Total available local SSD space 1x375 GB",
-            "Commitment term: 1 Year",
-            "Estimated Component Cost: USD 3,829.29 per 1 month");
-
     @Test(description = "Create a new compute engine and get list options for estimate. Testing correct filling fields.")
     public void createNewComputeEngine() {
+        final String FIELD_ERROR = "%s field is incorrectly filled.";
+        List<String> computeEngineListOptions = new ArrayList<>();
+        List<String> listOptionForTest = Arrays.asList(
+                "VM class: regular",
+                "Instance type: n1-standard-8",
+                "Region: Taiwan",
+                "Total available local SSD space 1x375 GB",
+                "Commitment term: 1 Year",
+                "Estimated Component Cost: USD 3,829.29 per 1 month");
         String searchTerm = "Google Cloud Platform Pricing Calculator";
         SoftAssert softAssertion = new SoftAssert();
         computeEngineListOptions = new GoogleCloudMainPage(driver)

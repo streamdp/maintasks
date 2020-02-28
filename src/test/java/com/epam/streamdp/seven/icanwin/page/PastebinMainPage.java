@@ -12,6 +12,7 @@ public class PastebinMainPage {
     public static final int WAIT_TIMEOUT_SECONDS = 10;
     private static final String HOMEPAGE_URL = "https://pastebin.com/";
     protected WebDriver driver;
+    protected WebDriverWait webDriverWait;
 
     @FindBy(xpath = "//*[@id='paste_code']")
     private WebElement fieldForNewPasteInput;
@@ -26,13 +27,13 @@ public class PastebinMainPage {
 
     public PastebinMainPage(WebDriver driver) {
         this.driver = driver;
+        webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         PageFactory.initElements(driver, this);
     }
 
     public PastebinMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
         return this;
     }
 

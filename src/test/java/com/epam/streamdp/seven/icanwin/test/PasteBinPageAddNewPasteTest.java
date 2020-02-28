@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PasteBinPageAddNewPasteTest extends BaseTest {
-
     @Test(description = "Just first test, JIRA binding can be here")
     public void createNewPaste() {
         Assert.assertEquals(new PastebinMainPage(driver).openPage()

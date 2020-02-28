@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
 
     @FindBy(xpath = "//div[@title='Compute Engine']/div/div/div/div")
     private WebElement computeEngineButton;
-    @FindBy(xpath = "//input[@ng-model='listingCtrl.computeServer.quantity']")
+    @FindBy(xpath = "//*[id='input_55']")
     private WebElement numberOfInstances;
     @FindBy(xpath = "//*[@id='select_80']")
     private WebElement machineTypeSelector;
@@ -24,7 +23,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
     private WebElement optionMachineTypeForSelect;
     @FindBy(xpath = "//*[@ng-model='listingCtrl.computeServer.addGPUs']")
     private WebElement checkBoxAddGPUs;
-    @FindBy(xpath = "//*[@ng-model='listingCtrl.computeServer.gpuCount']")
+    @FindBy(xpath = "//*[@id='select_326']")
     private WebElement setCountGPUs;
     @FindBy(xpath = "//*[@id='select_328']")
     private WebElement gpuTypeSelector;
@@ -48,31 +47,33 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
     }
 
     public GoogleCloudPlatformPricingCalculatorPage waitingForContent() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
         return this;
     }
 
     public GoogleCloudPlatformPricingCalculatorPage fillingFieldsAccordingToTheTestScenario() {
         computeEngineButton.click();
         numberOfInstances.sendKeys("4");
-        jsDriver.executeScript("arguments[0].click();", machineTypeSelector);
-        jsDriver.executeScript("arguments[0].click();", optionMachineTypeForSelect);
-        jsDriver.executeScript("arguments[0].click();", optionMachineTypeForSelect);
-        jsDriver.executeScript("arguments[0].click();", checkBoxAddGPUs);
+        jsClick(machineTypeSelector);
+        jsClick(optionMachineTypeForSelect);
+        jsClick(optionMachineTypeForSelect);
+        jsClick(checkBoxAddGPUs);
         setCountGPUs.sendKeys("1");
-        jsDriver.executeScript("arguments[0].click();", gpuTypeSelector);
-        jsDriver.executeScript("arguments[0].click();", optionGPUTypeForSelect);
-        jsDriver.executeScript("arguments[0].click();", optionGPUTypeForSelect);
+        jsClick(gpuTypeSelector);
+        jsClick(optionGPUTypeForSelect);
+        jsClick(optionGPUTypeForSelect);
         localSSDSelector.sendKeys("1");
-        jsDriver.executeScript("arguments[0].click();", dataCenterLocation);
-        jsDriver.executeScript("arguments[0].click();", optionLocationForSelect);
-        jsDriver.executeScript("arguments[0].click();", optionLocationForSelect);
+        jsClick(dataCenterLocation);
+        jsClick(optionLocationForSelect);
+        jsClick(optionLocationForSelect);
         committedUsage.sendKeys("1");
-        jsDriver.executeScript("arguments[0].click();", estimateButton);
+        jsClick(estimateButton);
         return this;
+    }
+
+    public void jsClick(WebElement element) {
+        jsDriver.executeScript("arguments[0].click();", element);
     }
 
     public List<String> getComputeEngineListOptions() {

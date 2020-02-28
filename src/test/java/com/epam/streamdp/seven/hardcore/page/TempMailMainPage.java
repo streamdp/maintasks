@@ -14,6 +14,7 @@ public class TempMailMainPage {
     public static final int WAIT_TIMEOUT_SECONDS = 30;
     private static final String HOMEPAGE_URL = "https://tempail.com/";
     protected WebDriver driver;
+    protected WebDriverWait webDriverWait;
     @FindBy(xpath = "//*[starts-with(@id,'mail_')]")
     private WebElement newMessage;
     @FindBy(xpath = "//*[@id='mobilepadding']/td/h2")
@@ -23,12 +24,13 @@ public class TempMailMainPage {
 
     public TempMailMainPage(WebDriver driver) {
         this.driver = driver;
+        webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         PageFactory.initElements(driver, this);
     }
 
     public TempMailMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until((ExpectedCondition<Boolean>) wd ->
+        webDriverWait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         return this;
     }
@@ -38,11 +40,9 @@ public class TempMailMainPage {
     }
 
     public String getEmailContent() {
-        new WebDriverWait(driver, 60)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[starts-with(@id,'mail_')]")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[starts-with(@id,'mail_')]")));
         newMessage.click();
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='iframe']")));
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='iframe']")));
         return estimateMonthlyCost.getText();
     }
 }

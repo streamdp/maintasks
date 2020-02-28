@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,15 +18,14 @@ public class PastebinResultPage extends PastebinMainPage {
 
     public PastebinResultPage(WebDriver driver) {
         super(driver);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
     }
 
     public String getTitleStringOfPaste(String syntaxHighlighting, String titleName) {
         return String.format("[%s] %s - Pastebin.com", syntaxHighlighting, titleName);
     }
 
-    public String getHighlightingSyntaxWasSelect() {
+    public String getTypeOfHighlightingSyntaxText() {
         return typeOfHighlightingSyntax.getText();
     }
 
