@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TempMail {
+public class TempMailMain {
     public static final int WAIT_TIMEOUT_SECONDS = 30;
     private static final String HOMEPAGE_URL = "https://tempail.com/";
     protected WebDriver driver;
@@ -21,12 +21,12 @@ public class TempMail {
     @FindBy(xpath = "//*[@id='eposta_adres']")
     private WebElement fieldWithEmail;
 
-    public TempMail(WebDriver driver) {
+    public TempMailMain(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public TempMail openPage() {
+    public TempMailMain openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));

@@ -1,8 +1,7 @@
 package com.epam.streamdp.seven.hurtmeplenty.test;
 
-import com.epam.streamdp.seven.hurtmeplenty.page.GoogleCloud;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.epam.streamdp.seven.BaseTest;
+import com.epam.streamdp.seven.hurtmeplenty.page.GoogleCloudMain;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,9 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GoogleCloudPlatformPricingCalculatorTest {
+public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
     private static final String FIELD_ERROR = "%s field is incorrectly filled.";
-    private WebDriver driver;
     private List<String> computeEngineListOptions = new ArrayList<>();
     private List<String> listOptionForTest = Arrays.asList(
             "VM class: regular",
@@ -26,19 +24,20 @@ public class GoogleCloudPlatformPricingCalculatorTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        setUp();
     }
 
     @Test(description = "Create a new compute engine and get list options for estimate. Testing correct filling fields.")
     public void createNewComputeEngine() {
         String searchTerm = "Google Cloud Platform Pricing Calculator";
         SoftAssert softAssertion = new SoftAssert();
-        computeEngineListOptions = new GoogleCloud(driver)
+        computeEngineListOptions = new GoogleCloudMain(driver)
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
+                .waitingForContent()
                 .followTheFirstLink(searchTerm)
-                .fillingFields()
+                .waitingForContent()
+                .fillingFieldsAccordingToTheTestScenario()
                 .getComputeEngineListOptions();
         softAssertion.assertEquals(computeEngineListOptions.get(1), listOptionForTest.get(0), String.format(FIELD_ERROR, "VM class"));
         softAssertion.assertEquals(computeEngineListOptions.get(2), listOptionForTest.get(1), String.format(FIELD_ERROR, "Instance type"));
@@ -51,7 +50,6 @@ public class GoogleCloudPlatformPricingCalculatorTest {
 
     @AfterMethod(alwaysRun = true)
     public void browserTearDown() {
-        driver.quit();
-        driver = null;
+        tearDown();
     }
 }

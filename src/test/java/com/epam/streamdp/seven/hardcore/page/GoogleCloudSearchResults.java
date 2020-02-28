@@ -5,11 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudSearchResults extends GoogleCloud {
+public class GoogleCloudSearchResults extends GoogleCloudMain {
     public GoogleCloudSearchResults(WebDriver driver) {
         super(driver);
+    }
+
+    public GoogleCloudSearchResults waitingForContent() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//div/a[@class='gs-title']")));
+        return this;
     }
 
     public GoogleCloudPlatformPricingCalculator followTheFirstLink(String searchTerm) {

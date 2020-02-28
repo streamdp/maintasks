@@ -7,11 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
-public class GoogleCloudPlatformPricingCalculator extends GoogleCloud {
+public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
+    public static final String CLOUD_FRAME_ONE = "//*[@id='cloud-site']/devsite-iframe/iframe";
+    public static final String CLOUD_FRAME_TWO = "myFrame";
+
     @FindBy(xpath = "//div[@title='Compute Engine']/div/div/div/div")
     private WebElement computeEngineButton;
     @FindBy(xpath = "//input[@ng-model='listingCtrl.computeServer.quantity']")
@@ -43,16 +46,17 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloud {
 
     public GoogleCloudPlatformPricingCalculator(WebDriver driver) {
         super(driver);
-        String xPathGoogleCloudFrameOne = "//*[@id='cloud-site']/devsite-iframe/iframe";
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(xPathGoogleCloudFrameOne)));
-        String nameGoogleCloudFrameTwo = "myFrame";
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(nameGoogleCloudFrameTwo));
-
     }
 
-    public GoogleCloudPlatformPricingCalculator fillingFields() {
+    public GoogleCloudPlatformPricingCalculator waitingForContent() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
+        return this;
+    }
+
+    public GoogleCloudPlatformPricingCalculator fillingFieldsAccordingToTheTestScenario() {
         computeEngineButton.click();
         numberOfInstances.sendKeys("4");
         jsDriver.executeScript("arguments[0].click();", machineTypeSelector);
@@ -73,10 +77,6 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloud {
     }
 
     public List<String> getComputeEngineListOptions() {
-        List<String> result = new ArrayList<>();
-        for (WebElement element : computeEngineListOptions) {
-            result.add(element.getText());
-        }
-        return result;
+        return computeEngineListOptions.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 }

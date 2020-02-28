@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Arrays;
 import java.util.List;
 
-public class PastebinResult extends Pastebin {
+public class PastebinResult extends PastebinMain {
     private static final String splitRegexp = "\\n";
     @FindBy(xpath = "//span[@class='h_640']/a")
     private WebElement typeOfHighlightingSyntax;
     @FindBy(xpath = "//textarea[@id='paste_code']")
-    private WebElement contentInputField;
+    private WebElement fieldForContentInput;
 
     public PastebinResult(WebDriver driver) {
         super(driver);
@@ -23,8 +23,8 @@ public class PastebinResult extends Pastebin {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
     }
 
-    public boolean isTitleOfPasteCorrect(String syntaxHighlighting, String titleName) {
-        return String.format("[%s] %s - Pastebin.com", syntaxHighlighting, titleName).equalsIgnoreCase(driver.getTitle());
+    public String getTitleStringOfPaste(String syntaxHighlighting, String titleName) {
+        return String.format("[%s] %s - Pastebin.com", syntaxHighlighting, titleName);
     }
 
     public String getHighlightingSyntaxWasSelect() {
@@ -32,6 +32,6 @@ public class PastebinResult extends Pastebin {
     }
 
     public List<String> getContendPaste() {
-        return Arrays.asList(contentInputField.getText().split(splitRegexp));
+        return Arrays.asList(fieldForContentInput.getText().split(splitRegexp));
     }
 }

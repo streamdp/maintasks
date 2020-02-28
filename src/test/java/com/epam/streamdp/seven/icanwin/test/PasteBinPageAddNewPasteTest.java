@@ -1,33 +1,34 @@
 package com.epam.streamdp.seven.icanwin.test;
 
-import com.epam.streamdp.seven.icanwin.page.Pastebin;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.epam.streamdp.seven.BaseTest;
+import com.epam.streamdp.seven.icanwin.page.PastebinMain;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class PasteBinPageAddNewPasteTest {
-    private WebDriver driver;
+public class PasteBinPageAddNewPasteTest extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        setUp();
     }
 
     @Test(description = "Just first test, JIRA binding can be here")
     public void createNewPaste() {
-        new Pastebin(driver).openPage()
+        new PastebinMain(driver).openPage()
                 .fillInputFieldForNewPaste("Hello from WebDriver")
                 .selectPasteExpirationTime()
                 .fillInputFieldForTitle("helloweb")
-                .createNewPaste();
+                .createNewPaste()
+                .waitingForContent();
+        Assert.assertEquals(driver.findElement(By.xpath("//h1")).getText(), "helloweb",
+                "Invalid page loaded.");
     }
 
     @AfterMethod(alwaysRun = true)
     public void browserTearDown() {
-        driver.quit();
-        driver = null;
+        tearDown();
     }
 }

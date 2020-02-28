@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudPlatformPricingCalculator extends GoogleCloud {
+public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
     public static final String CLOUD_FRAME_ONE = "//*[@id='cloud-site']/devsite-iframe/iframe";
     public static final String CLOUD_FRAME_TWO = "myFrame";
 
@@ -42,13 +42,17 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloud {
 
     public GoogleCloudPlatformPricingCalculator(WebDriver driver) {
         super(driver);
+    }
+
+    public GoogleCloudPlatformPricingCalculator waitingForContent() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
+        return this;
     }
 
-    public GoogleCloudPlatformPricingCalculator fillingFields() {
+    public GoogleCloudPlatformPricingCalculator fillingFieldsAccordingToTheTestScenario() {
         computeEngineButton.click();
         numberOfInstances.sendKeys("4");
         jsDriver.executeScript("arguments[0].click();", machineTypeSelector);

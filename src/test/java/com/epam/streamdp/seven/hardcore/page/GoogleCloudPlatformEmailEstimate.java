@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculator.CLOUD_FRAME_ONE;
 import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculator.CLOUD_FRAME_TWO;
 
-public class GoogleCloudPlatformEmailEstimate extends GoogleCloud {
-    private TempMail tempMail;
+public class GoogleCloudPlatformEmailEstimate extends GoogleCloudMain {
+    private TempMailMain tempMail;
     private String cancelButtonLocator = "//*[@ng-click='emailQuote.$mdDialog.cancel()']";
     @FindBy(xpath = "//*[@ng-model='emailQuote.user.firstname']")
     private WebElement firstNameField;
@@ -26,11 +26,15 @@ public class GoogleCloudPlatformEmailEstimate extends GoogleCloud {
 
     public GoogleCloudPlatformEmailEstimate(WebDriver driver) {
         super(driver);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
     }
 
-    public GoogleCloudPlatformEmailEstimate fillingFieldsAndEmailEstimate() {
+    public GoogleCloudPlatformEmailEstimate waitingForContent() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
+        return this;
+    }
+
+    public GoogleCloudPlatformEmailEstimate fillingFirstNameLastNameEmailPhoneFieldsAndEmailEstimate() {
         firstNameField.sendKeys("Ivan");
         lastNameField.sendKeys("Ivanov");
         emailField.sendKeys(getEmail());
@@ -42,8 +46,8 @@ public class GoogleCloudPlatformEmailEstimate extends GoogleCloud {
     public String getEmail() {
         jsDriver.executeScript("window.open()");
         driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
-        tempMail = new TempMail(driver);
-        String tempEmailString = new TempMail(driver)
+        tempMail = new TempMailMain(driver);
+        String tempEmailString = new TempMailMain(driver)
                 .openPage()
                 .getTempEmail();
         driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
