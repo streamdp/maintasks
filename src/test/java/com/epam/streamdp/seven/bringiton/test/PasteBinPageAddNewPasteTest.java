@@ -1,10 +1,8 @@
 package com.epam.streamdp.seven.bringiton.test;
 
 import com.epam.streamdp.seven.BaseTest;
-import com.epam.streamdp.seven.bringiton.page.PastebinMain;
-import com.epam.streamdp.seven.bringiton.page.PastebinResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import com.epam.streamdp.seven.bringiton.page.PastebinMainPage;
+import com.epam.streamdp.seven.bringiton.page.PastebinResultPage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -19,16 +17,10 @@ public class PasteBinPageAddNewPasteTest extends BaseTest {
     private String titleName = "how to gain dominance among developers";
     private String syntax = "Bash";
 
-
-    @BeforeMethod(alwaysRun = true)
-    public void browserSetup() {
-        setUp();
-    }
-
     @Test(description = "Create a new paste and check the correctness of the filling in the fields.")
     public void createNewPaste() {
         SoftAssert softAssertion = new SoftAssert();
-        PastebinResult pastebinResultPage = new PastebinMain(driver).openPage()
+        PastebinResultPage pastebinResultPage = new PastebinMainPage(driver).openPage()
                 .fillInputFieldForNewPaste(content)
                 .selectHighlightingSyntax(syntax)
                 .selectPasteExpirationTime()
@@ -41,10 +33,5 @@ public class PasteBinPageAddNewPasteTest extends BaseTest {
         softAssertion.assertEquals(pastebinResultPage.getContendPaste(), content,
                 "We received the wrong content from the page.");
         softAssertion.assertAll();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void browserTearDown() {
-        tearDown();
     }
 }

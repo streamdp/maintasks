@@ -10,14 +10,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Arrays;
 import java.util.List;
 
-public class PastebinResult extends PastebinMain {
+public class PastebinResultPage extends PastebinMainPage {
     private static final String splitRegexp = "\\n";
     @FindBy(xpath = "//span[@class='h_640']/a")
     private WebElement typeOfHighlightingSyntax;
     @FindBy(xpath = "//textarea[@id='paste_code']")
     private WebElement fieldForContentInput;
 
-    public PastebinResult(WebDriver driver) {
+    public PastebinResultPage(WebDriver driver) {
         super(driver);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));

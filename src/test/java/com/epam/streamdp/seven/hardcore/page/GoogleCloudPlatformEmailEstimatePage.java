@@ -7,11 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculator.CLOUD_FRAME_ONE;
-import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculator.CLOUD_FRAME_TWO;
+import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculatorPage.CLOUD_FRAME_ONE;
+import static com.epam.streamdp.seven.hardcore.page.GoogleCloudPlatformPricingCalculatorPage.CLOUD_FRAME_TWO;
 
-public class GoogleCloudPlatformEmailEstimate extends GoogleCloudMain {
-    private TempMailMain tempMail;
+public class GoogleCloudPlatformEmailEstimatePage extends GoogleCloudMainPage {
+    private TempMailMainPage tempMail;
     private String cancelButtonLocator = "//*[@ng-click='emailQuote.$mdDialog.cancel()']";
     @FindBy(xpath = "//*[@ng-model='emailQuote.user.firstname']")
     private WebElement firstNameField;
@@ -24,17 +24,17 @@ public class GoogleCloudPlatformEmailEstimate extends GoogleCloudMain {
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     private WebElement sendEmailButton;
 
-    public GoogleCloudPlatformEmailEstimate(WebDriver driver) {
+    public GoogleCloudPlatformEmailEstimatePage(WebDriver driver) {
         super(driver);
     }
 
-    public GoogleCloudPlatformEmailEstimate waitingForContent() {
+    public GoogleCloudPlatformEmailEstimatePage waitingForContent() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
         return this;
     }
 
-    public GoogleCloudPlatformEmailEstimate fillingFirstNameLastNameEmailPhoneFieldsAndEmailEstimate() {
+    public GoogleCloudPlatformEmailEstimatePage fillUserInformation() {
         firstNameField.sendKeys("Ivan");
         lastNameField.sendKeys("Ivanov");
         emailField.sendKeys(getEmail());
@@ -46,8 +46,8 @@ public class GoogleCloudPlatformEmailEstimate extends GoogleCloudMain {
     public String getEmail() {
         jsDriver.executeScript("window.open()");
         driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
-        tempMail = new TempMailMain(driver);
-        String tempEmailString = new TempMailMain(driver)
+        tempMail = new TempMailMainPage(driver);
+        String tempEmailString = new TempMailMainPage(driver)
                 .openPage()
                 .getTempEmail();
         driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());

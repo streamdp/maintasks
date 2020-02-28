@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PastebinMain {
+public class PastebinMainPage {
     public static final int WAIT_TIMEOUT_SECONDS = 10;
     private static final String HOMEPAGE_URL = "https://pastebin.com/";
     protected WebDriver driver;
@@ -24,36 +24,36 @@ public class PastebinMain {
     @FindBy(xpath = "//*[@name='submit']")
     private WebElement submitButton;
 
-    public PastebinMain(WebDriver driver) {
+    public PastebinMainPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public PastebinMain openPage() {
+    public PastebinMainPage openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
         return this;
     }
 
-    public PastebinMain fillInputFieldForNewPaste(String message) {
+    public PastebinMainPage fillInputFieldForNewPaste(String message) {
         fieldForNewPasteInput.sendKeys(message);
         return this;
     }
 
-    public PastebinMain fillInputFieldForTitle(String message) {
+    public PastebinMainPage fillInputFieldForTitle(String message) {
         fieldForTitleInput.sendKeys(message);
         return this;
     }
 
-    public PastebinMain selectPasteExpirationTime() {
+    public PastebinMainPage selectPasteExpirationTime() {
         pasteExpirationSelect.click();
         setExpirationTimeIn10M.click();
         return this;
     }
 
-    public PastebinResult createNewPaste() {
+    public PastebinResultPage createNewPaste() {
         submitButton.click();
-        return new PastebinResult(driver);
+        return new PastebinResultPage(driver);
     }
 }

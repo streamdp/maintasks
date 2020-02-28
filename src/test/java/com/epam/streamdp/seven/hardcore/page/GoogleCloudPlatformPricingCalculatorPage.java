@@ -1,4 +1,4 @@
-package com.epam.streamdp.seven.hurtmeplenty.page;
+package com.epam.streamdp.seven.hardcore.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,11 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-
-public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
+public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPage {
     public static final String CLOUD_FRAME_ONE = "//*[@id='cloud-site']/devsite-iframe/iframe";
     public static final String CLOUD_FRAME_TWO = "myFrame";
 
@@ -41,14 +37,14 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
     private WebElement committedUsage;
     @FindBy(xpath = "//button[@aria-label='Add to Estimate']")
     private WebElement estimateButton;
-    @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item/div")
-    private List<WebElement> computeEngineListOptions;
+    @FindBy(xpath = "//*[@id='email_quote']")
+    private WebElement emailEstimate;
 
-    public GoogleCloudPlatformPricingCalculator(WebDriver driver) {
+    public GoogleCloudPlatformPricingCalculatorPage(WebDriver driver) {
         super(driver);
     }
 
-    public GoogleCloudPlatformPricingCalculator waitingForContent() {
+    public GoogleCloudPlatformPricingCalculatorPage waitingForContent() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
@@ -56,7 +52,7 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
         return this;
     }
 
-    public GoogleCloudPlatformPricingCalculator fillingFieldsAccordingToTheTestScenario() {
+    public GoogleCloudPlatformPricingCalculatorPage fillingFieldsAccordingToTheTestScenario() {
         computeEngineButton.click();
         numberOfInstances.sendKeys("4");
         jsDriver.executeScript("arguments[0].click();", machineTypeSelector);
@@ -76,7 +72,8 @@ public class GoogleCloudPlatformPricingCalculator extends GoogleCloudMain {
         return this;
     }
 
-    public List<String> getComputeEngineListOptions() {
-        return computeEngineListOptions.stream().map(WebElement::getText).collect(Collectors.toList());
+    public GoogleCloudPlatformEmailEstimatePage emailEstimate() {
+        jsDriver.executeScript("arguments[0].click();", emailEstimate);
+        return new GoogleCloudPlatformEmailEstimatePage(driver);
     }
 }

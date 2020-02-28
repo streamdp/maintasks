@@ -1,9 +1,7 @@
 package com.epam.streamdp.seven.hurtmeplenty.test;
 
 import com.epam.streamdp.seven.BaseTest;
-import com.epam.streamdp.seven.hurtmeplenty.page.GoogleCloudMain;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import com.epam.streamdp.seven.hurtmeplenty.page.GoogleCloudMainPage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -22,16 +20,11 @@ public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
             "Commitment term: 1 Year",
             "Estimated Component Cost: USD 3,829.29 per 1 month");
 
-    @BeforeMethod(alwaysRun = true)
-    public void browserSetup() {
-        setUp();
-    }
-
     @Test(description = "Create a new compute engine and get list options for estimate. Testing correct filling fields.")
     public void createNewComputeEngine() {
         String searchTerm = "Google Cloud Platform Pricing Calculator";
         SoftAssert softAssertion = new SoftAssert();
-        computeEngineListOptions = new GoogleCloudMain(driver)
+        computeEngineListOptions = new GoogleCloudMainPage(driver)
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
                 .waitingForContent()
@@ -46,10 +39,5 @@ public class GoogleCloudPlatformPricingCalculatorTest extends BaseTest {
         softAssertion.assertEquals(computeEngineListOptions.get(8), listOptionForTest.get(4), String.format(FIELD_ERROR, "Commitment term"));
         softAssertion.assertEquals(computeEngineListOptions.get(9), listOptionForTest.get(5), "Estimated component cost is wrong.");
         softAssertion.assertAll();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void browserTearDown() {
-        tearDown();
     }
 }

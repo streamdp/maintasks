@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudMain {
+public class GoogleCloudMainPage {
     public static final int WAIT_TIMEOUT_SECONDS = 30;
     private static final String HOMEPAGE_URL = "https://cloud.google.com/";
     protected WebDriver driver;
@@ -17,23 +17,23 @@ public class GoogleCloudMain {
     @FindBy(xpath = "//input[starts-with(@class, 'devsite-search-field')]")
     private WebElement searchBox;
 
-    public GoogleCloudMain(WebDriver driver) {
+    public GoogleCloudMainPage(WebDriver driver) {
         this.driver = driver;
         jsDriver = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
     }
 
-    public GoogleCloudMain openPage() {
+    public GoogleCloudMainPage openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         return this;
     }
 
-    public GoogleCloudSearchResults fillSearchInputFieldAndGo(String searchTerm) {
+    public GoogleCloudSearchResultsPage fillSearchInputFieldAndGo(String searchTerm) {
         searchBox.click();
         searchBox.sendKeys(searchTerm);
         searchBox.submit();
-        return new GoogleCloudSearchResults(driver);
+        return new GoogleCloudSearchResultsPage(driver);
     }
 }
