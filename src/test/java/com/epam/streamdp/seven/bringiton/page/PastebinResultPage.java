@@ -13,16 +13,15 @@ public class PastebinResultPage extends PastebinMainPage {
     private static final String splitRegexp = "\\n";
     @FindBy(xpath = "//span[@class='h_640']/a")
     private WebElement typeOfHighlightingSyntax;
-    @FindBy(xpath = "//textarea[@id='paste_code']")
+    @FindBy(id = "paste_code")
     private WebElement fieldForContentInput;
 
     public PastebinResultPage(WebDriver driver) {
         super(driver);
     }
 
-    public PastebinResultPage waitingForContent() {
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
-        return this;
+    public void waitingForContent() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
     }
 
     public String getTitleStringOfPaste(String syntaxHighlighting, String titleName) {

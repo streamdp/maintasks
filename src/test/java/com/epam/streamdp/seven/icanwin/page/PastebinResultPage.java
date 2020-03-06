@@ -9,12 +9,12 @@ public class PastebinResultPage extends PastebinMainPage {
         super(driver);
     }
 
-    public PastebinResultPage waitingForContent() {
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
-        return this;
+    public void waitingForContent() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
     }
 
     public String getPasteName() {
-        return driver.findElement(By.xpath("//h1")).getText();
+        waitingForContent();
+        return driver.findElement(By.tagName("h1")).getText();
     }
 }

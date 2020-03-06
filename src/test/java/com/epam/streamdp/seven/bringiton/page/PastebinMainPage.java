@@ -15,10 +15,7 @@ public class PastebinMainPage {
     private static final String HOMEPAGE_URL = "https://pastebin.com/";
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
-
-    private String highlightingSyntaxXpath = "//li[text()='%s']";
-
-    @FindBy(xpath = "//*[@id='paste_code']")
+    @FindBy(id = "paste_code")
     private WebElement fieldForNewPasteInput;
     @FindBy(xpath = "//span[starts-with(@id, 'select2-paste_format')]")
     private WebElement highlightingSyntaxSelect;
@@ -26,9 +23,9 @@ public class PastebinMainPage {
     private WebElement expirationTimeSelect;
     @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement setExpirationTimeIn10M;
-    @FindBy(xpath = "//*[@name='paste_name']")
+    @FindBy(name = "paste_name")
     private WebElement fieldForTitleInput;
-    @FindBy(xpath = "//*[@name='submit']")
+    @FindBy(name = "submit")
     private WebElement submitButton;
 
     public PastebinMainPage(WebDriver driver) {
@@ -39,7 +36,7 @@ public class PastebinMainPage {
 
     public PastebinMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
         return this;
     }
 
@@ -55,7 +52,7 @@ public class PastebinMainPage {
 
     public PastebinMainPage selectHighlightingSyntax(String syntax) {
         highlightingSyntaxSelect.click();
-        driver.findElement(By.xpath(String.format(highlightingSyntaxXpath, syntax))).click();
+        driver.findElement(By.xpath(String.format("//li[text()='%s']", syntax))).click();
         return this;
     }
 

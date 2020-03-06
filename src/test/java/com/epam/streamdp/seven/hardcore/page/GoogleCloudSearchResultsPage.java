@@ -9,9 +9,8 @@ public class GoogleCloudSearchResultsPage extends GoogleCloudMainPage {
         super(driver);
     }
 
-    public GoogleCloudSearchResultsPage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div/a[@class='gs-title']")));
-        return this;
     }
 
     public GoogleCloudPlatformPricingCalculatorPage followTheFirstLink(String searchTerm) {

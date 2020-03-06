@@ -13,7 +13,6 @@ public class PasteBinPageAddNewPasteTest extends BaseTest {
                         .selectPasteExpirationTime()
                         .fillInputFieldForTitle("helloweb")
                         .createNewPaste()
-                        .waitingForContent()
                         .getPasteName(), "helloweb",
                 "Invalid page loaded.");
     }

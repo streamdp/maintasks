@@ -14,15 +14,15 @@ public class PastebinMainPage {
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
 
-    @FindBy(xpath = "//*[@id='paste_code']")
+    @FindBy(id = "paste_code")
     private WebElement fieldForNewPasteInput;
     @FindBy(xpath = "//span[starts-with(@id,'select2-paste_expire_date')]")
     private WebElement pasteExpirationSelect;
     @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement setExpirationTimeIn10M;
-    @FindBy(xpath = "//*[@name='paste_name']")
+    @FindBy(name = "paste_name")
     private WebElement fieldForTitleInput;
-    @FindBy(xpath = "//*[@name='submit']")
+    @FindBy(name = "submit")
     private WebElement submitButton;
 
     public PastebinMainPage(WebDriver driver) {
@@ -33,7 +33,7 @@ public class PastebinMainPage {
 
     public PastebinMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
         return this;
     }
 

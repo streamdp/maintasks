@@ -27,9 +27,8 @@ public class GoogleCloudPlatformEmailEstimatePage extends GoogleCloudMainPage {
         super(driver);
     }
 
-    public GoogleCloudPlatformEmailEstimatePage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(cancelButtonLocator)));
-        return this;
     }
 
     public GoogleCloudPlatformEmailEstimatePage fillUserInformation() {
