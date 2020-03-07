@@ -8,52 +8,53 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Pastebin {
+public class PastebinMainPage {
     public static final int WAIT_TIMEOUT_SECONDS = 10;
     private static final String HOMEPAGE_URL = "https://pastebin.com/";
     protected WebDriver driver;
+    protected WebDriverWait webDriverWait;
 
-    @FindBy(xpath = "//*[@id='paste_code']")
-    private WebElement inputFieldForNewPaste;
+    @FindBy(id = "paste_code")
+    private WebElement fieldForNewPasteInput;
     @FindBy(xpath = "//span[starts-with(@id,'select2-paste_expire_date')]")
     private WebElement pasteExpirationSelect;
     @FindBy(xpath = "//li[text()='10 Minutes']")
     private WebElement setExpirationTimeIn10M;
-    @FindBy(xpath = "//*[@name='paste_name']")
-    private WebElement inputFieldForTitle;
-    @FindBy(xpath = "//*[@name='submit']")
+    @FindBy(name = "paste_name")
+    private WebElement fieldForTitleInput;
+    @FindBy(name = "submit")
     private WebElement submitButton;
 
-    public Pastebin(WebDriver driver) {
+    public PastebinMainPage(WebDriver driver) {
         this.driver = driver;
+        webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         PageFactory.initElements(driver, this);
     }
 
-    public Pastebin openPage() {
+    public PastebinMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='footer']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
         return this;
     }
 
-    public Pastebin fillInputFieldForNewPaste(String message) {
-        inputFieldForNewPaste.sendKeys(message);
+    public PastebinMainPage fillInputFieldForNewPaste(String message) {
+        fieldForNewPasteInput.sendKeys(message);
         return this;
     }
 
-    public Pastebin fillInputFieldForTitle(String message) {
-        inputFieldForTitle.sendKeys(message);
+    public PastebinMainPage fillInputFieldForTitle(String message) {
+        fieldForTitleInput.sendKeys(message);
         return this;
     }
 
-    public Pastebin selectPasteExpirationTime() {
+    public PastebinMainPage selectPasteExpirationTime() {
         pasteExpirationSelect.click();
         setExpirationTimeIn10M.click();
         return this;
     }
 
-    public PastebinResult createNewPaste() {
+    public PastebinResultPage createNewPaste() {
         submitButton.click();
-        return new PastebinResult(driver);
+        return new PastebinResultPage(driver);
     }
 }
