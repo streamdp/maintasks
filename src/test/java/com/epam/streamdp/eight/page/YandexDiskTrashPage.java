@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 import static com.epam.streamdp.eight.page.YandexDiskInitialPage.WAIT_TIMEOUT_SECONDS;
 
 public class YandexDiskTrashPage extends YandexDiskMainPage {
@@ -18,7 +20,7 @@ public class YandexDiskTrashPage extends YandexDiskMainPage {
 
     private By emptyTrashButton = By.xpath("//button[@class='control button2 button2_view_default button2_tone_default button2_size_m button2_theme_raised client-listing__clean-trash-button']");
     private By confirmationButton = By.xpath("//*[@id='nb-1']/body/div[4]/div/div/div/div/div/div[2]/button[2]");
-    private By headingTitle = By.xpath("//*/h1");
+    private By headingTitle = By.tagName("h1");
 
     public YandexDiskTrashPage(WebDriver driver) {
         super(driver);
@@ -30,11 +32,10 @@ public class YandexDiskTrashPage extends YandexDiskMainPage {
         this.webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
     }
 
-    public YandexDiskTrashPage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(headingTitle));
-        return this;
     }
 
     public YandexDiskTrashPage clickEmptyTrashButton() {

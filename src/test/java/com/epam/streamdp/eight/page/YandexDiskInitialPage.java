@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 public class YandexDiskInitialPage {
     public static final int WAIT_TIMEOUT_SECONDS = 30;
     private static final String HOMEPAGE_URL = "https://disk.yandex.ru/";
@@ -21,7 +23,7 @@ public class YandexDiskInitialPage {
     public YandexDiskInitialPage openPage() {
         driver.get(HOMEPAGE_URL);
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
         return this;
     }
 

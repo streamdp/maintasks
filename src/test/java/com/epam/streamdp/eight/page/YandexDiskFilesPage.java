@@ -6,17 +6,17 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 import static com.epam.streamdp.eight.page.YandexDiskInitialPage.WAIT_TIMEOUT_SECONDS;
 
 public class YandexDiskFilesPage extends YandexDiskMainPage {
     public static final String URL_MATCH = "disk";
     public static final String YANDEXDISK_FILES_URL = "https://disk.yandex.ru/client/disk";
-
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
     protected Actions builder;
     private String stringTitle = "//h1[@title='%s']";
-    private String itemName = "//div[@class='listing-item__info']/div/span[text()='%s']";
     private By contextMenuItemCreateNewFolder = By.xpath("//*[@class='control menu__item context-menu-create-popup__item context-menu-create-popup__item_new-folder']");
     private By contexMenuItemRemove = By.xpath("//div[@class='control menu__item resources-actions-popup__action resources-actions-popup__action_type_delete']");
     private By contextMenuItemCreateNewTextDocument = By.xpath("//*[@class='control menu__item context-menu-create-popup__item context-menu-create-popup__item_word']");
@@ -33,10 +33,9 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         this.webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
     }
 
-    public YandexDiskFilesPage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        return this;
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
     }
 
     public YandexDiskFilesPage createFolder(String folderName) {
@@ -57,7 +56,7 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
     }
 
     public By buildLocatorForItem(String name) {
-        return By.xpath(String.format(itemName, name));
+        return By.xpath(String.format("//div[@class='listing-item__info']/div/span[text()='%s']", name));
     }
 
     public YandexDiskFilesPage removeItem(String itemName) {

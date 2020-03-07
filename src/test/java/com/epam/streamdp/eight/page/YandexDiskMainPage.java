@@ -17,9 +17,9 @@ public class YandexDiskMainPage {
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
     protected Actions builder;
-    private By headingTitle = By.xpath("//*/h1");
-    private By diskLink = By.xpath("//*[@id='/disk']");
-    private By trashLink = By.xpath("//*[@id='/trash']");
+    private By headingTitle = By.tagName("h1");
+    private By diskLink = By.id("/disk");
+    private By trashLink = By.id("/trash");
     private By allItemsName = By.xpath("//div[@class='listing-item__info']/div/span");
 
     public YandexDiskMainPage(WebDriver driver) {

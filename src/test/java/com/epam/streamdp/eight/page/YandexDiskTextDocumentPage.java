@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 import static com.epam.streamdp.eight.page.YandexDiskFilesPage.URL_MATCH;
 import static com.epam.streamdp.eight.page.YandexDiskInitialPage.WAIT_TIMEOUT_SECONDS;
 
@@ -18,12 +20,12 @@ public class YandexDiskTextDocumentPage {
     protected JavascriptExecutor jsDriver;
 
     private By frameLocator = By.xpath("//*[@id='nb-1']/body/iframe");
-    private By textFieldLocator = By.xpath("//*[@id='WACViewPanel_EditingElement']");
+    private By textFieldLocator = By.id("WACViewPanel_EditingElement");
     private By fileMenuItem = By.xpath("//*[@data-automation-id='FileMenu']");
-    private By renameMenuItem = By.xpath("//*[@id='jbtnRenameDialog-Menu48']");
-    private By txtDocumentNameField = By.xpath("//*[@id='txtDocumentName']");
-    private By okButton = By.xpath("//*[@id='WACDialogActionButton']");
-    private By breadcrumbTitle = By.xpath("//*[@id='BreadcrumbTitle']");
+    private By renameMenuItem = By.id("jbtnRenameDialog-Menu48");
+    private By txtDocumentNameField = By.id("txtDocumentName");
+    private By okButton = By.id("WACDialogActionButton");
+    private By breadcrumbTitle = By.id("BreadcrumbTitle");
 
     public YandexDiskTextDocumentPage(WebDriver driver) {
         if (!driver.getCurrentUrl().contains(URL_MATCH)) {
@@ -35,11 +37,10 @@ public class YandexDiskTextDocumentPage {
         webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
     }
 
-    public YandexDiskTextDocumentPage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
         webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-        return this;
     }
 
     public YandexDiskTextDocumentPage inputSomeText(String string) {

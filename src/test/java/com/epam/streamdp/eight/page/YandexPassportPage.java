@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 import static com.epam.streamdp.eight.page.YandexDiskInitialPage.WAIT_TIMEOUT_SECONDS;
 
 public class YandexPassportPage {
@@ -18,8 +20,8 @@ public class YandexPassportPage {
     protected WebDriverWait webDriverWait;
     protected Actions builder;
 
-    private By loginField = By.xpath("//*[@id='passp-field-login']");
-    private By passwordField = By.xpath("//*[@id='passp-field-passwd']");
+    private By loginField = By.id("passp-field-login");
+    private By passwordField = By.id("passp-field-passwd");
     private By submitButton = By.xpath("//button[@type='submit']");
     private By errorMessage = By.xpath("//div[@class='passp-form-field__error']");
 
@@ -32,11 +34,10 @@ public class YandexPassportPage {
         builder = new Actions(driver);
     }
 
-    public YandexPassportPage waitingForContent() {
+    public void waitingForContent() {
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
         builder.pause(100).build().perform();
-        return this;
     }
 
     public YandexDiskMainPage sentCredentials(User user) {
