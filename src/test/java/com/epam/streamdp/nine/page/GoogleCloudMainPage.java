@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Objects;
@@ -16,7 +17,7 @@ public class GoogleCloudMainPage {
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
     protected JavascriptExecutor jsDriver;
-    @FindBy(xpath = "//input[starts-with(@class, 'devsite-search-field')]")
+    @FindBy(name = "q")
     private WebElement searchBox;
 
     public GoogleCloudMainPage(WebDriver driver) {
@@ -34,6 +35,7 @@ public class GoogleCloudMainPage {
     }
 
     public GoogleCloudSearchResultsPage fillSearchInputFieldAndGo(String searchTerm) {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(searchBox));
         searchBox.click();
         searchBox.sendKeys(searchTerm);
         searchBox.submit();
