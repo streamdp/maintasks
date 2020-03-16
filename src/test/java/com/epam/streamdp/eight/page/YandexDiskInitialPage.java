@@ -4,20 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Objects;
 
-public class YandexDiskInitialPage {
-    public static final int WAIT_TIMEOUT_SECONDS = 30;
+public class YandexDiskInitialPage extends BasePage {
     private static final String HOMEPAGE_URL = "https://disk.yandex.ru/";
-    protected WebDriver driver;
-    protected WebDriverWait webDriverWait;
-    private By buttonLogin = By.xpath("//*[@class='button button_login header__login-link']");
+    private By loginButton = By.cssSelector("a.button.button_login.header__login-link");
 
     public YandexDiskInitialPage(WebDriver driver) {
-        this.driver = driver;
-        webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        super(driver);
     }
 
     public YandexDiskInitialPage openPage() {
@@ -28,7 +23,7 @@ public class YandexDiskInitialPage {
     }
 
     public YandexPassportPage goTologinPage() {
-        driver.findElement(buttonLogin).click();
+        driver.findElement(loginButton).click();
         return new YandexPassportPage(driver);
     }
 }

@@ -1,89 +1,66 @@
 package com.epam.streamdp.eight.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Objects;
+import java.util.regex.Pattern;
 
-import static com.epam.streamdp.eight.page.YandexDiskFilesPage.URL_MATCH;
-import static com.epam.streamdp.eight.page.YandexDiskInitialPage.WAIT_TIMEOUT_SECONDS;
-
-public class YandexDiskTextDocumentPage {
-    protected WebDriver driver;
-    protected WebDriverWait webDriverWait;
-    protected Actions builder;
-    protected JavascriptExecutor jsDriver;
-
-    private By frameLocator = By.xpath("//*[@id='nb-1']/body/iframe");
-    private By textFieldLocator = By.id("WACViewPanel_EditingElement");
-    private By fileMenuItem = By.xpath("//*[@data-automation-id='FileMenu']");
+public class YandexDiskTextDocumentPage extends BasePage {
+    private By frameLocator = By.cssSelector("iframe.editor-doc__iframe");
+    private By textFieldLocator = By.cssSelector("div.EditingSurfaceBody");
+    private By fileMenuItem = By.cssSelector("button.ms-Button.root-54");
+    private By backMenuItem = By.id("jbtnBackArrow-Menu32");
     private By renameMenuItem = By.id("jbtnRenameDialog-Menu48");
-    private By txtDocumentNameField = By.id("txtDocumentName");
+    private By txtDocumentNameInput = By.id("txtDocumentName");
     private By okButton = By.id("WACDialogActionButton");
     private By breadcrumbTitle = By.id("BreadcrumbTitle");
+    private By breadcrumbSaveStatus = By.id("BreadcrumbSaveStatus");
 
     public YandexDiskTextDocumentPage(WebDriver driver) {
-        if (!driver.getCurrentUrl().contains(URL_MATCH)) {
-            throw new IllegalStateException("This is not the page you are expected");
-        }
-        this.driver = driver;
-        jsDriver = (JavascriptExecutor) driver;
-        builder = new Actions(driver);
-        webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-    }
-
-    public void waitingForContent() {
-        webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
-        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        super(driver);
     }
 
     public YandexDiskTextDocumentPage inputSomeText(String string) {
-        waitingForContent();
-        waitForElementPresent(textFieldLocator);
-        builder.pause(1500).moveToElement(driver.findElement(textFieldLocator)).pause(1500)
-                .sendKeys(string).pause(3000).build().perform();
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        waitForElementPresent(textFieldLocator).sendKeys(string);
+        webDriverWait.until(ExpectedConditions.textMatches(breadcrumbSaveStatus, Pattern.compile("/*Yandex")));
         return this;
     }
 
     public String getContent() {
-        waitForElementPresent(textFieldLocator);
-        String result = driver.findElement(textFieldLocator).getText().trim();
+        String result = waitForElementPresent(textFieldLocator).getText().trim();
         closeDocument();
         return result;
     }
 
     public YandexDiskTextDocumentPage renameDocument(String documentName) {
-        waitForElementPresent(fileMenuItem);
-        jsClick(fileMenuItem);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(renameMenuItem));
-        driver.findElement(renameMenuItem).click();
-        waitForElementPresent(txtDocumentNameField);
-        builder.moveToElement(driver.findElement(txtDocumentNameField)).sendKeys(documentName).pause(500)
+        waitForElementPresent(fileMenuItem).click();
+        waitForElementPresent(backMenuItem).click();
+        waitForElementPresent(fileMenuItem).click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(renameMenuItem)).click();
+        builder.moveToElement(waitForElementPresent(txtDocumentNameInput)).sendKeys(documentName)
                 .moveToElement(driver.findElement(okButton)).build().perform();
         jsClick(okButton);
-        builder.pause(2000).build().perform();
+        webDriverWait.until(ExpectedConditions.textToBe(breadcrumbTitle, documentName));
+        webDriverWait.until(ExpectedConditions.textMatches(breadcrumbSaveStatus, Pattern.compile("/*Yandex")));
         return this;
     }
 
-    public void jsClick(By locator) {
+    public YandexDiskTextDocumentPage jsClick(By locator) {
         builder.moveToElement(driver.findElement(locator)).build().perform();
         jsDriver.executeScript("arguments[0].click();", driver.findElement(locator));
+        return this;
     }
 
-    public void waitForElementPresent(By locator) {
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    public WebElement waitForElementPresent(By locator) {
+        return webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public boolean isDocumentOpened(String fileName) {
-        waitingForContent();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(breadcrumbTitle));
-        return driver.findElement(breadcrumbTitle).getText().equals(fileName);
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        return waitForElementPresent(breadcrumbTitle).getText().equals(fileName);
     }
 
     public YandexDiskFilesPage closeDocument() {

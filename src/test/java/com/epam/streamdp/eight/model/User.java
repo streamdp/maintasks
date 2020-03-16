@@ -1,4 +1,4 @@
-package com.epam.streamdp.eight;
+package com.epam.streamdp.eight.model;
 
 public class User {
     private String login;

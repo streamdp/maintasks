@@ -1,6 +1,6 @@
 package com.epam.streamdp.eight.test;
 
-import com.epam.streamdp.eight.User;
+import com.epam.streamdp.eight.model.User;
 import com.epam.streamdp.eight.page.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +17,14 @@ public class YandexDiskTest {
     Random random = new Random();
     private WebDriver driver;
     private User correctCredentials = new User("iv4nov1vanewan", "AxmTYklsjo190QW");
+    private By recentLink = By.cssSelector("div.navigation__items_standard > div:nth-child(1) > a");
+    private By diskLink = By.id("/disk");
+    private By photoLink = By.cssSelector("div.navigation__items_standard > div:nth-child(3) > a");
+    private By albumsLink = By.cssSelector("div.navigation__items_standard > div:nth-child(4) > a");
+    private By sharedLink = By.cssSelector("div.navigation__items_standard > div:nth-child(5) > a");
+    private By journalLink = By.cssSelector("div.navigation__items_standard > div:nth-child(6) > a");
+    private By attachLink = By.cssSelector("div.navigation__items_standard > div:nth-child(7) > a");
+    private By trashLink = By.id("/trash");
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
@@ -26,11 +34,11 @@ public class YandexDiskTest {
 
     @Test(description = "Check the user error message when userName incorrect.", priority = 1)
     public void shouldBeReturnedMessageAboutWrongUsername() {
-        User userWithIncorrectUserName = new User("lskkdej", "qwertyqazxsw");
+        String incorrectLogin = "lskkdej";
         Assert.assertTrue(new YandexDiskInitialPage(driver)
                 .openPage()
                 .goTologinPage()
-                .sentLogin(userWithIncorrectUserName)
+                .sentLogin(incorrectLogin)
                 .isErrorMessageWasDisplayed(), "Error message was not be displayed.");
     }
 
@@ -40,31 +48,31 @@ public class YandexDiskTest {
         Assert.assertTrue(new YandexDiskInitialPage(driver)
                 .openPage()
                 .goTologinPage()
-                .sentLogin(userWithIncorrectPassword)
-                .sentPassword(userWithIncorrectPassword)
+                .sentLogin(userWithIncorrectPassword.getLogin())
+                .sentPassword(userWithIncorrectPassword.getPassword())
                 .isErrorMessageWasDisplayed(), "Error message was not be displayed.");
     }
 
-    @Test(description = "Check that all main menu items works correctly and lead to correct page: Последние, Файлы," +
-            " Фото, Общий доступ, История, Архив, Корзина.", priority = 3)
+    @Test(description = "Check that all main menu items works correctly and lead to correct page: Recent, Files," +
+            " Photo, Published, Journal, Attach, Trash.", priority = 3)
     public void allMainMenuItemsShouldBeWorksCorrectlyAndLeadToCorrectPage() {
         SoftAssert softAssertion = new SoftAssert();
         YandexDiskMainPage yandexDiskMainPage = new YandexDiskInitialPage(driver)
                 .openPage()
                 .goTologinPage()
                 .sentCredentials(correctCredentials);
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='Последние']")), "recentLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//*[@id='/disk']")), "diskLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='Фото']")), "photoLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='Альбомы']")), "albumsLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='Общий доступ']")), "sharedLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='История']")), "journalLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//div/a[@title='Архив']")), "attachLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(By.xpath("//*[@id='/trash']")), "trashLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(recentLink), "recentLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(diskLink), "diskLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(photoLink), "photoLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(albumsLink), "albumsLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(sharedLink), "sharedLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(journalLink), "journalLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(attachLink), "attachLink is broken.");
+        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(trashLink), "trashLink is broken.");
         softAssertion.assertAll();
     }
 
-    @Test(description = "Check creation of new folder inside Файлы (use unique name for each new folder)," +
+    @Test(description = "Check creation of new folder inside Files (use unique name for each new folder)," +
             " check you can visit that folder.", priority = 4)
     public void folderCanBeCreatedAndVisited() {
         String folderName = "folderName" + 4 + random.nextInt(1000);
@@ -74,7 +82,7 @@ public class YandexDiskTest {
                 .sentCredentials(correctCredentials)
                 .goToFilesMenuItem()
                 .createFolder(folderName);
-        Assert.assertTrue(yandexDiskMain.isFolderAvailibleForVisit(folderName),
+        Assert.assertTrue(yandexDiskMain.isFolderAvailableForVisit(folderName),
                 String.format("Folder %s creation error.", folderName));
     }
 
