@@ -40,9 +40,9 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         return this;
     }
 
-    public YandexDiskFilesPage fillingInputField(By locator, String string) {
+    public YandexDiskFilesPage fillingInputField(By locator, String textForInput) {
         builder.moveToElement(webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator)))
-                .sendKeys(Keys.BACK_SPACE).sendKeys(string).build().perform();
+                .sendKeys(Keys.BACK_SPACE).sendKeys(textForInput).build().perform();
         return this;
     }
 

@@ -13,7 +13,6 @@ public class BasePage {
     protected Actions builder;
     protected JavascriptExecutor jsDriver;
 
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.builder = new Actions(driver);
