@@ -12,7 +12,7 @@ public class EmailEstimateTest extends CommonConditions {
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
                 .followTheFirstLink(searchTerm)
-                .fillingFieldsAccordingToTheTest(configuration)
+                .fillMainConfigurationFields(configuration)
                 .clickEmailEstimateButton()
                 .fillUserInformation(user)
                 .receiveEmail();

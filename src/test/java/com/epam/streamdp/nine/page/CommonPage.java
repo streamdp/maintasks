@@ -3,6 +3,7 @@ package com.epam.streamdp.nine.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,5 +34,9 @@ public abstract class CommonPage {
 
     public void switchToTab(int tab) {
         driver.switchTo().window(driver.getWindowHandles().toArray()[tab].toString());
+    }
+
+    public void jsClick(WebElement element) {
+        jsDriver.executeScript("arguments[0].click();", element);
     }
 }

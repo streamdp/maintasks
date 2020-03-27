@@ -13,7 +13,7 @@ public class ConfigurationSelectionTest extends CommonConditions {
                 .openPage()
                 .fillSearchInputFieldAndGo(searchTerm)
                 .followTheFirstLink(searchTerm)
-                .fillingFieldsAccordingToTheTest(configuration)
+                .fillMainConfigurationFields(configuration)
                 .getComputeEngineListOptions();
         softAssertion.assertEquals(computeEngineListOptions.get(1), listOptionForTest.get(0), String.format(FIELD_ERROR, "VM class"));
         softAssertion.assertEquals(computeEngineListOptions.get(2), listOptionForTest.get(1), String.format(FIELD_ERROR, "Instance type"));
