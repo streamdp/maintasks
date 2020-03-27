@@ -43,7 +43,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
         return driver.findElement(By.id(idString));
     }
 
-    public GoogleCloudPlatformPricingCalculatorPage fillingFieldsAccordingToTheTest(Configuration configuration) {
+    public GoogleCloudPlatformPricingCalculatorPage fillMainConfigurationFields(Configuration configuration) {
         waitingForContent();
         computeEngineButton.click();
         numberOfInstances.sendKeys(configuration.getNumberOfInstances());
@@ -68,10 +68,6 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
         jsClick(getElementById(configuration.getIdCommittedUsage()));
         jsClick(estimateButton);
         return this;
-    }
-
-    public void jsClick(WebElement element) {
-        jsDriver.executeScript("arguments[0].click();", element);
     }
 
     public GoogleCloudPlatformEmailEstimatePage clickEmailEstimateButton() {
