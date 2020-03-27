@@ -5,15 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPage {
-    public static final String CLOUD_FRAME_ONE = "//*[@id='cloud-site']/devsite-iframe/iframe";
-    public static final String CLOUD_FRAME_TWO = "myFrame";
-
     @FindBy(xpath = "//div[@title='Compute Engine']/div/div/div/div")
     private WebElement computeEngineButton;
     @FindBy(id = "input_55")
@@ -43,12 +39,7 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
         super(driver);
     }
 
-    public void waitingForContent() {
-        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(CLOUD_FRAME_ONE)));
-        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(CLOUD_FRAME_TWO));
-    }
-
-    public WebElement option(String idString) {
+    public WebElement getElementById(String idString) {
         return driver.findElement(By.id(idString));
     }
 
@@ -57,24 +48,24 @@ public class GoogleCloudPlatformPricingCalculatorPage extends GoogleCloudMainPag
         computeEngineButton.click();
         numberOfInstances.sendKeys(configuration.getNumberOfInstances());
         jsClick(machineTypeSelector);
-        jsClick(option(configuration.getIdMachineType()));
-        jsClick(option(configuration.getIdMachineType()));
+        jsClick(getElementById(configuration.getIdMachineType()));
+        jsClick(getElementById(configuration.getIdMachineType()));
         if (!configuration.getCountOfGPUs().equals("0")) {
             jsClick(checkBoxAddGPUs);
             setCountGPUs.sendKeys(configuration.getCountOfGPUs());
             jsClick(gpuTypeSelector);
-            jsClick(option(configuration.getIdGPUType()));
-            jsClick(option(configuration.getIdGPUType()));
+            jsClick(getElementById(configuration.getIdGPUType()));
+            jsClick(getElementById(configuration.getIdGPUType()));
         }
         jsClick(localSSDSelector);
-        jsClick(option(configuration.getIdLocalSSD()));
-        jsClick(option(configuration.getIdLocalSSD()));
+        jsClick(getElementById(configuration.getIdLocalSSD()));
+        jsClick(getElementById(configuration.getIdLocalSSD()));
         jsClick(dataCenterLocation);
-        jsClick(option(configuration.getIdLocation()));
-        jsClick(option(configuration.getIdLocation()));
+        jsClick(getElementById(configuration.getIdLocation()));
+        jsClick(getElementById(configuration.getIdLocation()));
         jsClick(committedUsageSelector);
-        jsClick(option(configuration.getIdCommittedUsage()));
-        jsClick(option(configuration.getIdCommittedUsage()));
+        jsClick(getElementById(configuration.getIdCommittedUsage()));
+        jsClick(getElementById(configuration.getIdCommittedUsage()));
         jsClick(estimateButton);
         return this;
     }

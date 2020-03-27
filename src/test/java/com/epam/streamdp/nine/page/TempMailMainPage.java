@@ -1,24 +1,19 @@
 package com.epam.streamdp.nine.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Objects;
-
-public class TempMailMainPage {
-    public static final int WAIT_TIMEOUT_SECONDS = 30;
+public class TempMailMainPage extends CommonPage {
     private static final String HOMEPAGE_URL = "https://tempail.com/";
     protected WebDriver driver;
     protected WebDriverWait webDriverWait;
-    @FindBy(xpath = "//*[starts-with(@id,'mail_')]")
-    private WebElement newMessage;
+    private By newMessage = By.xpath("//*[starts-with(@id,'mail_')]");
+    private By mailFromGoogleFrame = By.id("iframe");
     @FindBy(xpath = "//*[@id='mobilepadding']/td/h2")
     private WebElement estimateMonthlyCost;
     @FindBy(id = "eposta_adres")
@@ -32,8 +27,7 @@ public class TempMailMainPage {
 
     public TempMailMainPage openPage() {
         driver.get(HOMEPAGE_URL);
-        webDriverWait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
+        waitReadyStateIsComplete();
         webDriverWait.until((ExpectedConditions.visibilityOfAllElements(fieldWithEmail)));
         return this;
     }
@@ -43,9 +37,8 @@ public class TempMailMainPage {
     }
 
     public String getEmailContent() {
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[starts-with(@id,'mail_')]")));
-        newMessage.click();
-        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("iframe")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(newMessage)).click();
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(mailFromGoogleFrame));
         return estimateMonthlyCost.getText();
     }
 }
