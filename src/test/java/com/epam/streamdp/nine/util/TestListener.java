@@ -34,7 +34,7 @@ public class TestListener implements ITestListener {
                             + getCurrentTimeAsString() +
                             ".png"));
         } catch (IOException e) {
-            log.error("Failed to save screenshot: " + e.getLocalizedMessage());
+            log.error("Failed to save screenshot: {}", e.getLocalizedMessage());
         }
     }
 
