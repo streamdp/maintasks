@@ -3,11 +3,11 @@ package com.epam.streamdp.ten.framework.service;
 
 import com.epam.streamdp.ten.framework.model.User;
 
-public class UserCreator {
+public class UserFactory {
     public static final String USER_LOGIN = "user.login";
     public static final String USER_PASSWORD = "user.password";
 
-    private UserCreator() {
+    private UserFactory() {
         throw new IllegalStateException("Service class");
     }
 

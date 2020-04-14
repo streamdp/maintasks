@@ -1,5 +1,6 @@
 package com.epam.streamdp.ten.framework.screen;
 
+import com.epam.streamdp.ten.framework.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +18,8 @@ public class BasePage {
     protected Actions builder;
     protected JavascriptExecutor jsDriver;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage() {
+        this.driver = DriverSingleton.getDriver();
         this.builder = new Actions(driver);
         this.webDriverWait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         jsDriver = (JavascriptExecutor) driver;
@@ -26,6 +27,22 @@ public class BasePage {
 
     public void switchToTab(int tab) {
         driver.switchTo().window(driver.getWindowHandles().toArray()[tab].toString());
+    }
+
+    public BasePage clickToItem(By locator) {
+        waitingPresenceOfElementLocated(locator).click();
+        return this;
+    }
+
+    public BasePage openContextMenuOnElement(By locator) {
+        builder.contextClick(waitingPresenceOfElementLocated(locator)).build().perform();
+        return this;
+    }
+
+    public BasePage jsClick(By locator) {
+        builder.moveToElement(driver.findElement(locator)).build().perform();
+        jsDriver.executeScript("arguments[0].click();", driver.findElement(locator));
+        return this;
     }
 
     public By buildLocatorFor(String locatorTemplate, String name) {

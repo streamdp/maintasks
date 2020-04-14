@@ -1,10 +1,9 @@
 package com.epam.streamdp.ten.yandex.product.disk;
 
-
 import com.epam.streamdp.ten.framework.driver.DriverSingleton;
 import com.epam.streamdp.ten.framework.listener.TestListener;
 import com.epam.streamdp.ten.framework.model.User;
-import com.epam.streamdp.ten.framework.service.UserCreator;
+import com.epam.streamdp.ten.framework.service.UserFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,7 +20,7 @@ public class CommonConditions {
     @BeforeMethod()
     public void setUp() {
         driver = DriverSingleton.getDriver();
-        correctCredentials = UserCreator.withCredentialsFromProperty();
+        correctCredentials = UserFactory.withCredentialsFromProperty();
     }
 
     @AfterMethod(alwaysRun = true)

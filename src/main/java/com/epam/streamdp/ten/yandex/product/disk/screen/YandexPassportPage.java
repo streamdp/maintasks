@@ -3,7 +3,6 @@ package com.epam.streamdp.ten.yandex.product.disk.screen;
 import com.epam.streamdp.ten.framework.model.User;
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class YandexPassportPage extends BasePage {
@@ -12,23 +11,23 @@ public class YandexPassportPage extends BasePage {
     private By submitButton = By.xpath("//button[@type='submit']");
     private By errorMessage = By.cssSelector("div.passp-form-field__error");
 
-    public YandexPassportPage(WebDriver driver) {
-        super(driver);
+    public YandexPassportPage() {
+        super();
     }
 
-    public YandexDiskMainPage sentCredentials(User user) {
-        sentLogin(user.getLogin());
-        sentPassword(user.getPassword());
-        return new YandexDiskMainPage(driver);
+    public YandexDiskMainPage sendCredentials(User user) {
+        sendLogin(user.getLogin());
+        sendPassword(user.getPassword());
+        return new YandexDiskMainPage();
     }
 
-    public YandexPassportPage sentLogin(String login) {
+    public YandexPassportPage sendLogin(String login) {
         waitingPresenceOfElementLocated(loginField).sendKeys(login);
         driver.findElement(submitButton).click();
         return this;
     }
 
-    public YandexPassportPage sentPassword(String password) {
+    public YandexPassportPage sendPassword(String password) {
         waitingPresenceOfElementLocated(passwordField).sendKeys(password);
         driver.findElement(submitButton).click();
         return this;

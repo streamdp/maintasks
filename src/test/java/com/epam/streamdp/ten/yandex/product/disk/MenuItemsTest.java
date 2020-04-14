@@ -1,37 +1,27 @@
 package com.epam.streamdp.ten.yandex.product.disk;
 
-import com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskInitialPage;
-import com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskMainPage;
-import org.openqa.selenium.By;
+import com.epam.streamdp.ten.framework.service.AccountService;
+import com.epam.streamdp.ten.framework.service.ActionService;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import static com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskMainPage.*;
+
 public class MenuItemsTest extends CommonConditions {
-    private By recentLink = By.cssSelector("div.navigation__items_standard > div:nth-child(1) > a");
-    private By diskLink = By.id("/disk");
-    private By photoLink = By.cssSelector("div.navigation__items_standard > div:nth-child(3) > a");
-    private By albumsLink = By.cssSelector("div.navigation__items_standard > div:nth-child(4) > a");
-    private By sharedLink = By.cssSelector("div.navigation__items_standard > div:nth-child(5) > a");
-    private By journalLink = By.cssSelector("div.navigation__items_standard > div:nth-child(6) > a");
-    private By attachLink = By.cssSelector("div.navigation__items_standard > div:nth-child(7) > a");
-    private By trashLink = By.id("/trash");
 
     @Test(description = "Check that all main menu items works correctly and lead to correct page: Recent, Files," +
             " Photo, Published, Journal, Attach, Trash.", priority = 3)
     public void allMainMenuItemsShouldBeWorksCorrectlyAndLeadToCorrectPage() {
         SoftAssert softAssertion = new SoftAssert();
-        YandexDiskMainPage yandexDiskMainPage = new YandexDiskInitialPage(driver)
-                .openPage()
-                .goTologinPage()
-                .sentCredentials(correctCredentials);
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(recentLink), "recentLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(diskLink), "diskLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(photoLink), "photoLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(albumsLink), "albumsLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(sharedLink), "sharedLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(journalLink), "journalLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(attachLink), "attachLink is broken.");
-        softAssertion.assertTrue(yandexDiskMainPage.isMenuItemLinkCorrect(trashLink), "trashLink is broken.");
+        new AccountService().signIn(correctCredentials);
+        softAssertion.assertTrue(new ActionService().checkLink(RECENT_LINK), "recentLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(DISK_LINK), "diskLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(PHOTO_LINK), "photoLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(ALBUM_LINK), "albumsLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(SHARED_LINK), "sharedLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(JOURNAL_LINK), "journalLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(ATTACH_LINK), "attachLink is broken.");
+        softAssertion.assertTrue(new ActionService().checkLink(TRASH_LINK), "trashLink is broken.");
         softAssertion.assertAll();
     }
 }

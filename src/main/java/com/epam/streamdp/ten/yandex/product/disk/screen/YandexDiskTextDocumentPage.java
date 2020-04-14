@@ -2,7 +2,6 @@ package com.epam.streamdp.ten.yandex.product.disk.screen;
 
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.regex.Pattern;
@@ -18,8 +17,8 @@ public class YandexDiskTextDocumentPage extends BasePage {
     private By breadcrumbTitle = By.id("BreadcrumbTitle");
     private By breadcrumbSaveStatus = By.id("BreadcrumbSaveStatus");
 
-    public YandexDiskTextDocumentPage(WebDriver driver) {
-        super(driver);
+    public YandexDiskTextDocumentPage() {
+        super();
     }
 
     public YandexDiskTextDocumentPage inputSomeText(String string) {
@@ -48,12 +47,6 @@ public class YandexDiskTextDocumentPage extends BasePage {
         return this;
     }
 
-    public YandexDiskTextDocumentPage jsClick(By locator) {
-        builder.moveToElement(driver.findElement(locator)).build().perform();
-        jsDriver.executeScript("arguments[0].click();", driver.findElement(locator));
-        return this;
-    }
-
     public boolean isDocumentOpened(String fileName) {
         webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         return waitingPresenceOfElementLocated(breadcrumbTitle).getText().equals(fileName);
@@ -62,6 +55,6 @@ public class YandexDiskTextDocumentPage extends BasePage {
     public YandexDiskFilesPage closeDocument() {
         driver.close();
         switchToTab(0);
-        return new YandexDiskFilesPage(driver);
+        return new YandexDiskFilesPage();
     }
 }

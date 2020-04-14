@@ -1,6 +1,9 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -15,8 +18,8 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
     private By saveButton = By.cssSelector("button.confirmation-dialog__button_submit");
     private By progressBar = By.cssSelector("div.b-progressbar__fill");
 
-    public YandexDiskFilesPage(WebDriver driver) {
-        super(driver);
+    public YandexDiskFilesPage() {
+        super();
     }
 
     public YandexDiskFilesPage createFolder(String folderName) {
@@ -46,11 +49,6 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         return this;
     }
 
-    public YandexDiskFilesPage clickToItem(By locator) {
-        waitingPresenceOfElementLocated(locator).click();
-        return this;
-    }
-
     public YandexDiskTextDocumentPage createTextDocument(String folderName) {
         goToFolder(folderName);
         openContextMenuOnElement(buildLocatorFor(TITLE_LOCATOR_TEMPLATE, folderName));
@@ -58,12 +56,7 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         switchToTab(1);
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
                 (Boolean) ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return jQuery.active == 0"));
-        return new YandexDiskTextDocumentPage(driver);
-    }
-
-    public YandexDiskFilesPage openContextMenuOnElement(By locator) {
-        builder.contextClick(waitingPresenceOfElementLocated(locator)).build().perform();
-        return this;
+        return new YandexDiskTextDocumentPage();
     }
 
     public YandexDiskFilesPage goToFolder(String folderName) {
@@ -76,7 +69,7 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         WebElement fileItem = waitingPresenceOfElementLocated(buildLocatorFor(ITEM_LOCATOR_TEMPLATE, fileName));
         builder.pause(250).doubleClick(fileItem).pause(250).build().perform();
         switchToTab(1);
-        return new YandexDiskTextDocumentPage(driver);
+        return new YandexDiskTextDocumentPage();
     }
 
     public boolean isFolderAvailableForVisit(String folderName) {
