@@ -1,10 +1,5 @@
 package com.epam.streamdp.ten.yandex.product.disk;
 
-import com.epam.streamdp.ten.framework.service.AccountService;
-import com.epam.streamdp.ten.framework.service.ActionService;
-import com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskFilesPage;
-import com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskMainPage;
-import com.epam.streamdp.ten.yandex.product.disk.screen.YandexDiskTextDocumentPage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -19,13 +14,13 @@ public class DocumentCreationsTest extends CommonConditions {
         String stringWithTextForTest = "Hello world!";
 
         SoftAssert softAssertion = new SoftAssert();
-        new AccountService().signIn(correctCredentials);
-        new ActionService().createFolder(folderName);
-        new ActionService().createTextDocument(folderName, documentName, stringWithTextForTest);
-        softAssertion.assertTrue(new YandexDiskMainPage().isItemPresent(documentName + ".docx"), "Error creating file, file not found.");
-        new YandexDiskFilesPage().openTextDocument(documentName);
-        softAssertion.assertTrue(new YandexDiskTextDocumentPage().isDocumentOpened(documentName), "Error opening document.");
-        softAssertion.assertEquals(new YandexDiskTextDocumentPage().getContent(), stringWithTextForTest, "Invalid text received from document.");
+        yandexAccountService.signIn(correctCredentials);
+        yandexActionService.createFolder(folderName);
+        yandexActionService.createTextDocument(folderName, documentName, stringWithTextForTest);
+        softAssertion.assertTrue(yandexDiskMainPage.isItemPresent(documentName + ".docx"), "Error creating file, file not found.");
+        yandexDiskFilesPage.openTextDocument(documentName);
+        softAssertion.assertTrue(yandexDiskTextDocumentPage.isDocumentOpened(documentName), "Error opening document.");
+        softAssertion.assertEquals(yandexDiskTextDocumentPage.getContent(), stringWithTextForTest, "Invalid text received from document.");
         softAssertion.assertAll();
     }
 }
