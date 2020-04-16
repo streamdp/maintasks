@@ -1,5 +1,6 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
+import com.epam.streamdp.ten.framework.logger.Log;
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,12 +28,14 @@ public class YandexDiskMainPage extends BasePage {
     public YandexDiskFilesPage goToFilesMenuItem() {
         waitingPresenceOfElementLocated(DISK_LINK).click();
         waitingPresenceOfElementLocated(headingTitle);
+        Log.info("Go to Files: " + DISK_LINK);
         return new YandexDiskFilesPage();
     }
 
     public YandexDiskTrashPage goToTrash() {
         waitingPresenceOfElementLocated(TRASH_LINK).click();
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(NAME_ITEM));
+        Log.info("Go to Trash: " + TRASH_LINK);
         return new YandexDiskTrashPage();
     }
 
