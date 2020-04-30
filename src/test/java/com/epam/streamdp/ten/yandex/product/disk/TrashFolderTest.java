@@ -10,15 +10,14 @@ public class TrashFolderTest extends CommonConditions {
             "folder.")
     public void moveToTrashItemShouldBeAvailable() {
         SoftAssert softAssertion = new SoftAssert();
-        String folderName = "Documents" + 6 + random.nextInt(1000);
         yandexAccountService.signIn(correctCredentials);
         yandexDiskMainPage.goToFilesMenuItem();
-        softAssertion.assertTrue(yandexDiskFilesPage.createFolder(folderName).isItemPresent(folderName),
-                String.format("Folder %s creation error.", folderName));
-        softAssertion.assertFalse(yandexDiskFilesPage.removeItem(folderName).isItemPresent(folderName),
-                String.format("Folder %s removing error.", folderName));
-        softAssertion.assertTrue(yandexDiskFilesPage.goToTrash().isItemPresent(folderName),
-                String.format("Folder %s not found in Trash folder.", folderName));
+        softAssertion.assertTrue(yandexDiskFilesPage.createFolder(folder.getFolderName()).isItemPresent(folder.getFolderName()),
+                String.format("Folder %s creation error.", folder.getFolderName()));
+        softAssertion.assertFalse(yandexDiskFilesPage.removeItem(folder.getFolderName()).isItemPresent(folder.getFolderName()),
+                String.format("Folder %s removing error.", folder.getFolderName()));
+        softAssertion.assertTrue(yandexDiskFilesPage.goToTrash().isItemPresent(folder.getFolderName()),
+                String.format("Folder %s not found in Trash folder.", folder.getFolderName()));
         softAssertion.assertAll();
     }
 

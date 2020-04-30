@@ -1,5 +1,6 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
+import com.epam.streamdp.ten.framework.logger.Log;
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,6 +26,7 @@ public class YandexDiskTextDocumentPage extends BasePage {
         webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         waitingPresenceOfElementLocated(textFieldLocator).sendKeys(string);
         webDriverWait.until(ExpectedConditions.textMatches(breadcrumbSaveStatus, Pattern.compile("/*Yandex")));
+        Log.info("Entering some text: " + string);
         return this;
     }
 
@@ -44,6 +46,7 @@ public class YandexDiskTextDocumentPage extends BasePage {
         jsClick(okButton);
         webDriverWait.until(ExpectedConditions.textToBe(breadcrumbTitle, documentName));
         webDriverWait.until(ExpectedConditions.textMatches(breadcrumbSaveStatus, Pattern.compile("/*Yandex")));
+        Log.info("Document has been renamed to " + documentName);
         return this;
     }
 
@@ -55,6 +58,7 @@ public class YandexDiskTextDocumentPage extends BasePage {
     public YandexDiskFilesPage closeDocument() {
         driver.close();
         switchToTab(0);
+        Log.info("Document has been closed!");
         return new YandexDiskFilesPage();
     }
 }

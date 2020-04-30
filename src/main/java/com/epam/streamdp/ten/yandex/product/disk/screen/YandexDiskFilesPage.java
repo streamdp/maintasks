@@ -1,5 +1,6 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
+import com.epam.streamdp.ten.framework.logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -46,6 +47,7 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
     public YandexDiskFilesPage fillingInputField(By locator, String textForInput) {
         builder.moveToElement(waitingPresenceOfElementLocated(locator))
                 .sendKeys(Keys.BACK_SPACE).sendKeys(textForInput).build().perform();
+        Log.info("Filling input field: " + locator.toString() + " with text " + textForInput);
         return this;
     }
 
@@ -69,6 +71,7 @@ public class YandexDiskFilesPage extends YandexDiskMainPage {
         WebElement fileItem = waitingPresenceOfElementLocated(buildLocatorFor(ITEM_LOCATOR_TEMPLATE, fileName));
         builder.pause(250).doubleClick(fileItem).pause(250).build().perform();
         switchToTab(1);
+        Log.info("Open text document: " + fileName);
         return new YandexDiskTextDocumentPage();
     }
 

@@ -1,5 +1,6 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
+import com.epam.streamdp.ten.framework.logger.Log;
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,6 +20,7 @@ public class YandexDiskInitialPage extends BasePage {
         driver.get(HOMEPAGE_URL);
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
+        Log.info("Open page: " + HOMEPAGE_URL);
         return this;
     }
 

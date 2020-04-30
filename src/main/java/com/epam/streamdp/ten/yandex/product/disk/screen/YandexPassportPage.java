@@ -1,5 +1,7 @@
 package com.epam.streamdp.ten.yandex.product.disk.screen;
 
+import com.epam.streamdp.ten.framework.listener.TestListener;
+import com.epam.streamdp.ten.framework.logger.Log;
 import com.epam.streamdp.ten.framework.model.User;
 import com.epam.streamdp.ten.framework.screen.BasePage;
 import org.openqa.selenium.By;
@@ -22,19 +24,24 @@ public class YandexPassportPage extends BasePage {
     }
 
     public YandexPassportPage sendLogin(String login) {
+        highlightElement(loginField);
         waitingPresenceOfElementLocated(loginField).sendKeys(login);
         driver.findElement(submitButton).click();
+        Log.info("Send login: " + login);
         return this;
     }
 
     public YandexPassportPage sendPassword(String password) {
+        highlightElement(passwordField);
         waitingPresenceOfElementLocated(passwordField).sendKeys(password);
         driver.findElement(submitButton).click();
+        Log.info("Send password: " + password);
         return this;
     }
 
     public boolean isErrorMessageWasDisplayed() {
         WebElement message = waitingPresenceOfElementLocated(this.errorMessage);
+        TestListener.saveScreenshot();
         return message.isDisplayed() && !message.getText().isEmpty();
     }
 }
