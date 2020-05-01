@@ -11,7 +11,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class BasePage {
     public static final String TITLE_LOCATOR_TEMPLATE = "//h1[@title='%s']";
     public static final String ITEM_LOCATOR_TEMPLATE = "//div[@class='listing-item__info']/div/span[text()='%s']";
@@ -41,20 +40,19 @@ public class BasePage {
         TestListener.saveScreenshot();
         jsDriver.executeScript("arguments[0].style.backgroundColor= '" + backgroundColor + "'", element);
         jsDriver.executeScript("arguments[0].style.border = '" + border + "'", element);
-
     }
 
     public BasePage clickToItem(By locator) {
         highlightElement(locator);
         waitingPresenceOfElementLocated(locator).click();
-        Log.info("Click to item: " + locator.toString());
+        Log.info("Click to item: " + locator);
         return this;
     }
 
     public BasePage openContextMenuOnElement(By locator) {
         highlightElement(locator);
         builder.contextClick(waitingPresenceOfElementLocated(locator)).build().perform();
-        Log.info("Open context menu on element: " + locator.toString());
+        Log.info("Open context menu on element: " + locator);
         return this;
     }
 
@@ -62,7 +60,7 @@ public class BasePage {
         highlightElement(locator);
         builder.moveToElement(driver.findElement(locator)).build().perform();
         jsDriver.executeScript("arguments[0].click();", driver.findElement(locator));
-        Log.info("Click to item: " + locator.toString());
+        Log.info("Click to item: " + locator);
         return this;
     }
 

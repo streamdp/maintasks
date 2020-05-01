@@ -25,12 +25,8 @@ import java.util.Date;
 public final class ExHtmlLayout extends AbstractStringLayout {
     public static final String DEFAULT_FONT_FAMILY = "arial,sans-serif";
     private static final String TRACE_PREFIX = "<br />&nbsp;&nbsp;&nbsp;&nbsp;";
-    private static final String REGEXP;
+    private static final String REGEXP = Strings.LINE_SEPARATOR.equals("\n") ? "\n" : Strings.LINE_SEPARATOR + "|\n";
     private static final String DEFAULT_TITLE = "Log4j Log Messages";
-
-    static {
-        REGEXP = Strings.LINE_SEPARATOR.equals("\n") ? "\n" : Strings.LINE_SEPARATOR + "|\n";
-    }
 
     private final long jvmStartTime;
     private final boolean locationInfo;
